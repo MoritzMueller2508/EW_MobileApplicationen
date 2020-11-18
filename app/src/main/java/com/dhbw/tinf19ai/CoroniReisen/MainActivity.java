@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private FrameLayout leftContainer;
@@ -18,9 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getSupportFragmentManager().beginTransaction().
-                replace(R.id.container, new Map(), "Activity").commitAllowingStateLoss();
+        try {
+            RiskCountriesExtraction.riskCountriesExtraction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*getSupportFragmentManager().beginTransaction().
+                replace(R.id.container, new Map(), "Activity").commitAllowingStateLoss();*/
 
     }
 }
