@@ -558,7 +558,6 @@ color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
 color background
-color background1
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -872,8 +871,6 @@ drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable coroni_gruen
-drawable coroni_orange
-drawable coroni_rot
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
@@ -1318,7 +1315,6 @@ string app_name
 string base
 string base_nl
 string bing
-string btn_show_me_on_map
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1353,7 +1349,6 @@ string format_distance_only_mile
 string format_distance_only_nautical_mile
 string format_distance_value_unit
 string hills
-string hint_address_input
 string map_mode
 string mapbox
 string mapnik

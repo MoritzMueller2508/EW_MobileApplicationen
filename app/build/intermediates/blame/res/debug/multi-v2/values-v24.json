@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Projekt\\Coroni_Reisen\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "F:\\Development\\MobileApplikationen\\EW_MobileApplicationen\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\romak\\.gradle\\caches\\transforms-2\\files-2.1\\3a4bf45ee1cd2799bf6d0559eb3917d7\\appcompat-1.2.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Moritz\\.gradle\\caches\\transforms-2\\files-2.1\\3a4bf45ee1cd2799bf6d0559eb3917d7\\appcompat-1.2.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\romak\\.gradle\\caches\\transforms-2\\files-2.1\\ffc4098914b91b7860907277c6a73623\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Moritz\\.gradle\\caches\\transforms-2\\files-2.1\\ffc4098914b91b7860907277c6a73623\\media-1.0.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

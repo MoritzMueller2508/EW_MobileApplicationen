@@ -49,14 +49,14 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity android:name="com.dhbw.tinf19ai.task5.Schutzmaßnahmen" >
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dhbw.tinf19ai.task5.MainActivity" >
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity" >
         </activity>
         <!-- Needs to be explicitly declared on P+ -->
         <uses-library
