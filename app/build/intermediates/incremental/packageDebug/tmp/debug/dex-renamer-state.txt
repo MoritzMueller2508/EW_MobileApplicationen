@@ -1,0 +1,4 @@
+#Tue Nov 10 16:18:48 CET 2020
+base.0=D\:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Projekt\\Coroni_Reisen\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
