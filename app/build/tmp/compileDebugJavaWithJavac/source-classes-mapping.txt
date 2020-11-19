@@ -1,0 +1,20 @@
+com/dhbw/tinf19ai/CoroniReisen/Map.java
+ com.dhbw.tinf19ai.CoroniReisen.Map
+ com.dhbw.tinf19ai.CoroniReisen.Map$1
+ com.dhbw.tinf19ai.CoroniReisen.Map$2
+ com.dhbw.tinf19ai.CoroniReisen.Map$3
+ com.dhbw.tinf19ai.CoroniReisen.Map$4
+ com.dhbw.tinf19ai.CoroniReisen.Map$5
+ com.dhbw.tinf19ai.CoroniReisen.Map$6
+ com.dhbw.tinf19ai.CoroniReisen.Map$6$1
+ com.dhbw.tinf19ai.CoroniReisen.Map$7
+com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
+ com.dhbw.tinf19ai.CoroniReisen.CountryDetails
+com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
+ com.dhbw.tinf19ai.CoroniReisen.BuildConfig
+com/dhbw/tinf19ai/CoroniReisen/RedRiskCountriesExtraction.java
+ com.dhbw.tinf19ai.CoroniReisen.RedRiskCountriesExtraction
+com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
+ com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
+com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
+ com.dhbw.tinf19ai.CoroniReisen.MainActivity

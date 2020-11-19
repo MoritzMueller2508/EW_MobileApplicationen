@@ -1,4 +1,4 @@
-com.dhbw.tinf19ai.task5
+com.dhbw.tinf19ai.CoroniReisen
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
