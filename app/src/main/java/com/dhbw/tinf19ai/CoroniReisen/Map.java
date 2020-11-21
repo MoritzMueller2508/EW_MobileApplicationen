@@ -1,6 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -181,8 +183,20 @@ public class Map extends Fragment {
         Drawable dr = getResources().getDrawable(R.drawable.coroni_gruen);
         Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
         Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-
+        final Activity context = getActivity();
         startMarker.setIcon(drawable);
+        startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                                                 @Override
+                                                 public boolean onMarkerClick(Marker marker, MapView mapView) {
+                                                     Log.d("Test", "Help");
+                                                     Intent intent = new Intent(context, CountryDetails.class);
+                                                     startActivity(intent);
+
+                                                     return false;
+                                                 }
+                                             }
+
+        );
 
         this.mapController.setCenter(geoPoint);
     }
