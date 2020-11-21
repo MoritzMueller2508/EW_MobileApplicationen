@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    redRiskCountriesExtraction();
+                    getRedRiskCountriesExtraction();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
