@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 public class RedRiskCountriesExtraction  {
 
-    public static void redRiskCountriesExtraction() throws IOException {
+    //return list of countries that are a risk area - should be used for the red coroni
+    public static List<String> redRiskCountriesExtraction() throws IOException {
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -90,7 +91,7 @@ public class RedRiskCountriesExtraction  {
             }
         }
 
-        System.out.println(convertedCountriesList);
+        return convertedCountriesList;
     }
 
 }
