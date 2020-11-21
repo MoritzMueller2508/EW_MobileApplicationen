@@ -40,73 +40,8 @@ public class RiskCountriesExtraction {
         list = list.replaceAll("<li>", "cut");
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
+        convertedCountriesList = getRiskCountries(convertedCountriesList);
 
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            //removing empty list elements
-            if (element.equals("")){
-                convertedCountriesList.remove(i);
-            }
-
-            //getting rid of the specific areas/cities
-            if (element.contains("<ul>")){
-                while (!convertedCountriesList.get(i+1).contains("</ul>")){
-                    convertedCountriesList.remove(i+1);
-                }
-                convertedCountriesList.remove(i+1);
-            }
-        }
-
-        //getting rid of the extra information after the country
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("-")){
-                element = element.substring(element.indexOf("-"), element.indexOf("</li>"));
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-            if (element.contains("–")){
-                element = element.substring(element.indexOf("–"), element.indexOf("</li>"));
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        //getting rid of the dates
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("(")){
-                element = element.substring(element.indexOf("("), element.indexOf("</li>")+5);
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        //getting rid of extra html tags
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("</li>")){
-                String newElement = convertedCountriesList.get(i).replace(element, element.substring(0, element.indexOf("</li>")));
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("<p>")){
-                String newElement = convertedCountriesList.get(i).replace(element, element.substring(3));
-                convertedCountriesList.set(i, newElement);
-            }
-            if (element.contains(":")){
-                element  = element.substring(element.indexOf(":"), element.indexOf(element.charAt(element.length()-1))+1);
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
         return convertedCountriesList;
     }
     public static List<String> getOrangeRiskCountries() throws IOException {
@@ -116,11 +51,15 @@ public class RiskCountriesExtraction {
                 riskAreaHtml.indexOf("<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>") +
                         "<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>".length(),
                 riskAreaHtml.indexOf("<div class=\"sectionRelated links\"><h2>Archiv der ausgewiesenen Risikogebiete seit 15.6.2020</h2>"));
-        list = list.replaceAll("</ul>", "</ul>cut");
-        list = list.replaceAll("</li>", "</li>thiscut");
+        list = list.replaceAll("<ul>", "<ul></li>");
+        list = list.replaceAll("<li>", "cut");
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
+        convertedCountriesList = getRiskCountries(convertedCountriesList);
+        return convertedCountriesList;
+    }
 
+    public static List<String> getRiskCountries(List<String> convertedCountriesList){
         for (int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);
 
@@ -174,10 +113,10 @@ public class RiskCountriesExtraction {
                 convertedCountriesList.set(i, newElement);
             }
         }
-        for (int i = 0; i < convertedCountriesList.size(); i++){
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
             String element = convertedCountriesList.get(i);
 
-            if (element.contains("<p>")){
+            if (element.contains("<p>")) {
                 String newElement = convertedCountriesList.get(i).replace(element, element.substring(3));
                 convertedCountriesList.set(i, newElement);
             }
@@ -187,6 +126,7 @@ public class RiskCountriesExtraction {
                 convertedCountriesList.set(i, newElement);
             }
         }
+
         return convertedCountriesList;
     }
 }

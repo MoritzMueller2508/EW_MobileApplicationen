@@ -1,11 +1,3 @@
-com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
- com.dhbw.tinf19ai.CoroniReisen.BuildConfig
-com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
- com.dhbw.tinf19ai.CoroniReisen.CountryDetails
-com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
- com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
-com/dhbw/tinf19ai/CoroniReisen/RedRiskCountriesExtraction.java
- com.dhbw.tinf19ai.CoroniReisen.RedRiskCountriesExtraction
 com/dhbw/tinf19ai/CoroniReisen/Map.java
  com.dhbw.tinf19ai.CoroniReisen.Map
  com.dhbw.tinf19ai.CoroniReisen.Map$1
@@ -17,5 +9,13 @@ com/dhbw/tinf19ai/CoroniReisen/Map.java
  com.dhbw.tinf19ai.CoroniReisen.Map$6$1
  com.dhbw.tinf19ai.CoroniReisen.Map$7
  com.dhbw.tinf19ai.CoroniReisen.Map$8
+com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
+ com.dhbw.tinf19ai.CoroniReisen.CountryDetails
+com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
+ com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
 com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
  com.dhbw.tinf19ai.CoroniReisen.MainActivity
+com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
+ com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
+com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
+ com.dhbw.tinf19ai.CoroniReisen.BuildConfig
