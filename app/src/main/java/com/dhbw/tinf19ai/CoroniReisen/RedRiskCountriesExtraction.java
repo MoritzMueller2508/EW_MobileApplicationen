@@ -1,9 +1,5 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Document;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;

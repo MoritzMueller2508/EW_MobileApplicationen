@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.dhbw.tinf19ai.task5"
+        applicationId "com.dhbw.tinf19ai.CoroniReisen"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
