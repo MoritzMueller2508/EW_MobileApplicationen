@@ -11,13 +11,7 @@ import java.io.IOException;
 import static com.dhbw.tinf19ai.CoroniReisen.RedRiskCountriesExtraction.redRiskCountriesExtraction;
 
 public class MainActivity extends AppCompatActivity {
-
-    private FrameLayout leftContainer;
     private FrameLayout container;
-
-    private Schutzmaßnahmen Schutzmaßnahmen;
-    private Map Map;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
