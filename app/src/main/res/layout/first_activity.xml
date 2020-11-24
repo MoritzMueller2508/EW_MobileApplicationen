@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
+    android:background="#005589">
+ed
     <RelativeLayout
         android:id="@+id/relativeLayout_MapAdvice"
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
 
                 <TextView
                     android:id="@+id/willkommen"
-                    style="@style/Welcome"
+                    style="@style/Welcome2"
                     android:layout_width="361dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"

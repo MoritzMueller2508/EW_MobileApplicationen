@@ -125,8 +125,6 @@ public class CountryDetails extends AppCompatActivity {
         this.mapController.setCenter(geoPoint);
     }
 
-<<<<<<< HEAD
-=======
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static ArrayList<String> getAllCountries() throws IOException {
         String csvFile = "Bing-COVID19-Data.csv";
@@ -148,6 +146,4 @@ public class CountryDetails extends AppCompatActivity {
         }
         return countries;
     };
-  
->>>>>>> 7010390e625a35b3150974dea6471c9353862fce
 }
