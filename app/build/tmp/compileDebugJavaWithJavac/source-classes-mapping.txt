@@ -20,5 +20,16 @@ com/dhbw/tinf19ai/CoroniReisen/Map.java
  com.dhbw.tinf19ai.CoroniReisen.Map$7
 com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails
+<<<<<<< HEAD
+=======
+com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
+ com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
+com/dhbw/tinf19ai/CoroniReisen/BingData.java
+ com.dhbw.tinf19ai.CoroniReisen.BingData
+com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
+ com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
+ com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$1
+ com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$2
+>>>>>>> 62adb7e4279ee38e076ef59fb2887ad4594033d5
 com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
  com.dhbw.tinf19ai.CoroniReisen.MainActivity

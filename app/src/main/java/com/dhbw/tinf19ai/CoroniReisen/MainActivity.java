@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         //to get list of countries in background. To use where and when needed
         //TODO: can an Executor, ThreadPoolExecutor or a Runnable achieve a better performance?
-       /* AsyncTask.execute(new Runnable() {
+        /*AsyncTask.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run() {
                 try {
                     //getRedRiskCountriesExtraction();
                     //getOrangeRiskCountriesExtraction();
+                     BingData.getConfirmedCases("Germany");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
