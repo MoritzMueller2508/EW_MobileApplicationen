@@ -44,6 +44,8 @@ public class RiskCountriesExtraction {
 
         return convertedCountriesList;
     }
+
+    //return list of countries that were a risk area in the last 10 days but not anymore - should be used for the orange coroni
     public static List<String> getOrangeRiskCountries() throws IOException {
         String riskAreaHtml = getHtmlWebsite();
 
@@ -59,6 +61,7 @@ public class RiskCountriesExtraction {
         return convertedCountriesList;
     }
 
+    //return a list of countries without the HTML format
     public static List<String> getRiskCountries(List<String> convertedCountriesList){
         for (int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
+ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
 MERGED from [com.github.MKergall:osmbonuspack:6.6.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\94cb2985a95a54e995c1ab0dae8b8789\jetified-osmbonuspack-6.6.0\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\7cdacfbde602ec63bbcda012727dd738\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4f9c7f78c15bb692cf0895b881aafbad\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -44,20 +44,20 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] D:\ANDROID_SDK_HOME\.gradle\c
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\aaff256ac919a45448a380ca9a0003ca\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\06bc4641de51b04d4df94808d6e05292\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\1b64911e987df0fea019408e241659d7\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
 	package
 		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:3:5-45
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
-		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
+		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
-		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-30:12
+		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:2:11-69
