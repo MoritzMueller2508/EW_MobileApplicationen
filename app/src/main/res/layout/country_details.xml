@@ -61,6 +61,7 @@
 
         <TextView
             android:id="@+id/tx_advice"
+            android:autoLink="web"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

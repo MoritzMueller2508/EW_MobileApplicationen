@@ -1283,6 +1283,8 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
 mipmap ic_launcher_round
+string Advice
+string Advice_Link
 string Hint
 string Introduction
 string Willkommen

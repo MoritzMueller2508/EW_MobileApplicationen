@@ -50,7 +50,7 @@ import static android.app.PendingIntent.getActivity;
 import static java.util.Locale.forLanguageTag;
 
 public class CountryDetails extends AppCompatActivity {
-    private TextView tx_country;
+    private TextView tx_country, tx_advice;
     private MapView map_cutout;
     private IMapController mapController;
     private String country_search, country_eingabe;
@@ -68,6 +68,12 @@ public class CountryDetails extends AppCompatActivity {
         country_eingabe = Map.eingabe;
         tx_country.setText(country_eingabe);
         tx_country.setTextSize(40);
+
+        tx_advice = (TextView) findViewById(R.id.tx_advice);
+        String advice_red = getString(R.string.Advice);
+        String advice_link = getString(R.string.Advice_Link);
+        tx_advice.setText(advice_red+advice_link);
+
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
         this.mapController.setZoom(10.0);

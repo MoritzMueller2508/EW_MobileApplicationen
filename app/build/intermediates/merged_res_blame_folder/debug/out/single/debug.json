@@ -4,12 +4,12 @@
         "source": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\src\\main\\res\\drawable\\button_background2.xml"
     },
     {
-        "merged": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\res\\merged\\debug\\drawable_coroni_gruen.png.flat",
-        "source": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\src\\main\\res\\drawable\\coroni_gruen.png"
-    },
-    {
         "merged": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\res\\merged\\debug\\drawable_coroni_gruen.png.flat",
+        "source": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\src\\main\\res\\drawable\\coroni_gruen.png"
     },
     {
         "merged": "D:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\res\\merged\\debug\\drawable_schutzmasnahmen.jpg.flat",

@@ -183,6 +183,9 @@ public class Map extends Fragment {
         Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
         Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
         final Activity context = getActivity();
+
+
+
         startMarker.setIcon(drawable);
         startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                                                  @Override
@@ -200,23 +203,5 @@ public class Map extends Fragment {
         this.mapController.setCenter(geoPoint);
     }
 
-    /*private void setMarkerAndCenter1(GeoPoint geoPoint) {
-        Marker startMarker = new Marker(mapView);
-        startMarker.setPosition(geoPoint);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        mapView.getOverlays().add(startMarker);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.title("Help");
-        Map map= new Map();
-        //map.setOnInfoWindowClickListener(startMarker);
 
-        //setzen von Marker Icon (grüner/roter/orangener Coroni)
-        Drawable dr = getResources().getDrawable(R.drawable.coroni_gruen);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
-        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-
-        startMarker.setIcon(drawable);
-
-        this.mapController.setCenter(geoPoint);
-    }*/
 }
