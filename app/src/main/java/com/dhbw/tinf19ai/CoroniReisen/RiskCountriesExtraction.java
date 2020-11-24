@@ -41,6 +41,10 @@ public class RiskCountriesExtraction {
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
+        if(list.contains("Süd-Sudan")){
+            convertedCountriesList.remove("Süd");
+            convertedCountriesList.add("Südsudan");
+        }
 
         return convertedCountriesList;
     }
@@ -58,6 +62,10 @@ public class RiskCountriesExtraction {
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
+        if(list.contains("Süd-Sudan")){
+            convertedCountriesList.remove("Süd");
+            convertedCountriesList.add("Südsudan");
+        }
         return convertedCountriesList;
     }
 

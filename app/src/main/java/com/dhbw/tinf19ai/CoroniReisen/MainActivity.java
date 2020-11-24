@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.container, new Map(), "Activity").commitAllowingStateLoss();
 
-
         //to get list of countries in background. To use where and when needed
         //TODO: can an Executor, ThreadPoolExecutor or a Runnable achieve a better performance?
         /*AsyncTask.execute(new Runnable() {

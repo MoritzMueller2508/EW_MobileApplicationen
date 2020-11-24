@@ -106,6 +106,32 @@ public class BingData extends Activity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    public static ArrayList<String> getAllCountries(String date) throws IOException {
+        String csvFile = "Bing-COVID19-Data.csv";
+        String cvsSplitBy = ",";
+        ArrayList<String[]> bingDataTemp = new ArrayList<>();
+        ArrayList<String> countries = new ArrayList<>();
+        File file = new File(csvFile);
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
+
+        for (String line : lines) {
+            if (line.contains(date)) {
+                String[] array = line.split(cvsSplitBy);
+
+                //the arrays with array.length > 13 are for specific cities. Search for cities has not yet been implemented.
+                if (array.length < 14){
+                    bingDataTemp.add(line.split(cvsSplitBy));
+                    countries.add(array[12]);
+                    String country = array[12];
+                    System.out.println(country);
+                }
+            }
+        }
+
+        return countries;
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getID(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String id;
