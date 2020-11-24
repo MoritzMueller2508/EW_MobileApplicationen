@@ -1,4 +1,4 @@
-#Wed Nov 25 00:45:13 CET 2020
-base.0=D\:\\Development\\MobileApp\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Wed Nov 25 00:09:28 CET 2020
+base.0=D\:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
