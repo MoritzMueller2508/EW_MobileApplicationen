@@ -1080,6 +1080,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id image_Coroni
 id info
 id invisible
 id italic
@@ -1125,6 +1126,8 @@ id rectangles
 id relativeLayout
 id relativeLayout2
 id relativeLayout3
+id relativeLayout_Head
+id relativeLayout_MapAdvice
 id reverseSawtooth
 id right
 id right_icon
@@ -1187,7 +1190,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textView
 id textView2
-id textView3
 id textView5
 id time
 id title
@@ -1199,6 +1201,8 @@ id topPanel
 id transitionToEnd
 id transitionToStart
 id triangle
+id tx_advice
+id tx_country
 id tx_einleitung
 id tx_hint
 id unchecked

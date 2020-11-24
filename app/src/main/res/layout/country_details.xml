@@ -4,21 +4,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="179dp"
-        android:layout_marginLeft="179dp"
-        android:layout_marginTop="349dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginRight="175dp"
-        android:layout_marginBottom="363dp"
-        android:text="Hello World, Bitch"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout_Head"
+        android:layout_width="414dp"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout_MapAdvice"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.409">
+
+        <TextView
+            android:id="@+id/tx_country"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentRight="true">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/image_Coroni"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true">
+        </ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_MapAdvice"
+        android:layout_width="409dp"
+        android:layout_height="287dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_Head"
+        app:layout_constraintVertical_bias="0.409">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/map_view"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_alignParentLeft="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </org.osmdroid.views.MapView>
+
+        <TextView
+            android:id="@+id/tx_advice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/map_view"
+            android:layout_toRightOf="@+id/map_view"></TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="414dp"
+        android:layout_height="389dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_MapAdvice"
+        app:layout_constraintVertical_bias="0.409"></RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

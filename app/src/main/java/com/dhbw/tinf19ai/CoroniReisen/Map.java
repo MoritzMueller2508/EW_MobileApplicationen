@@ -36,17 +36,15 @@ import java.util.ArrayList;
 public class Map extends Fragment {
     private MapView mapView;
     private IMapController mapController;
-    private EditText et;
-    private  String eingabe;
+    public static EditText et;
+    public static String tx_eingabe, eingabe;
     private ArrayList btn_eingabe;
     private GeoPoint selectedLocation;
     private FusedLocationProviderClient fusedLocationProviderClient;
     public CountryDetails cD;
+    public Marker startMarker;
+    public static GeoPoint geoPoint;
 
-    public static Map newInstance() {
-        Map fragment = new Map();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,7 @@ public class Map extends Fragment {
 
         //Eingabe vom User werden eingelesen
         this.et = (EditText) view.findViewById(R.id.et_address_input);
-        eingabe = et.getText().toString();
+        tx_eingabe = et.getText().toString();
 
         //Button zur Darstellung der Useranfrage durch manuelle Eingabe
         final Button btn_suchen = view.findViewById(R.id.btn_go);
@@ -146,14 +144,15 @@ public class Map extends Fragment {
     }
 
     //Setzen vom neuen eingelesenem GeoPoint
-    public void searchAndCenterAddress(final String eingabe) {
+    public void searchAndCenterAddress(final String tx_eingabe) {
+        eingabe = tx_eingabe;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
                     Address address = geocoderNominatim.getFromLocationName(eingabe, 10).get(0);
-                    final GeoPoint geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
+                    geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -170,7 +169,7 @@ public class Map extends Fragment {
 
     //setzen von neuen Markern
     private void setMarkerAndCenter(GeoPoint geoPoint) {
-        Marker startMarker = new Marker(mapView);
+        startMarker = new Marker(mapView);
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mapView.getOverlays().add(startMarker);
@@ -201,7 +200,7 @@ public class Map extends Fragment {
         this.mapController.setCenter(geoPoint);
     }
 
-    private void setMarkerAndCenter1(GeoPoint geoPoint) {
+    /*private void setMarkerAndCenter1(GeoPoint geoPoint) {
         Marker startMarker = new Marker(mapView);
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
@@ -219,22 +218,5 @@ public class Map extends Fragment {
         startMarker.setIcon(drawable);
 
         this.mapController.setCenter(geoPoint);
-    }
-
-
-    @SuppressLint("MissingPermission")
-    private void getLatKnownLocation() {
-        this.fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                // setMarkerAndCenter(new GeoPoint(location.getLatitude(), location.getLongitude()));
-            }
-        });
-    }
-
-    public void setOnInfoWindowClickListener(Marker marker) {
-        Intent intent = new Intent(Map.this.getActivity(), CountryDetails.class);
-        //Intent intent = new Intent(String.valueOf(CountryDetails.class));
-        startActivity(intent);
-    }
+    }*/
 }
