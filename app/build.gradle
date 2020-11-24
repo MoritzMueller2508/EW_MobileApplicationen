@@ -36,4 +36,5 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.8'
     compile 'com.github.MKergall:osmbonuspack:6.6.0'
     implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

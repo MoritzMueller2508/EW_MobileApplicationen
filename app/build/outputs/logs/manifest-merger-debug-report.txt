@@ -11,6 +11,7 @@ MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\romak\.gradle\cac
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
 MERGED from [org.osmdroid:osmdroid-android:6.1.8] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\004d0ac4f12d2cf22c44986a2da397ca\jetified-osmdroid-android-6.1.8\AndroidManifest.xml:2:1-29:12
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\53a12c82235eff80ae1eb2ac90b704df\jetified-play-services-location-17.1.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\f52122426ed85128097908a2e58f6328\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\3db056b7b2a67d9700cd1094de7f7779\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\129d7c6539a600a7346451cc911530ca\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:17:1-29:12
@@ -167,6 +168,8 @@ MERGED from [org.osmdroid:osmdroid-android:6.1.8] C:\Users\romak\.gradle\caches\
 MERGED from [org.osmdroid:osmdroid-android:6.1.8] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\004d0ac4f12d2cf22c44986a2da397ca\jetified-osmdroid-android-6.1.8\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\53a12c82235eff80ae1eb2ac90b704df\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\53a12c82235eff80ae1eb2ac90b704df\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\f52122426ed85128097908a2e58f6328\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\f52122426ed85128097908a2e58f6328\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\3db056b7b2a67d9700cd1094de7f7779\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\3db056b7b2a67d9700cd1094de7f7779\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\romak\.gradle\caches\transforms-2\files-2.1\129d7c6539a600a7346451cc911530ca\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
