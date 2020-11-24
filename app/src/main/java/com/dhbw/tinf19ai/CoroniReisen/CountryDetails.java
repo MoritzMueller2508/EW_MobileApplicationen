@@ -43,7 +43,12 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static android.app.PendingIntent.getActivity;
@@ -112,5 +117,26 @@ public class CountryDetails extends AppCompatActivity {
         this.mapController.setCenter(geoPoint);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static ArrayList<String> getAllCountries() throws IOException {
+        String csvFile = "Bing-COVID19-Data.csv";
+        String cvsSplitBy = ",";
+        ArrayList<String> countries = new ArrayList<>();
+        File file = new File(csvFile);
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
+
+        for (int i = 1; i < lines.size() - 1; i++){
+            String line = lines.get(i);
+            String line2 = lines.get(i+1);
+            String[] array = line.split(cvsSplitBy);
+            String country = array[12];
+            String[] array2 = line2.split(cvsSplitBy);
+            String country2 = array2[12];
+            if (!country.equals(country2)){
+                countries.add(array[12]);
+            }
+        }
+        return countries;
+    };
   
 }
