@@ -21,8 +21,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -31,6 +34,7 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class BingData extends Activity {
 
+    //TODO: make it possible to update only once a day. So the file is not overwritten every time the app is opened.
     //read and write csv data from github repo
     public static FileWriter getBingDataOnline() throws IOException {
         URL url = new URL("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv");
@@ -42,9 +46,6 @@ public class BingData extends Activity {
 
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
         dir.mkdirs();
-
-        System.out.println(dir.getAbsolutePath());
-        System.out.println(dir.exists());
         File file = new File(dir, "Bing-COVID19-Data.csv");
         file.createNewFile();
 
@@ -57,8 +58,7 @@ public class BingData extends Activity {
             }
             writer.flush();
             writer.close();
-            System.out.println("it worked");
-            System.out.println(file.getAbsolutePath());
+            System.out.println("File written and saved");
             return writer;
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,31 +69,113 @@ public class BingData extends Activity {
 
 
     //Get csv data
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void getCsvData() throws IOException {
-        getBingDataOnline();
+    /**  @param countryRegion is specific country or region i.a. "Worldwide" or "Germany"
+     *    !!! Please enter region or country capitalized i.e. "Germany" instead of "germany" or "GERMANY"
+     *    TODO: country or region should be case insensitive
+     **/
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
         String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Bing-COVID19-Data.csv";
-        String nextLine;
-        String cvsSplitBy = ",";
-        ArrayList<String[]> gilbertData = new ArrayList<>();
+        String csvSplitBy = ",";
+        ArrayList<String[]> bingData = new ArrayList<>();
+        ArrayList<String[]> bingDataTemp = new ArrayList<>();
+        File file = new File(csvFile);
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            br.readLine();
-            while ((nextLine = br.readLine()) != null) {
-                if(nextLine.split(cvsSplitBy).length>=2)
-                    gilbertData.add(nextLine.split(cvsSplitBy));
+        for (String line : lines) {
+            if (line.contains(countryRegion)) {
+                String[] array = line.split(csvSplitBy);
+
+                //the arrays with array.length > 13 are for specific cities. Search for cities has not yet been implemented.
+                if (array.length < 14){
+                    bingDataTemp.add(line.split(csvSplitBy));
+                }
             }
-            System.out.println("reading worked");
-            for(int gilbertDataRow=0; gilbertDataRow < 3; gilbertDataRow++){
-                System.out.println(Arrays.toString(gilbertData.get(gilbertDataRow)));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+        bingData.add(bingDataTemp.get(bingDataTemp.size()-1));
+
+        /*
+        for(int row=0; row < bingData.size(); row++){
+            System.out.println(Arrays.toString(bingData.get(row)));
+        }*/
+        return bingData;
     }
 
-    public static String getID(){
-        return null;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getID(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String id;
+        String[] array = bingData.get(0);
+        id = array[0];
+        return id;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getConfirmedCases(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String confirmedCases = array[2];
+        System.out.println(confirmedCases);
+        return confirmedCases;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getDeathsCases(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String deathCases = array[4];
+        System.out.println(deathCases);
+        return deathCases;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getRecoveredCases(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String recoveredCases = array[6];
+        System.out.println(recoveredCases);
+        return recoveredCases;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getLatitude(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String latitude = array[8];
+        System.out.println(latitude);
+        if (latitude.isEmpty()){return null;}
+        return latitude;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getLongitude(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String longitude = array[9];
+        System.out.println(longitude);
+        if (longitude.isEmpty()){return null;}
+        return longitude;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getISO2(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String iso2 = array[10];
+        System.out.println(iso2);
+        if (iso2.isEmpty()){return null;}
+        return iso2;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String getISO3(String countryRegion) throws IOException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String iso3 = array[11];
+        System.out.println(iso3);
+        if (iso3.isEmpty()){return null;}
+        return iso3;
     }
 }
 
