@@ -17,16 +17,17 @@ import java.io.IOException;
 
 
 public class Schutzmaßnahmen extends AppCompatActivity {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
 
-            try {
+            /*try {
                 verifyStoragePermissions(this);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
     }
 
     public void imageClick(View view) {

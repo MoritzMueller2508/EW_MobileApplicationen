@@ -138,6 +138,16 @@ public class RiskCountriesExtraction {
             }
         }
 
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
+            int length = convertedCountriesList.get(i).length();
+            String element = convertedCountriesList.get(i);
+            char lastChar = element.charAt(element.length()-1);
+            if (lastChar == ' '){
+                String newElement = element.substring(0, length-1);
+                convertedCountriesList.set(i, newElement);
+            }
+        }
+
         return convertedCountriesList;
     }
 }

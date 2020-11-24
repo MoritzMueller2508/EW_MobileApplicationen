@@ -17,7 +17,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     private FrameLayout container;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     //getRedRiskCountriesExtraction();
                     //getOrangeRiskCountriesExtraction();
-                     BingData.getConfirmedCases("Germany");
+                     //BingData.getConfirmedCases("Germany");
+                     //CoroniAssignment.getAllCountries();
+                    //System.out.println(CoroniAssignment.getCoroni("Vietnam"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -58,6 +58,7 @@ public class CountryDictionary {
         countriesDict.put("Chad", "Tschad");
         countriesDict.put("Chile", "Chile");
         countriesDict.put("China (mainland)", "China");
+        countriesDict.put("China", "China");
         countriesDict.put("Colombia", "Kolumbien");
         countriesDict.put("Comoros", "Komoren");
         countriesDict.put("Congo", "Kongo Rep");
@@ -112,7 +113,7 @@ public class CountryDictionary {
         countriesDict.put("Hungary", "Ungarn");
         countriesDict.put("Iceland", "Island");
         countriesDict.put("India", "Indien");
-        countriesDict.put("Indoneasia", "Indonesien");
+        countriesDict.put("Indonesia", "Indonesien");
         countriesDict.put("Iran", "Iran");
         countriesDict.put("Iraq", "Irak");
         countriesDict.put("Ireland", "Irland");
@@ -232,16 +233,22 @@ public class CountryDictionary {
         countriesDict.put("Turkmenistan", "Turkmenistan");
         countriesDict.put("Turks and Caicos Islands", "Turks- und Caicosinseln");
         countriesDict.put("U.S. Virgin Islands", "Amerikanischen Jungferninseln");
+        countriesDict.put("US Virgin Islands", "Amerikanischen Jungferninseln");
         countriesDict.put("Uganda", "Uganda");
         countriesDict.put("Ukraine", "Ukraine");
         countriesDict.put("United Arab Emirates", "Vereinigte Arabische Emirate");
         countriesDict.put("United Kingdom", "Vereinigtes Königreich von Großbritannien und Nordirland");
         countriesDict.put("United States", "USA");
+        countriesDict.put("Uruguay", "Uruguay");
         countriesDict.put("Uzbekistan", "Usbekistan");
+        countriesDict.put("Vanuatu", "Vanuatu");
+        countriesDict.put("Vietnam", "Vietnam");
         countriesDict.put("Vatican City", "Vatikanstadt");
         countriesDict.put("Venezuela", "Venezuela");
+        countriesDict.put("Wallis and Futuna", "Wallis und Futuna");
         countriesDict.put("Zambia", "Sambia");
         countriesDict.put("Zimbabwe", "Simbabwe");
+        countriesDict.put("West Bank", "Westjordanland");
 
 
         countryDe = countriesDict.get(countryEn);
