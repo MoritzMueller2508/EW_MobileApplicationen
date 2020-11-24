@@ -105,6 +105,7 @@ public class BingData extends Activity {
         return bingData;
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getID(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);

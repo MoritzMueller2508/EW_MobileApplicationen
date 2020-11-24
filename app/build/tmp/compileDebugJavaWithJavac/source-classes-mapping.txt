@@ -12,6 +12,13 @@ com/dhbw/tinf19ai/CoroniReisen/BingData.java
  com.dhbw.tinf19ai.CoroniReisen.BingData
 com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails
+<<<<<<< HEAD
+=======
+com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
+ com.dhbw.tinf19ai.CoroniReisen.BuildConfig
+com/dhbw/tinf19ai/CoroniReisen/CountryDictionary.java
+ com.dhbw.tinf19ai.CoroniReisen.CountryDictionary
+>>>>>>> 7010390e625a35b3150974dea6471c9353862fce
 com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
  com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
  com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$1
@@ -20,5 +27,8 @@ com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
  com.dhbw.tinf19ai.CoroniReisen.MainActivity
 com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
  com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
+<<<<<<< HEAD
 com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
  com.dhbw.tinf19ai.CoroniReisen.BuildConfig
+=======
+>>>>>>> 7010390e625a35b3150974dea6471c9353862fce

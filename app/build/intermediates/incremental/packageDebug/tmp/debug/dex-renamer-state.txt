@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Tue Nov 24 23:38:07 CET 2020
 base.0=D\:\\Uni\\3. Semester\\Entwicklung mobiler Applikationen\\Development\\Coroni_Reisen\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+=======
+#Tue Nov 24 21:54:53 CET 2020
+base.0=D\:\\Development\\MobileApp\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+>>>>>>> 7010390e625a35b3150974dea6471c9353862fce
 path.0=classes.dex
 renamed.0=classes.dex
