@@ -23,8 +23,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -176,6 +179,17 @@ public class BingData extends Activity {
         System.out.println(iso3);
         if (iso3.isEmpty()){return null;}
         return iso3;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static Date getLastUpdated(String countryRegion) throws IOException, ParseException {
+        ArrayList<String[]> bingData = getCsvData(countryRegion);
+        String[] array = bingData.get(0);
+        String date = array[1];
+        Date lastUpdated =new SimpleDateFormat("MM/dd/yyyy").parse(date);
+
+        System.out.println(lastUpdated);
+        return lastUpdated;
     }
 }
 
