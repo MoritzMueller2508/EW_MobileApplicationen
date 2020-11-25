@@ -19,6 +19,7 @@ public class DestinationsList extends ListActivity {
     static final String[] stadt = new String[]{"Spanien","Polen","Nordmazedonien","Indien","Türkei","Japan","China","Deutschland","Russische Föderation","USA"};
     static final String[] natur = new String[]{"Marokko","Kanada","Neuseeland","Japan","Iran","Deutschland","Österreich","Thailand","Norwegen","Irland"};
     public String eingabe_marker_btn;
+    public static String eingabe;
     public TextView title;
 
     @Override
@@ -53,11 +54,10 @@ public class DestinationsList extends ListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedFromList =(listView.getItemAtPosition(i).toString());
-                //String data= (String) adapterView.getItemAtPosition(i);
-                MapFragment mapFragment = new MapFragment();
-                mapFragment.searchAndCenterAddress(selectedFromList);
-                GeoPoint geoPoint = mapFragment.geoPoint;
+               String eingabe= (String) adapterView.getItemAtPosition(i);
+               // MapFragment mapFragment = new MapFragment();
+                //mapFragment.searchAndCenterAddress(selectedFromList);
+                //GeoPoint geoPoint = mapFragment.geoPoint;
                 Intent newActivity1 = new Intent(DestinationsList.this, CountryDetails.class);
                 startActivity(newActivity1);
             }
