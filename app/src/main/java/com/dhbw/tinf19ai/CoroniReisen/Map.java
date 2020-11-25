@@ -85,14 +85,13 @@ public class Map extends Fragment {
             public void onClick(View v) {
                 searchAndCenterAddress("Spanien");
                 searchAndCenterAddress("Italien");
-                searchAndCenterAddress("Madagascar");
+                searchAndCenterAddress("Madagaskar");
                 searchAndCenterAddress("Australien");
                 searchAndCenterAddress("Türkei");
                 searchAndCenterAddress("Malta");
-                searchAndCenterAddress("Hawaii");
                 searchAndCenterAddress("Ägypten");
                 searchAndCenterAddress("Brasilien");
-                searchAndCenterAddress("Mexico");
+                searchAndCenterAddress("Mexiko");
             }
         });
 
@@ -103,7 +102,7 @@ public class Map extends Fragment {
                 searchAndCenterAddress("USA");
                 searchAndCenterAddress("Deutschland");
                 searchAndCenterAddress("Australien");
-                searchAndCenterAddress("England");
+                searchAndCenterAddress("Vereinigtes Königreich von Großbritannien und Nordirland");
                 searchAndCenterAddress("Nordmazedonien");
                 searchAndCenterAddress("Italien");
                 searchAndCenterAddress("Griechenland");
@@ -117,13 +116,13 @@ public class Map extends Fragment {
             public void onClick(View v) {
                 searchAndCenterAddress("Spanien");
                 searchAndCenterAddress("Polen");
-                searchAndCenterAddress("Englandr");
+                searchAndCenterAddress("Nordmazedonien");
                 searchAndCenterAddress("Indien");
                 searchAndCenterAddress("Türkei");
                 searchAndCenterAddress("Japan");
                 searchAndCenterAddress("China");
                 searchAndCenterAddress("Deutschland");
-                searchAndCenterAddress("Russland");
+                searchAndCenterAddress("Russische Föderation");
                 searchAndCenterAddress("USA");
             }
         });
@@ -132,7 +131,7 @@ public class Map extends Fragment {
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 searchAndCenterAddress("Marokko");
-                searchAndCenterAddress("Nordamerika");
+                searchAndCenterAddress("Kanada");
                 searchAndCenterAddress("Neuseeland");
                 searchAndCenterAddress("Japan");
                 searchAndCenterAddress("Iran");
