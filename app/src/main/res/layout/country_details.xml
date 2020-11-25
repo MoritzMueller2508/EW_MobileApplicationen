@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:textColor="#fff"
-        android:textSize="35dp"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -56,13 +56,14 @@
 
                 <org.osmdroid.views.MapView
                     android:id="@+id/map_view"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_link"
                 android:layout_width="143dp"
-                android:layout_height="37dp"
+                android:layout_height="5dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="1"
@@ -74,20 +75,39 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <TextView
-                    android:id="@+id/tx_advice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:text=":(" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="154dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tx_Einreisebestimmungen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Einreisebestimmungen"
+                        android:textAllCaps="true"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tx_adviceLink"
+                        android:layout_width="170dp"
+                        android:layout_height="112dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/travelRules"
+                        android:textSize="12dp" />
+                </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="104dp"
-                android:layout_height="3dp"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -99,13 +119,16 @@
                 app:cardElevation="8dp">
 
                 <TextView
+                    android:id="@+id/tx_advice"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="25dp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="58dp"
+                android:layout_height="8dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="1"
@@ -118,8 +141,8 @@
 
                 <ImageView
                     android:id="@+id/image_Coroni"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -160,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="Datenquelle:\nBingCovid19\nAPI"
-                    android:textSize="15dp" />
+                    android:textSize="10dp" />
             </androidx.cardview.widget.CardView>
 
         </GridLayout>

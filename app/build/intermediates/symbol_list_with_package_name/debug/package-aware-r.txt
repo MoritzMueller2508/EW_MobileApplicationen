@@ -1035,6 +1035,7 @@ id bubble_title
 id buttonPanel
 id cache_measures
 id cancel_action
+id card_link
 id center
 id center_horizontal
 id center_vertical
@@ -1224,7 +1225,9 @@ id topPanel
 id transitionToEnd
 id transitionToStart
 id triangle
+id tx_Einreisebestimmungen
 id tx_advice
+id tx_adviceLink
 id tx_country
 id tx_einleitung
 id tx_hint
@@ -1306,7 +1309,6 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
 mipmap ic_launcher_round
-string Advice
 string Advice_Link
 string Hint
 string Introduction
@@ -1426,6 +1428,7 @@ string snapshot
 string states
 string status_bar_notification_info_overflow
 string topo
+string travelRules
 string unknown
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

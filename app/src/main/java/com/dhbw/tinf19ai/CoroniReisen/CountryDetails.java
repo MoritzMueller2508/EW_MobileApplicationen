@@ -34,6 +34,7 @@ import android.widget.EditText;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -57,7 +58,7 @@ import static android.app.PendingIntent.getActivity;
 import static java.util.Locale.forLanguageTag;
 
 public class CountryDetails extends AppCompatActivity {
-    private TextView tx_country, tx_advice;
+    private TextView tx_country, tx_advice, tx_adviceLink;
     private MapView map_cutout;
     private IMapController mapController;
     private String country_search, country_eingabe, coroni;
@@ -71,21 +72,59 @@ public class CountryDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
         im_coroni = (ImageView) findViewById(R.id.image_Coroni);
-
         tx_country = (TextView) findViewById(R.id.tx_country);
+        tx_adviceLink = (TextView) findViewById(R.id.tx_adviceLink);
+        tx_advice = (TextView) findViewById(R.id.tx_advice);
         country_eingabe = Map.eingabe;
-        setCoroniImage(country_eingabe);
+        //setCoroniImage(country_eingabe, tx_advice);
         tx_country.setText(country_eingabe);
 
-        //tx_advice = (TextView) findViewById(R.id.tx_advice);
-        //String advice_red = getString(R.string.Advice);
-        //String advice_link = getString(R.string.Advice_Link);
-        //tx_advice.setText(advice_link);
+        String travelRules = getString(R.string.travelRules);
+        tx_adviceLink.setText(travelRules);
+        CardView advice_card = (CardView) findViewById(R.id.card_link);
+        advice_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
         this.mapController.setZoom(10.0);
         searchAndCenterAddress();
 
+        im_coroni.setImageResource(R.drawable.coroni_gruen);
+        tx_advice.setText(getResources().getString(R.string.advice_green));
+        final String green =getResources().getString(R.string.advice_green);
+        final String orange =getResources().getString(R.string.advice_orange);
+        String advice;
+        AsyncTask.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void run() {
+                try {
+                    CoroniAssignment coroniAssignment = new CoroniAssignment();
+                    coroni = coroniAssignment.getCoroni(country_eingabe);
+                    if(coroni.equals("red")) {
+                        im_coroni.setImageResource(R.drawable.coroni_red);
+                        String red =getResources().getString(R.string.advice_red);
+                        tx_advice.setText(red);
+                    }
+                    if(coroni.equals("orange")) {
+                        im_coroni.setImageResource(R.drawable.coroni_orange);
+                        //tx_advice.setText(orange);
+                    }
+                    if(coroni.equals("green")) {
+                        im_coroni.setImageResource(R.drawable.coroni_gruen);
+                        //tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         /*val pieChart = PieChart(
                 slices = provideSlices(), clickListener = null, sliceStartPoint = 0f, sliceWidth = 80f
@@ -102,30 +141,7 @@ public class CountryDetails extends AppCompatActivity {
 
     }
 
-    private void setCoroniImage(final String country_eingabe) {
-        im_coroni.setImageResource(R.drawable.coroni_gruen);
-        AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void run() {
-                try {
-                    CoroniAssignment coroniAssignment = new CoroniAssignment();
-                    coroni = coroniAssignment.getCoroni(country_eingabe);
-                    if(coroni.equals("red")) {
-                        im_coroni.setImageResource(R.drawable.coroni_red);
-                    }
-                    if(coroni.equals("orange")) {
-                        im_coroni.setImageResource(R.drawable.coroni_orange);
-                    }
-                    if(coroni.equals("green")) {
-                        im_coroni.setImageResource(R.drawable.coroni_gruen);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+   // private void setCoroniImage(final String country_eingabe, final TextView tx_advice) {}
 
     public void searchAndCenterAddress() {
             geoPoint = Map.geoPoint;
