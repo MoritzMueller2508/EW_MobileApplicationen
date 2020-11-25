@@ -150,7 +150,7 @@ public class MapFragment extends Fragment {
 
     //setzen von neuen Markern
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setMarkerAndCenter(GeoPoint geoPoint, final String eingabe) {
+    private void setMarkerAndCenter(final GeoPoint geoPoint, final String eingabe) {
         startMarker = new Marker(mapView);
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
@@ -196,10 +196,9 @@ public class MapFragment extends Fragment {
         startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                                                  @Override
                                                  public boolean onMarkerClick(Marker marker, MapView mapView) {
-                                                     Log.d("Test", "Help");
                                                      Intent intent = new Intent(context, CountryDetails.class);
+                                                     intent.putExtra("country", eingabe);
                                                      startActivity(intent);
-
                                                      return false;
                                                  }
                                              }

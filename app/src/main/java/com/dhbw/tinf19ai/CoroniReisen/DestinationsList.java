@@ -3,6 +3,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.osmdroid.util.GeoPoint;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DestinationsList extends ListActivity {
 
@@ -53,12 +57,11 @@ public class DestinationsList extends ListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedFromList =(listView.getItemAtPosition(i).toString());
-                //String data= (String) adapterView.getItemAtPosition(i);
-                MapFragment mapFragment = new MapFragment();
-                mapFragment.searchAndCenterAddress(selectedFromList);
-                GeoPoint geoPoint = mapFragment.geoPoint;
+                //String selectedFromList =(listView.getItemAtPosition(i).toString());
+                final String country = (String) adapterView.getItemAtPosition(i);
+                System.out.println(country);
                 Intent newActivity1 = new Intent(DestinationsList.this, CountryDetails.class);
+                newActivity1.putExtra("country", country);
                 startActivity(newActivity1);
             }
         });
