@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 
@@ -25,11 +26,17 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -69,6 +76,85 @@ public class BingData extends Activity {
         return null;
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String saveLastUpdated() throws IOException {
+        String csvFile = "LastUpdated.csv";
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
+        String nowString = now.toString();
+
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        File file = new File(dir, csvFile);
+        if (!file.exists()){
+            file.createNewFile();
+            try {
+                FileWriter writer = new FileWriter(file);
+                writer.append(nowString);
+                writer.flush();
+                writer.close();
+                System.out.println("file created and data updated");
+                return "update";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            List<String> lines = Files.readAllLines(file.toPath());
+            for (String line : lines) {
+                ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
+                Duration duration = Duration.between(lastUpdated, now);
+                long durationHours = duration.toHours();
+                System.out.println(durationHours);
+                if (durationHours > 24){
+                    file.createNewFile();
+                    try {
+                        FileWriter writer = new FileWriter(file);
+                        writer.append(nowString);
+                        writer.flush();
+                        writer.close();
+                        System.out.println("data updated");
+                        return "update";
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    System.out.println("no update required");
+                    return "no update";
+                }
+            }
+
+        }
+        return null;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void saveBingData() throws IOException {
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
+        if(!dir.exists()) {
+            getBingDataOnline();
+        } else {
+            String update = saveLastUpdated();
+            System.out.println(update);
+            if (update.equals("update")){
+                AsyncTask.execute(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void run() {
+                        try {
+                            System.out.println("getting data");
+                            getBingDataOnline();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            } else {
+                System.out.println("no update required");
+            }
+        }
+    }
 
 
     //Get csv data

@@ -1,7 +1,10 @@
+com/dhbw/tinf19ai/CoroniReisen/DestinationsList.java
+ com.dhbw.tinf19ai.CoroniReisen.DestinationsList
 com/dhbw/tinf19ai/CoroniReisen/CountryDictionary.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDictionary
 com/dhbw/tinf19ai/CoroniReisen/BingData.java
  com.dhbw.tinf19ai.CoroniReisen.BingData
+ com.dhbw.tinf19ai.CoroniReisen.BingData$1
 com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails$1
@@ -10,8 +13,6 @@ com/dhbw/tinf19ai/CoroniReisen/Navigator.java
  com.dhbw.tinf19ai.CoroniReisen.Navigator
 com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
  com.dhbw.tinf19ai.CoroniReisen.MainActivity
- com.dhbw.tinf19ai.CoroniReisen.MainActivity$1
- com.dhbw.tinf19ai.CoroniReisen.MainActivity$2
 com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
  com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
 com/dhbw/tinf19ai/CoroniReisen/MapFragment.java

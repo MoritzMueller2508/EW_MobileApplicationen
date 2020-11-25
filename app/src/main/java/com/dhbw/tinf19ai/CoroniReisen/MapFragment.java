@@ -54,7 +54,7 @@ public class MapFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.map_fragment, container, false);
 
@@ -70,7 +70,7 @@ public class MapFragment extends Fragment {
         tx_eingabe = et.getText().toString();
 
         //Button zur Darstellung der Useranfrage durch manuelle Eingabe
-        final Button btn_suchen = view.findViewById(R.id.btn_go);
+        Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String location = et.getText().toString();
@@ -79,66 +79,37 @@ public class MapFragment extends Fragment {
         });
 
         //Buttons für Kategorien von Urlaubszielen
-        final Button btn_sonne = view.findViewById(R.id.btn_sonne);
+        Button btn_sonne = view.findViewById(R.id.btn_sonne);
         btn_sonne.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                searchAndCenterAddress("Spanien");
-                searchAndCenterAddress("Italien");
-                searchAndCenterAddress("Madagaskar");
-                searchAndCenterAddress("Australien");
-                searchAndCenterAddress("Türkei");
-                searchAndCenterAddress("Malta");
-                searchAndCenterAddress("Ägypten");
-                searchAndCenterAddress("Brasilien");
-                searchAndCenterAddress("Mexiko");
+                Intent intent = new Intent(getActivity(), DestinationsList.class);
+                startActivity(intent);
             }
         });
 
-        final Button btn_berge = view.findViewById(R.id.btn_berge);
+
+        Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                searchAndCenterAddress("Schweiz");
-                searchAndCenterAddress("USA");
-                searchAndCenterAddress("Deutschland");
-                searchAndCenterAddress("Australien");
-                searchAndCenterAddress("Vereinigtes Königreich von Großbritannien und Nordirland");
-                searchAndCenterAddress("Nordmazedonien");
-                searchAndCenterAddress("Italien");
-                searchAndCenterAddress("Griechenland");
-                searchAndCenterAddress("Belgien");
-                searchAndCenterAddress("Slowakei");
+                Intent intent = new Intent(getActivity(), DestinationsList.class);
+                startActivity(intent);
             }
         });
 
-        final Button btn_stadt = view.findViewById(R.id.btn_stadt);
+        Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                searchAndCenterAddress("Spanien");
-                searchAndCenterAddress("Polen");
-                searchAndCenterAddress("Nordmazedonien");
-                searchAndCenterAddress("Indien");
-                searchAndCenterAddress("Türkei");
-                searchAndCenterAddress("Japan");
-                searchAndCenterAddress("China");
-                searchAndCenterAddress("Deutschland");
-                searchAndCenterAddress("Russische Föderation");
-                searchAndCenterAddress("USA");
+                Intent intent = new Intent(getActivity(), DestinationsList.class);
+                startActivity(intent);
             }
         });
 
         final Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                searchAndCenterAddress("Marokko");
-                searchAndCenterAddress("Kanada");
-                searchAndCenterAddress("Neuseeland");
-                searchAndCenterAddress("Japan");
-                searchAndCenterAddress("Iran");
-                searchAndCenterAddress("Deutschland");
-                searchAndCenterAddress("Österreich");
-                searchAndCenterAddress("Thailand");
-                searchAndCenterAddress("Norwegen");
-                searchAndCenterAddress("Irland");
+                Intent intent = new Intent(getActivity(), DestinationsList.class);
+                startActivity(intent);
             }
         });
 

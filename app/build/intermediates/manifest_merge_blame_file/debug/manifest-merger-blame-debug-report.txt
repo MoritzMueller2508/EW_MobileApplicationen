@@ -11,26 +11,26 @@
 9-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-11-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:23:5-78
-11-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:23:22-76
+11-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:5-78
+11-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:22-76
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:5-67
-12-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:22-64
+12-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:25:5-67
+12-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:25:22-64
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:25:5-80
-13-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:25:22-76
+13-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:26:5-80
+13-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:26:22-76
 14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-14-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:26:5-80
-14-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:26:22-77
+14-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:27:5-80
+14-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:27:22-77
 15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-15-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:27:5-81
-15-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:27:22-78
+15-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:28:5-81
+15-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:28:22-78
 16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-16-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:23:5-78
-16-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:23:22-76
+16-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:5-78
+16-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:24:22-76
 17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-17-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:29:5-81
-17-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:29:22-78
+17-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:30:5-81
+17-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:30:22-78
 18
 19    <uses-feature
 19-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
@@ -74,7 +74,7 @@
 39-->[org.osmdroid:osmdroid-android:6.1.8] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\004d0ac4f12d2cf22c44986a2da397ca\jetified-osmdroid-android-6.1.8\AndroidManifest.xml:27:9-33
 40
 41    <application
-41-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:4:5-21:19
+41-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:4:5-22:19
 42        android:allowBackup="true"
 42-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:5:9-35
 43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -114,29 +114,32 @@
 61        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.CountryDetails" />
 61-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:20:9-61
 61-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:20:19-49
-62        <!-- Needs to be explicitly declared on P+ -->
-63        <uses-library
-63-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
-64            android:name="org.apache.http.legacy"
-64-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
-65            android:required="false" />
-65-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
-66
-67        <activity
-67-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:23:9-26:75
-68            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-68-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:24:13-79
-69            android:exported="false"
-69-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:25:13-37
-70            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-70-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:26:13-72
-71
-72        <meta-data
-72-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
-73            android:name="com.google.android.gms.version"
-73-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
-74            android:value="@integer/google_play_services_version" />
-74-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
-75    </application>
-76
-77</manifest>
+62        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.DestinationsList" />
+62-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:21:9-63
+62-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:21:19-51
+63        <!-- Needs to be explicitly declared on P+ -->
+64        <uses-library
+64-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+65            android:name="org.apache.http.legacy"
+65-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+66            android:required="false" />
+66-->[com.google.android.gms:play-services-maps:17.0.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\a998b89aa33dba7d2af0bd1f1f02715b\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+67
+68        <activity
+68-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:23:9-26:75
+69            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+69-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:24:13-79
+70            android:exported="false"
+70-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:25:13-37
+71            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+71-->[com.google.android.gms:play-services-base:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\0a776bc61390d87885643b31a80a578e\jetified-play-services-base-17.3.0\AndroidManifest.xml:26:13-72
+72
+73        <meta-data
+73-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
+74            android:name="com.google.android.gms.version"
+74-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
+75            android:value="@integer/google_play_services_version" />
+75-->[com.google.android.gms:play-services-basement:17.3.0] D:\ANDROID_SDK_HOME\.gradle\caches\transforms-2\files-2.1\4da416a319957518ac6f573eb1464f67\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
+76    </application>
+77
+78</manifest>

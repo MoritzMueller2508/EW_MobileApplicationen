@@ -91,7 +91,7 @@
             android:layout_height="30dp"
             style="@style/Text"
             android:layout_alignParentLeft="true"
-            android:text="Sonne und Meer"
+            android:text="Sonne"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

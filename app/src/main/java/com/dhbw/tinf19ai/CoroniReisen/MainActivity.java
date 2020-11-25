@@ -23,11 +23,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            /*try {
-                verifyStoragePermissions(this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
+        try {
+            verifyStoragePermissions(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void imageClick(View view) {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    //permission method to save a CSV file with the Bing Data.
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void verifyStoragePermissions(Activity activity) throws IOException {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -56,31 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
             );
-            //TODO: can an Executor, ThreadPoolExecutor or a Runnable achieve a better performance?
-            AsyncTask.execute(new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                @Override
-                public void run() {
-                    try {
-                        BingData.getBingDataOnline();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } else {
-            AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void run() {
-                try {
-                    BingData.getBingDataOnline();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
         }
-
+        BingData.saveBingData();
     }
 }

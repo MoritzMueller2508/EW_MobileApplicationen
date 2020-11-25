@@ -1111,6 +1111,7 @@ id invisible
 id italic
 id jumpToEnd
 id jumpToStart
+id label
 id layout
 id left
 id left_container
@@ -1287,6 +1288,8 @@ layout activity_main
 layout bonuspack_bubble
 layout country_details
 layout custom_dialog
+layout destinations_list
+layout destinations_listview
 layout map_fragment
 layout navigator
 layout notification_action

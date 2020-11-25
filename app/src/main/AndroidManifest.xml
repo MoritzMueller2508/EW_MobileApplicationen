@@ -18,6 +18,7 @@
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator">
         </activity>
         <activity android:name=".CountryDetails"></activity>
+        <activity android:name=".DestinationsList"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

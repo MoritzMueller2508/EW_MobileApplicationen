@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_destinations_listview.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\destinations_listview.xml"
+    },
+    {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_navigator.xml.flat",
         "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\navigator.xml"
     },
@@ -102,6 +106,10 @@
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_destinations_list.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\destinations_list.xml"
     },
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_country_details.xml.flat",
