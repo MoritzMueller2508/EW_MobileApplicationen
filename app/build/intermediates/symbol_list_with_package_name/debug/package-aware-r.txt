@@ -890,6 +890,8 @@ drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable coroni_gruen
+drawable coroni_orange
+drawable coroni_red
 drawable countryd_bg
 drawable countrydetails_bg
 drawable googleg_disabled_color_18
