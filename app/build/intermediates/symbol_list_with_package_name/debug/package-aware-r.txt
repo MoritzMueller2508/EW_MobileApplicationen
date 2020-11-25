@@ -1340,6 +1340,9 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about
 string about_message
+string advice_green
+string advice_orange
+string advice_red
 string app_name
 string base
 string base_nl

@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,7 +60,7 @@ public class CountryDetails extends AppCompatActivity {
     private TextView tx_country, tx_advice;
     private MapView map_cutout;
     private IMapController mapController;
-    private String country_search, country_eingabe;
+    private String country_search, country_eingabe, coroni;
     private GeoPoint selectedLocation, geoPoint;
     private ImageView im_coroni;
     private Button btn_advice_link;
@@ -70,9 +71,10 @@ public class CountryDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
         im_coroni = (ImageView) findViewById(R.id.image_Coroni);
-        setCoroniImage();
+
         tx_country = (TextView) findViewById(R.id.tx_country);
         country_eingabe = Map.eingabe;
+        setCoroniImage(country_eingabe);
         tx_country.setText(country_eingabe);
 
         //tx_advice = (TextView) findViewById(R.id.tx_advice);
@@ -100,9 +102,31 @@ public class CountryDetails extends AppCompatActivity {
 
     }
 
-    private void setCoroniImage() {
+    private void setCoroniImage(final String country_eingabe) {
         im_coroni.setImageResource(R.drawable.coroni_gruen);
+        AsyncTask.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void run() {
+                try {
+                    CoroniAssignment coroniAssignment = new CoroniAssignment();
+                    coroni = coroniAssignment.getCoroni(country_eingabe);
+                    if(coroni.equals("red")) {
+                        im_coroni.setImageResource(R.drawable.coroni_red);
+                    }
+                    if(coroni.equals("orange")) {
+                        im_coroni.setImageResource(R.drawable.coroni_orange);
+                    }
+                    if(coroni.equals("green")) {
+                        im_coroni.setImageResource(R.drawable.coroni_gruen);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+
     public void searchAndCenterAddress() {
             geoPoint = Map.geoPoint;
             setMarkerAndCenter(geoPoint);

@@ -23,11 +23,11 @@ public class Schutzmaßnahmen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
 
-            try {
+            /*try {
                 verifyStoragePermissions(this);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
     }
 
     public void imageClick(View view) {
