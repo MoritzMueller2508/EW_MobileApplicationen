@@ -1233,6 +1233,7 @@ id tx_adviceLink
 id tx_country
 id tx_einleitung
 id tx_hint
+id tx_title
 id unchecked
 id uniform
 id up

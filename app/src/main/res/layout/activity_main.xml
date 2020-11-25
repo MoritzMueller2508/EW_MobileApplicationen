@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#005589">
-ed
     <RelativeLayout
         android:id="@+id/relativeLayout_MapAdvice"
         android:layout_width="match_parent"

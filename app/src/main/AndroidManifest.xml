@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dhbw.tinf19ai.CoroniReisen">
     <application
         android:allowBackup="true"
@@ -17,6 +18,8 @@
         </activity>
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator">
         </activity>
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MapFragment"
+            tools:ignore="Instantiatable"></activity>
         <activity android:name=".CountryDetails"></activity>
         <activity android:name=".DestinationsList"></activity>
     </application>

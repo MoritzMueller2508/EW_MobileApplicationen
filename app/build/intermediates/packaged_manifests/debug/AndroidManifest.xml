@@ -58,6 +58,7 @@
         </activity>
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator" >
         </activity>
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MapFragment" />
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.CountryDetails" />
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.DestinationsList" />
         <!-- Needs to be explicitly declared on P+ -->

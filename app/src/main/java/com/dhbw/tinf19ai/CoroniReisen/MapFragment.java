@@ -23,6 +23,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.BuildConfig;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -39,9 +40,9 @@ public class MapFragment extends Fragment {
     private MapView mapView;
     private IMapController mapController;
     public static EditText et;
-    public static String tx_eingabe, eingabe, coroni;
+    public static String tx_eingabe, eingabe, coroni, btn;
     private ArrayList btn_eingabe;
-    private GeoPoint selectedLocation;
+    private static GeoPoint selectedLocation;
     private FusedLocationProviderClient fusedLocationProviderClient;
     public CountryDetails cD;
     public Marker startMarker;
@@ -69,6 +70,7 @@ public class MapFragment extends Fragment {
         this.et = (EditText) view.findViewById(R.id.et_address_input);
         tx_eingabe = et.getText().toString();
 
+
         //Button zur Darstellung der Useranfrage durch manuelle Eingabe
         Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +85,7 @@ public class MapFragment extends Fragment {
         btn_sonne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn="sonne";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -92,6 +95,7 @@ public class MapFragment extends Fragment {
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                btn="berge";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -100,6 +104,7 @@ public class MapFragment extends Fragment {
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                btn="stadt";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -108,6 +113,7 @@ public class MapFragment extends Fragment {
         final Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                btn="natur";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }

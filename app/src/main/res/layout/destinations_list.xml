@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="423dp"
     android:layout_height="728dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -5,7 +6,8 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#005589">
 
     <GridLayout
         android:layout_width="348dp"
@@ -16,7 +18,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="90dp"
             android:layout_row="0"
             android:layout_rowWeight="0"
             android:layout_column="0"
@@ -26,16 +28,20 @@
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp">
             <TextView
+                android:id="@+id/tx_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Länder für"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="#FFFFFF"
                 android:textSize="25dp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="222dp"
+            android:layout_height="534dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="0"
