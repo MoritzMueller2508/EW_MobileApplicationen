@@ -175,7 +175,7 @@ public class CountryDetails extends AppCompatActivity {
                     }
                     if(coroni.equals("green")) {
                         im_coroni.setImageResource(R.drawable.coroni_gruen);
-                        tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
+                        tx_advice.setText(green);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
