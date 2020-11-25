@@ -10,6 +10,8 @@ com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
  com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
  com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$1
  com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$2
+com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
+ com.dhbw.tinf19ai.CoroniReisen.MainActivity
 com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
  com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
 com/dhbw/tinf19ai/CoroniReisen/Map.java
@@ -27,5 +29,3 @@ com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails$1
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails$2
-com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
- com.dhbw.tinf19ai.CoroniReisen.MainActivity
