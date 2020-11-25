@@ -65,6 +65,7 @@ public class CountryDetails extends AppCompatActivity {
     private GeoPoint selectedLocation, geoPoint;
     private ImageView im_coroni;
     private Button btn_advice_link;
+    public Marker country_marker;
 
 
     @Override
@@ -78,6 +79,9 @@ public class CountryDetails extends AppCompatActivity {
         country_eingabe = Map.eingabe;
         //setCoroniImage(country_eingabe, tx_advice);
         tx_country.setText(country_eingabe);
+
+        //Card für PieChart
+        CardView pieChart = (CardView) findViewById(R.id.piecard);
 
         String travelRules = getString(R.string.travelRules);
         tx_adviceLink.setText(travelRules);
@@ -100,31 +104,6 @@ public class CountryDetails extends AppCompatActivity {
         final String green =getResources().getString(R.string.advice_green);
         final String orange =getResources().getString(R.string.advice_orange);
         String advice;
-        AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void run() {
-                try {
-                    CoroniAssignment coroniAssignment = new CoroniAssignment();
-                    coroni = coroniAssignment.getCoroni(country_eingabe);
-                    if(coroni.equals("red")) {
-                        im_coroni.setImageResource(R.drawable.coroni_red);
-                        String red =getResources().getString(R.string.advice_red);
-                        tx_advice.setText(red);
-                    }
-                    if(coroni.equals("orange")) {
-                        im_coroni.setImageResource(R.drawable.coroni_orange);
-                        //tx_advice.setText(orange);
-                    }
-                    if(coroni.equals("green")) {
-                        im_coroni.setImageResource(R.drawable.coroni_gruen);
-                        //tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         /*val pieChart = PieChart(
                 slices = provideSlices(), clickListener = null, sliceStartPoint = 0f, sliceWidth = 80f
@@ -153,16 +132,53 @@ public class CountryDetails extends AppCompatActivity {
 
     //setzen von neuen Markern
     private void setMarkerAndCenter(GeoPoint geoPoint) {
-        Marker country_marker = new Marker(map_cutout);
+        country_marker = new Marker(map_cutout);
         country_marker.setPosition(geoPoint);
         country_marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         map_cutout.getOverlays().add(country_marker);
-        //setzen von Marker Icon (grüner/roter/orangener Coroni)
-        Drawable dr = getResources().getDrawable(R.drawable.coroni_gruen);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
-        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-        country_marker.setIcon(drawable);
-        this.mapController.setCenter(geoPoint);
-    }
 
+        //setzen von Marker Icon (grüner/roter/orangener Coroni)
+        final Drawable drawable_gruen = getResources().getDrawable(R.drawable.coroni_gruen);
+        final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
+        final Drawable drawable_rot = getResources().getDrawable(R.drawable.coroni_red);
+
+        Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
+        final Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
+
+        Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
+        final Drawable drawable2 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
+
+        Bitmap bitmap3 = ((BitmapDrawable) drawable_gruen).getBitmap();
+        final Drawable drawable3 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
+
+        final String orange = "Das Land hat hohe Infektionszahlen, gilt jedoch nicht als Risikogebiet. Recherchieren sie mögliche Regelungen";
+        final String red = "Das Land ist ein Risikogebiet. Hier sollten sie keinen Urlaub machen";
+        AsyncTask.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void run() {
+                try {
+                    CoroniAssignment coroniAssignment = new CoroniAssignment();
+                    coroni = coroniAssignment.getCoroni(country_eingabe);
+                    if (coroni.equals("red")) {
+                        im_coroni.setImageResource(R.drawable.coroni_red);
+                        country_marker.setIcon(drawable);
+                        //tx_advice.setText(red);
+                    }
+                    if (coroni.equals("orange")) {
+                        im_coroni.setImageResource(R.drawable.coroni_orange);
+                        country_marker.setIcon(drawable2);
+                        //tx_advice.setText(orange);
+                    }
+                    if (coroni.equals("green")) {
+                        im_coroni.setImageResource(R.drawable.coroni_gruen);
+                        country_marker.setIcon(drawable3);
+                        //tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }
