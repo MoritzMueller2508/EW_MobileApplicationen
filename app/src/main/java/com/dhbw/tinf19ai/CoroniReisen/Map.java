@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
+import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
@@ -67,6 +68,7 @@ public class Map extends Fragment {
         this.mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         this.mapController = this.mapView.getController();
         this.mapController.setZoom(3.0);
+        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
 
         //Eingabe vom User werden eingelesen
         this.et = (EditText) view.findViewById(R.id.et_address_input);
