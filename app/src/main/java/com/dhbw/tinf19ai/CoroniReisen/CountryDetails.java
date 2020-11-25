@@ -53,6 +53,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static android.app.PendingIntent.getActivity;
 import static java.util.Locale.forLanguageTag;
@@ -67,6 +69,7 @@ public class CountryDetails extends AppCompatActivity {
     private Button btn_advice_link;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,34 +100,36 @@ public class CountryDetails extends AppCompatActivity {
 
         im_coroni.setImageResource(R.drawable.coroni_gruen);
         tx_advice.setText(getResources().getString(R.string.advice_green));
-        final String green =getResources().getString(R.string.advice_green);
-        final String orange =getResources().getString(R.string.advice_orange);
-        String advice;
-        AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
+        final String green = getResources().getString(R.string.advice_green);
+        final String orange = getResources().getString(R.string.advice_orange);
+        final String red = getResources().getString(R.string.advice_red);
+
+        Runnable runnable = new Runnable() {
             public void run() {
                 try {
-                    CoroniAssignment coroniAssignment = new CoroniAssignment();
-                    coroni = coroniAssignment.getCoroni(country_eingabe);
+                    String coroni = CoroniAssignment.getCoroni(country_eingabe);
                     if(coroni.equals("red")) {
                         im_coroni.setImageResource(R.drawable.coroni_red);
-                        String red =getResources().getString(R.string.advice_red);
                         tx_advice.setText(red);
                     }
                     if(coroni.equals("orange")) {
                         im_coroni.setImageResource(R.drawable.coroni_orange);
-                        //tx_advice.setText(orange);
+                        tx_advice.setText(orange);
                     }
                     if(coroni.equals("green")) {
                         im_coroni.setImageResource(R.drawable.coroni_gruen);
-                        //tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
+                        tx_advice.setText("Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        });
+        };
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.submit(runnable);
+        executor.shutdown(); // tell executor no more work is coming
+
 
         /*val pieChart = PieChart(
                 slices = provideSlices(), clickListener = null, sliceStartPoint = 0f, sliceWidth = 80f

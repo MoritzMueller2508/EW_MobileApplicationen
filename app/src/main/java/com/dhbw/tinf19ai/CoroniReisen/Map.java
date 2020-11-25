@@ -36,6 +36,8 @@ import org.osmdroid.views.overlay.Marker;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Map extends Fragment {
     private MapView mapView;
@@ -186,13 +188,10 @@ public class Map extends Fragment {
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
         final Drawable drawable_rot = getResources().getDrawable(R.drawable.coroni_red);
 
-        AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
+        Runnable runnable = new Runnable() {
             public void run() {
                 try {
-                    CoroniAssignment coroniAssignment = new CoroniAssignment();
-                    coroni = coroniAssignment.getCoroni(eingabe);
+                    String coroni = CoroniAssignment.getCoroni(eingabe);
                     if(coroni.equals("red")) {
                         Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
                         Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
@@ -212,8 +211,11 @@ public class Map extends Fragment {
                     e.printStackTrace();
                 }
             }
-        });
+        };
 
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.submit(runnable);
+        executor.shutdown(); // tell executor no more work is coming
 
 
         final Activity context = getActivity();
