@@ -99,15 +99,11 @@ public class CountryDetails extends AppCompatActivity {
         });
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
-        this.mapController.setZoom(10.0);
+        this.mapController.setZoom(6.0);
         searchAndCenterAddress();
 
         im_coroni.setImageResource(R.drawable.coroni_gruen);
         tx_advice.setText(getResources().getString(R.string.advice_green));
-
-
-
-
 
 
         /*val pieChart = PieChart(
@@ -134,7 +130,6 @@ public class CountryDetails extends AppCompatActivity {
        }
 
 
-
     //setzen von neuen Markern
     private void setMarkerAndCenter(GeoPoint geoPoint) {
         country_marker = new Marker(map_cutout);
@@ -147,15 +142,6 @@ public class CountryDetails extends AppCompatActivity {
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
         final Drawable drawable_rot = getResources().getDrawable(R.drawable.coroni_red);
 
-        Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
-        final Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-
-        Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
-        final Drawable drawable2 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
-
-        Bitmap bitmap3 = ((BitmapDrawable) drawable_gruen).getBitmap();
-        final Drawable drawable3 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
-
         final String green = getResources().getString(R.string.advice_green);
         final String orange = getResources().getString(R.string.advice_orange);
         final String red = getResources().getString(R.string.advice_red);
@@ -167,14 +153,23 @@ public class CountryDetails extends AppCompatActivity {
                     String coroni = CoroniAssignment.getCoroni(country_eingabe);
                     if(coroni.equals("red")) {
                         im_coroni.setImageResource(R.drawable.coroni_red);
+                        Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
+                        Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
+                        country_marker.setIcon(bitmapDrawable_red);
                         tx_advice.setText(red);
                     }
                     if(coroni.equals("orange")) {
                         im_coroni.setImageResource(R.drawable.coroni_orange);
+                        Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
+                        Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
+                        country_marker.setIcon(bitmapDrawable_orange);
                         tx_advice.setText(orange);
                     }
                     if(coroni.equals("green")) {
                         im_coroni.setImageResource(R.drawable.coroni_gruen);
+                        Bitmap bitmap3 = ((BitmapDrawable) drawable_gruen).getBitmap();
+                        Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
+                        country_marker.setIcon(bitmapDrawable_green);
                         tx_advice.setText(green);
                     }
                 } catch (IOException e) {
@@ -186,6 +181,6 @@ public class CountryDetails extends AppCompatActivity {
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
-
+        this.mapController.setCenter(geoPoint);
     }
 }

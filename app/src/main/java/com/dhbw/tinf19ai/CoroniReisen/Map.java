@@ -186,28 +186,28 @@ public class Map extends Fragment {
         MarkerOptions markerOptions = new MarkerOptions();
 
         //setzen von Marker Icon (grüner/roter/orangener Coroni)
-        final Drawable drawable_gruen = getResources().getDrawable(R.drawable.coroni_gruen);
+        final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_gruen);
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
-        final Drawable drawable_rot = getResources().getDrawable(R.drawable.coroni_red);
+        final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);
 
         Runnable runnable = new Runnable() {
             public void run() {
                 try {
                     String coroni = CoroniAssignment.getCoroni(eingabe);
                     if(coroni.equals("red")) {
-                        Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
-                        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-                        startMarker.setIcon(drawable);
+                        Bitmap bitmap = ((BitmapDrawable) drawable_red).getBitmap();
+                        Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
+                        startMarker.setIcon(bitmapDrawable_red);
                     }
                     if(coroni.equals("orange")) {
                         Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
-                        Drawable drawable2 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
-                        startMarker.setIcon(drawable2);
+                        Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
+                        startMarker.setIcon(bitmapDrawable_orange);
                     }
                     if(coroni.equals("green")) {
-                        Bitmap bitmap3 = ((BitmapDrawable) drawable_gruen).getBitmap();
-                        Drawable drawable3 = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
-                        startMarker.setIcon(drawable3);
+                        Bitmap bitmap3 = ((BitmapDrawable) drawable_green).getBitmap();
+                        Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
+                        startMarker.setIcon(bitmapDrawable_green);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
