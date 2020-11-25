@@ -14,7 +14,7 @@ public class Navigator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.navigator);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.container, new MapFragment(), "Activity").commitAllowingStateLoss();
 

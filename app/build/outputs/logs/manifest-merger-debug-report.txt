@@ -100,10 +100,10 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] D:\ANDROID_
 		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:10:9-40
 	android:usesCleartextTraffic
 		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:11:9-44
-activity#com.dhbw.tinf19ai.CoroniReisen.Schutzmaﬂnahmen
+activity#com.dhbw.tinf19ai.CoroniReisen.MainActivity
 ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:9-17:20
 	android:name
-		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:19-80
+		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:19-77
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:13:13-16:29
 action#android.intent.action.MAIN
@@ -114,10 +114,10 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:15:17-77
 	android:name
 		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:15:27-74
-activity#com.dhbw.tinf19ai.CoroniReisen.MainActivity
+activity#com.dhbw.tinf19ai.CoroniReisen.Navigator
 ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:9-19:20
 	android:name
-		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:19-77
+		ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:19-74
 activity#com.dhbw.tinf19ai.CoroniReisen.CountryDetails
 ADDED from D:\Development\MobileApp\app\src\main\AndroidManifest.xml:20:9-61
 	android:name

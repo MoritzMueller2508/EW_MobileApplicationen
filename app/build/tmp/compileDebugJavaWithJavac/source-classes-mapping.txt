@@ -1,31 +1,31 @@
-com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
- com.dhbw.tinf19ai.CoroniReisen.BuildConfig
 com/dhbw/tinf19ai/CoroniReisen/CountryDictionary.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDictionary
 com/dhbw/tinf19ai/CoroniReisen/BingData.java
  com.dhbw.tinf19ai.CoroniReisen.BingData
-com/dhbw/tinf19ai/CoroniReisen/CoroniAssignment.java
- com.dhbw.tinf19ai.CoroniReisen.CoroniAssignment
-com/dhbw/tinf19ai/CoroniReisen/Schutzmaßnahmen.java
- com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen
- com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$1
- com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen$2
-com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
- com.dhbw.tinf19ai.CoroniReisen.MainActivity
-com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
- com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
-com/dhbw/tinf19ai/CoroniReisen/Map.java
- com.dhbw.tinf19ai.CoroniReisen.Map
- com.dhbw.tinf19ai.CoroniReisen.Map$1
- com.dhbw.tinf19ai.CoroniReisen.Map$2
- com.dhbw.tinf19ai.CoroniReisen.Map$3
- com.dhbw.tinf19ai.CoroniReisen.Map$4
- com.dhbw.tinf19ai.CoroniReisen.Map$5
- com.dhbw.tinf19ai.CoroniReisen.Map$6
- com.dhbw.tinf19ai.CoroniReisen.Map$6$1
- com.dhbw.tinf19ai.CoroniReisen.Map$7
- com.dhbw.tinf19ai.CoroniReisen.Map$8
 com/dhbw/tinf19ai/CoroniReisen/CountryDetails.java
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails$1
  com.dhbw.tinf19ai.CoroniReisen.CountryDetails$2
+com/dhbw/tinf19ai/CoroniReisen/Navigator.java
+ com.dhbw.tinf19ai.CoroniReisen.Navigator
+com/dhbw/tinf19ai/CoroniReisen/MainActivity.java
+ com.dhbw.tinf19ai.CoroniReisen.MainActivity
+ com.dhbw.tinf19ai.CoroniReisen.MainActivity$1
+ com.dhbw.tinf19ai.CoroniReisen.MainActivity$2
+com/dhbw/tinf19ai/CoroniReisen/RiskCountriesExtraction.java
+ com.dhbw.tinf19ai.CoroniReisen.RiskCountriesExtraction
+com/dhbw/tinf19ai/CoroniReisen/MapFragment.java
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$1
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$2
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$3
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$4
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$5
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$6
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$6$1
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$7
+ com.dhbw.tinf19ai.CoroniReisen.MapFragment$8
+com/dhbw/tinf19ai/CoroniReisen/CoroniAssignment.java
+ com.dhbw.tinf19ai.CoroniReisen.CoroniAssignment
+com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
+ com.dhbw.tinf19ai.CoroniReisen.BuildConfig

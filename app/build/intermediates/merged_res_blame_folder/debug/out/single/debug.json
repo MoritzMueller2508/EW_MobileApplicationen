@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_navigator.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\navigator.xml"
+    },
+    {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
         "source": "D:\\Development\\MobileApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
@@ -14,10 +18,6 @@
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity.xml.flat",
-        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\activity.xml"
     },
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
@@ -60,12 +60,12 @@
         "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\drawable\\coroni_orange.png"
     },
     {
-        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_background2.xml.flat",
-        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\drawable\\button_background2.xml"
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_map_fragment.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\map_fragment.xml"
     },
     {
-        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp_activity_main.xml.flat",
-        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout-sw600dp\\activity_main.xml"
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_background2.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\drawable\\button_background2.xml"
     },
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_coroni_red.png.flat",
@@ -112,8 +112,8 @@
         "source": "D:\\Development\\MobileApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_first_activity.xml.flat",
-        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout\\first_activity.xml"
+        "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp_navigator.xml.flat",
+        "source": "D:\\Development\\MobileApp\\app\\src\\main\\res\\layout-sw600dp\\navigator.xml"
     },
     {
         "merged": "D:\\Development\\MobileApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",

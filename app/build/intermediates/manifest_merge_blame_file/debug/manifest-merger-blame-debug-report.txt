@@ -93,9 +93,9 @@
 50-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:10:9-40
 51        android:usesCleartextTraffic="true" >
 51-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:11:9-44
-52        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen" >
+52        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity" >
 52-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:9-17:20
-52-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:19-80
+52-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:12:19-77
 53            <intent-filter>
 53-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:13:13-16:29
 54                <action android:name="android.intent.action.MAIN" />
@@ -107,9 +107,9 @@
 56-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:15:27-74
 57            </intent-filter>
 58        </activity>
-59        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity" >
+59        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator" >
 59-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:9-19:20
-59-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:19-77
+59-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:18:19-74
 60        </activity>
 61        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.CountryDetails" />
 61-->D:\Development\MobileApp\app\src\main\AndroidManifest.xml:20:9-61

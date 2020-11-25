@@ -1283,12 +1283,12 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity
 layout activity_main
 layout bonuspack_bubble
 layout country_details
 layout custom_dialog
-layout first_activity
+layout map_fragment
+layout navigator
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
