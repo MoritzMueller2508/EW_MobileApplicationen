@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Map extends Fragment {
+public class MapFragment extends Fragment {
     private MapView mapView;
     private IMapController mapController;
     public static EditText et;
@@ -63,7 +63,7 @@ public class Map extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity, container, false);
 
-        //Map wird initialisiert
+        //MapFragment wird initialisiert
         this.mapView = (MapView) view.findViewById(R.id.map_view);
         this.mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         this.mapController = this.mapView.getController();

@@ -9,13 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Schutzmaßnahmen">
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity">
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator">
         </activity>
         <activity android:name=".CountryDetails"></activity>
     </application>

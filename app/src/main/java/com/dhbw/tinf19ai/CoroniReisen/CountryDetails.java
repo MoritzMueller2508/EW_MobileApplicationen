@@ -1,63 +1,31 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.location.Address;
-import android.location.Location;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.location.GeocoderNominatim;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
-import org.w3c.dom.Text;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static android.app.PendingIntent.getActivity;
-import static java.util.Locale.forLanguageTag;
 
 public class CountryDetails extends AppCompatActivity {
     private TextView tx_country, tx_advice, tx_adviceLink;
@@ -79,7 +47,7 @@ public class CountryDetails extends AppCompatActivity {
         tx_country = (TextView) findViewById(R.id.tx_country);
         tx_adviceLink = (TextView) findViewById(R.id.tx_adviceLink);
         tx_advice = (TextView) findViewById(R.id.tx_advice);
-        country_eingabe = Map.eingabe;
+        country_eingabe = MapFragment.eingabe;
         //setCoroniImage(country_eingabe, tx_advice);
         tx_country.setText(country_eingabe);
 
@@ -124,7 +92,7 @@ public class CountryDetails extends AppCompatActivity {
    // private void setCoroniImage(final String country_eingabe, final TextView tx_advice) {}
 
     public void searchAndCenterAddress() {
-            geoPoint = Map.geoPoint;
+            geoPoint = MapFragment.geoPoint;
             setMarkerAndCenter(geoPoint);
             selectedLocation = geoPoint;
        }
