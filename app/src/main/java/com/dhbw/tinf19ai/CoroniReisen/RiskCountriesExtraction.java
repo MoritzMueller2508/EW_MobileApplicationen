@@ -41,6 +41,7 @@ public class RiskCountriesExtraction {
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
+
         if(list.contains("Süd-Sudan")){
             convertedCountriesList.remove("Süd");
             convertedCountriesList.add("Südsudan");
@@ -52,16 +53,17 @@ public class RiskCountriesExtraction {
     //return list of countries that were a risk area in the last 10 days but not anymore - should be used for the orange coroni
     public static List<String> getOrangeRiskCountries() throws IOException {
         String riskAreaHtml = getHtmlWebsite();
-
         String list = riskAreaHtml.substring(
                 riskAreaHtml.indexOf("<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>") +
                         "<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>".length(),
                 riskAreaHtml.indexOf("<div class=\"sectionRelated links\"><h2>Archiv der ausgewiesenen Risikogebiete seit 15.6.2020</h2>"));
+
         list = list.replaceAll("<ul>", "<ul></li>");
         list = list.replaceAll("<li>", "cut");
 
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
+
         if(list.contains("Süd-Sudan")){
             convertedCountriesList.remove("Süd");
             convertedCountriesList.add("Südsudan");
@@ -97,6 +99,10 @@ public class RiskCountriesExtraction {
                 String newElement = convertedCountriesList.get(i).replace(element, "");
                 convertedCountriesList.set(i, newElement);
             }
+        }
+        for (int i = 0; i < convertedCountriesList.size(); i++){
+            String element = convertedCountriesList.get(i);
+
             if (element.contains("–")){
                 element = element.substring(element.indexOf("–"), element.indexOf("</li>"));
                 String newElement = convertedCountriesList.get(i).replace(element, "");
@@ -124,19 +130,23 @@ public class RiskCountriesExtraction {
                 convertedCountriesList.set(i, newElement);
             }
         }
+
         for (int i = 0; i < convertedCountriesList.size(); i++) {
             String element = convertedCountriesList.get(i);
-
             if (element.contains("<p>")) {
                 String newElement = convertedCountriesList.get(i).replace(element, element.substring(3));
                 convertedCountriesList.set(i, newElement);
             }
+            /**TODO: [Griechenland: die Region Peloponnes , Irland: die Regionen Midlands </ul>]
+             * wird zu [Griechenlanddie Region Peloponnes , Irland] WHY? (I am crying right now)
+            **/
             if (element.contains(":")){
-                element  = element.substring(element.indexOf(":"), element.indexOf(element.charAt(element.length()-1))+1);
-                String newElement = convertedCountriesList.get(i).replace(element, "");
+                String subElement  = element.substring(element.indexOf(":"), element.indexOf(element.charAt(element.length()-1))+1);
+                String newElement = convertedCountriesList.get(i).replace(subElement, "");
                 convertedCountriesList.set(i, newElement);
             }
         }
+
 
         for (int i = 0; i < convertedCountriesList.size(); i++) {
             int length = convertedCountriesList.get(i).length();
@@ -148,6 +158,7 @@ public class RiskCountriesExtraction {
             }
         }
 
+        System.out.println(convertedCountriesList);
         return convertedCountriesList;
     }
 }

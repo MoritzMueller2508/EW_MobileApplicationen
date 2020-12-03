@@ -72,6 +72,13 @@ public class CoroniAssignment {
         List<String> redRiskCountries = RiskCountriesExtraction.getRedRiskCountries();
         List<String> orangeRiskCountries = RiskCountriesExtraction.getOrangeRiskCountries();
 
+        for (int i = 0; i<orangeRiskCountries.size(); i++){
+            String element = orangeRiskCountries.get(i);
+            if (redRiskCountries.contains(element)){
+                orangeRiskCountries.remove(i);
+            }
+        }
+
         if (redRiskCountries.contains(countryRegion)){
             return redCoroni;
         }
