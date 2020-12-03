@@ -25,40 +25,44 @@
             android:rowCount="6">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="159dp"
-                android:layout_height="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
+                android:layout_marginTop="15dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <TextView
-                    android:id="@+id/willkommen"
-                    style="@style/Welcome2"
-                    android:layout_width="361dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="297dp"
-                    android:layout_marginRight="297dp"
-                    android:layout_marginBottom="3dp"
-                    android:text="@string/Willkommen"
-                    app:layout_constraintBottom_toTopOf="@+id/tx_einleitung"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.73" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/willkommen"
+                        style="@style/Welcome2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/Willkommen"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        android:background="#FFFFFF"
+                        android:gravity="center" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="160dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -68,21 +72,32 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <TextView
-                    android:id="@+id/tx_einleitung"
-                    style="@style/Introduction"
-                    android:layout_width="342dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/Introduction"
-                    app:layout_constraintBottom_toTopOf="@+id/tx_hint"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/willkommen"
-                    app:layout_constraintVertical_bias="1.0" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tx_einleitung"
+                        style="@style/Introduction"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@string/Introduction"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:text="bitte hier klicken"
+                        android:textColor="#004593"
+                        android:textSize="10dp" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
@@ -109,7 +124,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -129,9 +144,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginRight="90dp"
+                    android:layout_marginLeft="15dp"
                     android:gravity="center"
-                    android:text="Quelle: Deutsche Gesetzliche Unfallversicherung" />
+                    android:text="Quelle: Deutsche Gesetzliche Unfallversicherung"
+                    android:textColor="#004593" />
             </androidx.cardview.widget.CardView>
 
         </GridLayout>

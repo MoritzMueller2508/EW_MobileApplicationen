@@ -14,7 +14,7 @@
         android:layout_height="66dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="25dp"
         android:textColor="#fff"
         android:textSize="40dp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:id="@+id/relativeLayout_MapAdvice"
         android:layout_width="match_parent"
         android:layout_height="710dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
@@ -44,7 +44,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="160dp"
-                android:layout_height="44dp"
+                android:layout_height="0dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -53,11 +53,33 @@
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Karte"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textSize="13dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="2dp"/>
 
                 <org.osmdroid.views.MapView
                     android:id="@+id/map_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -77,29 +99,45 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="154dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tx_Einreisebestimmungen"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
                         android:text="Einreisebestimmungen"
                         android:textAllCaps="true"
                         android:textSize="13dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="2dp"/>
+
+                    <TextView
                         android:id="@+id/tx_adviceLink"
-                        android:layout_width="170dp"
-                        android:layout_height="112dp"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/travelRules"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="bitte hier klicken"
+                        android:textSize="10dp"
+                        android:gravity="center"/>
                 </LinearLayout>
 
 
@@ -107,23 +145,63 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="95dp"
-                android:layout_height="wrap_content"
+                android:layout_height="12dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <TextView
-                    android:id="@+id/tx_advice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="25dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="212dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Handlungshinweise"
+                        android:textAllCaps="true"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="2dp"/>
+                    <TextView
+                        android:id="@+id/tx_advice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="5dp"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/tx_advice_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/advice"
+                        android:textSize="14dp" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -138,11 +216,31 @@
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="212dp"
+                    android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Einschätzung"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textSize="13dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#FFFFFF"
+                    android:layout_marginTop="2dp"/>
                 <ImageView
                     android:id="@+id/image_Coroni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -158,12 +256,34 @@
                 android:layout_margin="8dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Aktuelle Zahlen"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="2dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_source_link"
                 android:layout_width="20dp"
                 app:cardBackgroundColor="#77a5b3"
                 android:layout_height="10dp"
@@ -176,15 +296,43 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Quelle"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="2dp"/>
                 <TextView
                     android:id="@+id/data_hint"
                     android:layout_marginTop="55dp"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Datenquelle:\nBingCovid19\nAPI"
-                    android:textSize="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:text="Datenquelle: API\nBingCovid-19\n für mehr Informationen können Sie hier klicken."
+                    android:gravity="center"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="bitte hier klicken"
+                    android:textSize="10dp"
+                    android:gravity="center"/>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </GridLayout>

@@ -1036,6 +1036,7 @@ id buttonPanel
 id cache_measures
 id cancel_action
 id card_link
+id card_source_link
 id center
 id center_horizontal
 id center_vertical
@@ -1230,9 +1231,10 @@ id triangle
 id tx_Einreisebestimmungen
 id tx_advice
 id tx_adviceLink
+id tx_advice_add
 id tx_country
 id tx_einleitung
-id tx_hint
+id tx_introduction_categories
 id tx_title
 id unchecked
 id uniform
@@ -1347,6 +1349,7 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about
 string about_message
+string advice
 string advice_green
 string advice_orange
 string advice_red

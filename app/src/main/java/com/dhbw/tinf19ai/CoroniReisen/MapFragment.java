@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -69,6 +71,7 @@ public class MapFragment extends Fragment {
         //Eingabe vom User werden eingelesen
         this.et = (EditText) view.findViewById(R.id.et_address_input);
         tx_eingabe = et.getText().toString();
+
 
 
         //Button zur Darstellung der Useranfrage durch manuelle Eingabe
@@ -122,6 +125,8 @@ public class MapFragment extends Fragment {
         this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         return view;
     }
+
+
 
     //Setzen vom neuen eingelesenem GeoPoint
     public void searchAndCenterAddress(final String tx_eingabe) {
@@ -191,12 +196,21 @@ public class MapFragment extends Fragment {
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
 
-
         final Activity context = getActivity();
+        startMarker.setDraggable(true);
+        /*startMarker.setOnMarkerDragListener(new Marker.OnMarkerClickListener() {
+                                                @Override
+                                                public boolean onMarker(Marker marker, MapView mapView) {
+                                                    startMarker.remove(mapView);
+                                                    return false;
+                                                }
+                                            });*/
+
+        final Activity context2 = getActivity();
         startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                                                  @Override
                                                  public boolean onMarkerClick(Marker marker, MapView mapView) {
-                                                     Intent intent = new Intent(context, CountryDetails.class);
+                                                     Intent intent = new Intent(context2, CountryDetails.class);
                                                      intent.putExtra("country", eingabe);
                                                      startActivity(intent);
                                                      return false;
@@ -206,6 +220,12 @@ public class MapFragment extends Fragment {
         );
 
         this.mapController.setCenter(geoPoint);
+    }
+
+
+    public void setOnMarkerDrag(Marker startMarker){
+        System.out.println("Hallo");
+        mapView.getOverlays().remove(startMarker);
     }
 
 
