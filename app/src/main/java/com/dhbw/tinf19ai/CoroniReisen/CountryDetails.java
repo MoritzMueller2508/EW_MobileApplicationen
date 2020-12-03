@@ -68,9 +68,18 @@ public class CountryDetails extends AppCompatActivity {
                 startActivity(launchBrowser);
             }
         });
+        CardView source_card = (CardView) findViewById(R.id.card_source_link);
+        source_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uriUrl = Uri.parse("https://www.bing.com/covid/dev");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
-        this.mapController.setZoom(6.0);
+        this.mapController.setZoom(3.0);
         searchAndCenterAddress(country_eingabe);
 
         im_coroni.setImageResource(R.drawable.coroni_gruen);
@@ -140,21 +149,21 @@ public class CountryDetails extends AppCompatActivity {
                     if(coroni.equals("red")) {
                         im_coroni.setImageResource(R.drawable.coroni_red);
                         Bitmap bitmap = ((BitmapDrawable) drawable_rot).getBitmap();
-                        Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
+                        Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
                         country_marker.setIcon(bitmapDrawable_red);
                         tx_advice.setText(red);
                     }
                     if(coroni.equals("orange")) {
                         im_coroni.setImageResource(R.drawable.coroni_orange);
                         Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
-                        Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
+                        Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 50, 50, true));
                         country_marker.setIcon(bitmapDrawable_orange);
                         tx_advice.setText(orange);
                     }
                     if(coroni.equals("green")) {
                         im_coroni.setImageResource(R.drawable.coroni_gruen);
                         Bitmap bitmap3 = ((BitmapDrawable) drawable_gruen).getBitmap();
-                        Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
+                        Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 50, 50, true));
                         country_marker.setIcon(bitmapDrawable_green);
                         tx_advice.setText(green);
                     }

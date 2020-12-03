@@ -23,29 +23,34 @@ public class DestinationsList extends ListActivity {
     static final String[] stadt = new String[]{"Spanien","Polen","Nordmazedonien","Indien","Türkei","Japan","China","Deutschland","Russische Föderation","USA"};
     static final String[] natur = new String[]{"Marokko","Kanada","Neuseeland","Japan","Iran","Deutschland","Österreich","Thailand","Norwegen","Irland"};
     public String eingabe_marker_btn;
-    public TextView title;
+    public TextView title, text;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.destinations_list);
         title = (TextView) findViewById(R.id.tx_title);
+        text = (TextView) findViewById(R.id.tx_introduction_categories);
         final ArrayAdapter adapter;
         String btn = MapFragment.btn;
 
 
         switch(btn){
             case "sonne": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,sonne);
-                title.setText("Hier sehen sie warme und sonnige Länder:");
+                title.setText("Sonne");
+                text.setText("Hier sehen sie warme und sonnige Länder, perfekt für einen entspannten Strandurlaub!");
             break;
             case "berge": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,berge);
-                title.setText("Hier finden sie Länder in denen man viele Berge hat:");
+                title.setText("Berge");
+                text.setText("Hier finden sie Länder in denen man viele Berge hat, perfekt für Kletterausflüge und Wandertouren!");
                 break;
             case "stadt": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,stadt);
-                title.setText("Hier finden sie Länder mit interessanten Städten:");
+                title.setText("Stadt");
+                text.setText("Hier finden sie Länder mit interessanten Städten. Welche Stadt werden sie als nächstes erkunden?");
                 break;
             case "natur": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,natur);
-                title.setText("Hier finden sie Länder mit viel Natur:");
+                title.setText("Natur");
+                text.setText("Hier finden sie Länder mit viel Natur, perfekt zum entspannen und genießen von außergewöhnlicher Vegitation!");
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + btn);
