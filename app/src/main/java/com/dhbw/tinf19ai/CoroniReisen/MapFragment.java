@@ -8,9 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,7 +32,6 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -163,7 +160,7 @@ public class MapFragment extends Fragment {
         MarkerOptions markerOptions = new MarkerOptions();
 
         //setzen von Marker Icon (grüner/roter/orangener Coroni)
-        final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_gruen);
+        final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
         final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);
 

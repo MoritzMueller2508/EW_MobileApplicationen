@@ -22,93 +22,61 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:columnCount="1"
-            android:rowCount="6">
+            android:rowCount="4">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
+                style="@style/card"
+                android:layout_height="2dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
                 android:layout_marginTop="15dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
+                <LinearLayout style="@style/linearLayout">
                     <TextView
-                        android:id="@+id/willkommen"
-                        style="@style/Welcome2"
+                        style="@style/welcome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/Willkommen"
+                        android:text="@string/welcome"
                         android:textSize="30dp" />
 
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="3dp"
-                        android:layout_gravity="center"
-                        android:background="#FFFFFF"
-                        android:gravity="center" />
+                    <TextView style="@style/line_title" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
+                style="@style/card"
                 android:layout_height="30dp"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
+                <LinearLayout style="@style/linearLayout">
                     <TextView
-                        android:id="@+id/tx_einleitung"
-                        style="@style/Introduction"
-                        android:layout_width="350dp"
-                        android:layout_height="wrap_content"
+                        style="@style/text"
                         android:layout_marginTop="10dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
                         android:textStyle="bold"
-                        android:text="@string/Introduction"
+                        android:text="@string/introduction"
                         />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
+                        style="@style/pleaseClick"
                         android:layout_marginTop="5dp"
-                        android:text="bitte hier klicken"
-                        android:textColor="#004593"
-                        android:textSize="10dp" />
+                        android:text="bitte auf das Bild klicken" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="420dp"
+                style="@style/card"
+                android:layout_height="390dp"
                 android:layout_row="2"
                 android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
@@ -116,25 +84,17 @@
                 <ImageView
                     android:id="@+id/schutzmaßnahmen"
                     android:layout_width="wrap_content"
-                    android:layout_height="460dp"
+                    android:layout_height="wrap_content"
                     android:onClick="imageClick"
-                    app:layout_constraintVertical_bias="0.9"
-                    app:srcCompat="@drawable/schutzmasnahmen" />
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/protective_measures" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
+                style="@style/card"
+                android:layout_height="0dp"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
@@ -147,7 +107,7 @@
                     android:layout_marginLeft="15dp"
                     android:gravity="center"
                     android:text="Quelle: Deutsche Gesetzliche Unfallversicherung"
-                    android:textColor="#004593" />
+                    android:textColor="#FFFFFF" />
             </androidx.cardview.widget.CardView>
 
         </GridLayout>

@@ -889,11 +889,9 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
-drawable coroni_gruen
+drawable coroni_green
 drawable coroni_orange
 drawable coroni_red
-drawable countryd_bg
-drawable countrydetails_bg
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
@@ -927,8 +925,8 @@ drawable osm_ic_follow_me_on
 drawable osm_ic_ic_map_ortho
 drawable person
 drawable previous
+drawable protective_measures
 drawable round_navigation_white_48
-drawable schutzmasnahmen
 drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable tooltip_frame_dark
@@ -1035,7 +1033,7 @@ id bubble_title
 id buttonPanel
 id cache_measures
 id cancel_action
-id card_link
+id card_einreisebestimmungen
 id card_source_link
 id center
 id center_horizontal
@@ -1056,7 +1054,6 @@ id cos
 id custom
 id customPanel
 id dark
-id data_hint
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
@@ -1106,7 +1103,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id image_Coroni
+id image_coroni
 id info
 id invisible
 id italic
@@ -1228,12 +1225,8 @@ id topPanel
 id transitionToEnd
 id transitionToStart
 id triangle
-id tx_Einreisebestimmungen
 id tx_advice
-id tx_adviceLink
-id tx_advice_add
 id tx_country
-id tx_einleitung
 id tx_introduction_categories
 id tx_title
 id unchecked
@@ -1242,7 +1235,6 @@ id up
 id useLogo
 id visible
 id wide
-id willkommen
 id withText
 id wrap
 id wrap_content
@@ -1318,8 +1310,6 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string Advice_Link
 string Hint
-string Introduction
-string Willkommen
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1391,6 +1381,7 @@ string format_distance_only_mile
 string format_distance_only_nautical_mile
 string format_distance_value_unit
 string hills
+string introduction
 string map_mode
 string mapbox
 string mapnik
@@ -1438,6 +1429,7 @@ string status_bar_notification_info_overflow
 string topo
 string travelRules
 string unknown
+string welcome
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -1633,7 +1625,6 @@ style RtlOverlay_Widget_AppCompat_Search_DropDown_Text
 style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
-style Text
 style TextAppearance_AppCompat
 style TextAppearance_AppCompat_Body1
 style TextAppearance_AppCompat_Body2
@@ -1726,8 +1717,6 @@ style ThemeOverlay_AppCompat_DayNight_ActionBar
 style ThemeOverlay_AppCompat_Dialog
 style ThemeOverlay_AppCompat_Dialog_Alert
 style ThemeOverlay_AppCompat_Light
-style Welcome
-style Welcome2
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar
@@ -1804,6 +1793,13 @@ style Widget_AppCompat_Toolbar_Button_Navigation
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 style Widget_Support_CoordinatorLayout
+style card
+style line_title
+style linearLayout
+style pleaseClick
+style text
+style title
+style welcome
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

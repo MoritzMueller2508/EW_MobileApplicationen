@@ -1,281 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/countryd_bg">
-
-
-    <TextView
-        android:id="@+id/tx_country"
-        android:layout_width="303dp"
-        android:layout_height="66dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textColor="#fff"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:background="#005589">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_MapAdvice"
-        android:layout_width="match_parent"
-        android:layout_height="710dp"
-        android:layout_marginTop="90dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409">
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:columnCount="2"
-            android:rowCount="3">
+            android:columnCount="1"
+            android:rowCount="5">
+
+            <TextView
+                android:id="@+id/tx_country"
+                style="@style/title"
+                android:layout_marginTop="25dp"
+                android:textSize="41dp"/>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="0dp"
-                android:layout_row="0"
-                android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
+                style="@style/card"
                 app:cardBackgroundColor="#77a5b3"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Karte"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:textSize="13dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="2dp"/>
-
-                <org.osmdroid.views.MapView
-                    android:id="@+id/map_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_link"
-                android:layout_width="143dp"
-                android:layout_height="5dp"
+                app:cardCornerRadius="12dp"
+                card_view:cardElevation="20dp"
                 android:layout_row="0"
-                android:layout_rowWeight="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                android:background="@color/background"
-                app:cardBackgroundColor="#77a5b3"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                android:foreground="?android:attr/selectableItemBackground">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tx_Einreisebestimmungen"
+                <LinearLayout style="@style/linearLayout">
+                    <TextView style="@style/title" android:text="Karte"/>
+                    <TextView style="@style/line_title" />
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                    <org.osmdroid.views.MapView
+                        android:id="@+id/map_view"
                         android:layout_marginTop="5dp"
-                        android:text="Einreisebestimmungen"
-                        android:textAllCaps="true"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="2dp"/>
-
-                    <TextView
-                        android:id="@+id/tx_adviceLink"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/travelRules"
-                        android:textSize="14dp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="bitte hier klicken"
-                        android:textSize="10dp"
-                        android:gravity="center"/>
+                        android:layout_width="200dp"
+                        android:layout_height="200dp" />
+                    <ImageView
+                        android:id="@+id/image_coroni"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"/>
+                    </LinearLayout>
                 </LinearLayout>
-
-
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
-                android:layout_width="95dp"
-                android:layout_height="12dp"
+                style="@style/card"
+                app:cardBackgroundColor="#77a5b3"
+                app:cardCornerRadius="12dp"
+                card_view:cardElevation="20dp"
                 android:layout_row="1"
-                android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="#77a5b3"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="212dp"
-                    android:orientation="vertical">
+                android:foreground="?android:attr/selectableItemBackground">
+                <LinearLayout style="@style/linearLayout">
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Handlungshinweise"
-                        android:textAllCaps="true"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
+                        style="@style/title"
+                        android:text="Handlungshinweise" />
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="2dp"/>
+                        style="@style/line_title" />
                     <TextView
                         android:id="@+id/tx_advice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginRight="5dp"
-                        android:textSize="14dp" />
-
+                        android:layout_marginTop="20dp"
+                        android:layout_height="100dp"
+                        style="@style/text"/>
                     <TextView
-                        android:id="@+id/tx_advice_add"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/text"
                         android:gravity="center"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="@string/advice"
-                        android:textSize="14dp" />
+                        android:text="@string/advice"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="58dp"
-                android:layout_height="8dp"
-                android:layout_row="1"
-                android:layout_rowWeight="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
+                android:id="@+id/card_einreisebestimmungen"
+                style="@style/card"
                 app:cardBackgroundColor="#77a5b3"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="212dp"
-                    android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Einschätzung"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:textSize="13dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#FFFFFF"
-                    android:layout_marginTop="2dp"/>
-                <ImageView
-                    android:id="@+id/image_Coroni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                app:cardCornerRadius="12dp"
+                card_view:cardElevation="20dp"
+                android:layout_row="2"
+                android:foreground="?android:attr/selectableItemBackground">
+                <LinearLayout style="@style/linearLayout">
+                    <TextView style="@style/title" android:text="Einreisebestimmungen" />
+                    <TextView style="@style/line_title" />
+                    <TextView
+                        style="@style/text"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/travelRules" />
+                    <TextView
+                        style="@style/pleaseClick"
+                        android:text="bitte hier klicken" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/piecard"
-                android:layout_width="wrap_content"
+                style="@style/card"
                 app:cardBackgroundColor="#77a5b3"
-                android:layout_height="4dp"
-                android:layout_row="2"
-                android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Aktuelle Zahlen"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="2dp"/>
+                app:cardCornerRadius="12dp"
+                card_view:cardElevation="20dp"
+                android:layout_row="3"
+                android:foreground="?android:attr/selectableItemBackground">
+                <LinearLayout style="@style/linearLayout">
+                    <TextView style="@style/title" android:text="Aktuelle Zahlen" />
+                    <TextView style="@style/line_title" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -284,54 +121,26 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_source_link"
-                android:layout_width="20dp"
+                style="@style/card"
                 app:cardBackgroundColor="#77a5b3"
-                android:layout_height="10dp"
-                android:layout_row="2"
-                android:layout_rowWeight="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                app:cardCornerRadius="12dp"
+                card_view:cardElevation="20dp"
+                android:layout_row="4"
+                android:foreground="?android:attr/selectableItemBackground">
+                <LinearLayout style="@style/linearLayout">
+                    <TextView style="@style/title" android:text="Quelle" />
+                    <TextView style="@style/line_title" />
                     <TextView
+                        android:layout_marginTop="55dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Datenquelle: API\nBingCovid-19\n für mehr Informationen können Sie hier klicken."
                         android:gravity="center"
-                        android:text="Quelle"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textSize="13dp"/>
+                        android:textSize="18dp" />
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="2dp"/>
-                <TextView
-                    android:id="@+id/data_hint"
-                    android:layout_marginTop="55dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Datenquelle: API\nBingCovid-19\n für mehr Informationen können Sie hier klicken."
-                    android:gravity="center"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="bitte hier klicken"
-                    android:textSize="10dp"
-                    android:gravity="center"/>
+                        style="@style/pleaseClick"
+                        android:text="bitte hier klicken"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -340,4 +149,4 @@
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

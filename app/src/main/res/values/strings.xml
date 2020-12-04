@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Coroni Reisen</string>
-    <string name="Willkommen"><b>Herzlich Willkommen!</b></string>
-    <string name="Introduction">Wir helfen ihnen bei der Urlaubsplanung in Zeiten von Corona</string>
+    <string name="welcome"><b>Herzlich Willkommen!</b></string>
+    <string name="introduction">Wir helfen ihnen bei der Urlaubsplanung in Zeiten von Corona</string>
     <string name="Hint">Bitte klicken sie auf das Bild</string>
     <string name="travelRules">Was Sie bei einem Urlaub im Ausland beachten sollten, welche Regelungen gelten und was Einreisende aus einem Risikogebiet wissen müssen, erfahren Sie wenn sie hier klicken.</string>
     <string name="Advice_Link">https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise</string>
