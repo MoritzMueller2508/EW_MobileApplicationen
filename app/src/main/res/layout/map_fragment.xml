@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="#77a5b3">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.105"
-            android:background="@drawable/button_background2"/>
+            android:background="@drawable/button_background"/>
 
     </RelativeLayout>
 
@@ -87,31 +87,33 @@
 
         <Button
             android:id="@+id/btn_sonne"
-            android:layout_width="140dp"
-            android:layout_height="30dp"
             style="@style/text"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
+            android:background="@drawable/button_background"
             android:text="Sonne"
+            android:layout_marginLeft="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.732"
-            android:background="@drawable/button_background"/>
+            app:layout_constraintVertical_bias="0.732" />
 
         <Button
             android:id="@+id/btn_berge"
+            style="@style/text"
             android:layout_width="95dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
+            android:background="@drawable/button_background"
             android:text="Berge"
-            style="@style/text"
+            android:layout_marginRight="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.911"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.732"
-            android:background="@drawable/button_background"/>
+            app:layout_constraintVertical_bias="0.732" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -129,7 +131,8 @@
 
         <Button
             android:id="@+id/btn_stadt"
-            android:layout_width="wrap_content"
+            style="@style/text"
+            android:layout_width="95dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_marginEnd="61dp"
@@ -137,7 +140,6 @@
             android:layout_marginBottom="4dp"
             android:background="@drawable/button_background"
             android:text="Städte"
-            style="@style/text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
@@ -153,6 +155,7 @@
             android:background="@drawable/button_background"
             android:text="Natur"
             style="@style/text"
+            android:layout_marginRight="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.91"
             app:layout_constraintStart_toStartOf="parent"

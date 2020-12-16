@@ -11,6 +11,8 @@
         android:endColor="#FFFFFF"
         android:type="linear"
         />
+    <solid
+        android:color="#005589"/>
     <padding
         android:left="0dp"
         android:top="0dp"
