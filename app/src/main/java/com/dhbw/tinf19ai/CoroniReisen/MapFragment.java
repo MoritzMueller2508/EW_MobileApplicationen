@@ -76,7 +76,11 @@ public class MapFragment extends Fragment {
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String location = et.getText().toString();
-                searchAndCenterAddress(location);
+                try {
+                    searchAndCenterAddress(location);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -90,8 +94,6 @@ public class MapFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -100,7 +102,6 @@ public class MapFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -109,8 +110,7 @@ public class MapFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        final Button btn_natur = view.findViewById(R.id.btn_natur);
+        Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 btn="natur";
@@ -126,8 +126,13 @@ public class MapFragment extends Fragment {
 
 
     //Setzen vom neuen eingelesenem GeoPoint
-    public void searchAndCenterAddress(final String tx_eingabe) {
-        eingabe = tx_eingabe;
+    public void searchAndCenterAddress(final String tx_eingabe) throws IOException {
+        CountryDictionary.setCountriesDict();
+        if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
+            eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
+        } else {
+            eingabe = tx_eingabe;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {

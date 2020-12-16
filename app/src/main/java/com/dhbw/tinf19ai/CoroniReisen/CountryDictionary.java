@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class CountryDictionary {
+    public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
-    public static String getCountryInGerman(String countryEn) throws IOException {
-        String countryDe;
-        Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
+    public static void setCountriesDict(){
         countriesDict.put("Worldwide", "Weltweit");
         countriesDict.put("Afghanistan", "Afghanistan");
         countriesDict.put("Albania", "Albanien");
@@ -237,7 +236,7 @@ public class CountryDictionary {
         countriesDict.put("Uganda", "Uganda");
         countriesDict.put("Ukraine", "Ukraine");
         countriesDict.put("United Arab Emirates", "Vereinigte Arabische Emirate");
-        countriesDict.put("United Kingdom", "Vereinigtes Königreich von Großbritannien und Nordirland");
+        countriesDict.put("United Kingdom", "Vereinigtes Königreich");
         countriesDict.put("United States", "USA");
         countriesDict.put("Uruguay", "Uruguay");
         countriesDict.put("Uzbekistan", "Usbekistan");
@@ -249,9 +248,12 @@ public class CountryDictionary {
         countriesDict.put("Zambia", "Sambia");
         countriesDict.put("Zimbabwe", "Simbabwe");
         countriesDict.put("West Bank", "Westjordanland");
-
-
+    }
+    public static String getCountryInGerman(String countryEn){
+        String countryDe;
+        //setCountriesDict();
         countryDe = countriesDict.get(countryEn);
         return countryDe;
     }
+
 }

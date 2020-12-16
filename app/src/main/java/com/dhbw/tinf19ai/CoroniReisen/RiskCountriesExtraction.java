@@ -46,7 +46,10 @@ public class RiskCountriesExtraction {
             convertedCountriesList.remove("Süd");
             convertedCountriesList.add("Südsudan");
         }
-
+        if(convertedCountriesList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
+            convertedCountriesList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
+            convertedCountriesList.add("Vereinigtes Königreich");
+        }
         return convertedCountriesList;
     }
 
@@ -67,6 +70,10 @@ public class RiskCountriesExtraction {
         if(list.contains("Süd-Sudan")){
             convertedCountriesList.remove("Süd");
             convertedCountriesList.add("Südsudan");
+        }
+        if(convertedCountriesList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
+            convertedCountriesList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
+            convertedCountriesList.add("Vereinigtes Königreich");
         }
         return convertedCountriesList;
     }
