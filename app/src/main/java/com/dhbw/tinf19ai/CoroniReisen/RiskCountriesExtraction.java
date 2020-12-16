@@ -73,6 +73,7 @@ public class RiskCountriesExtraction {
 
     //return a list of countries without the HTML format
     public static List<String> getRiskCountries(List<String> convertedCountriesList){
+
         for (int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);
 
@@ -80,7 +81,6 @@ public class RiskCountriesExtraction {
             if (element.equals("")){
                 convertedCountriesList.remove(i);
             }
-
             //getting rid of the specific areas/cities
             if (element.contains("<ul>")){
                 while (!convertedCountriesList.get(i+1).contains("</ul>")){
@@ -130,23 +130,18 @@ public class RiskCountriesExtraction {
                 convertedCountriesList.set(i, newElement);
             }
         }
-
         for (int i = 0; i < convertedCountriesList.size(); i++) {
             String element = convertedCountriesList.get(i);
             if (element.contains("<p>")) {
                 String newElement = convertedCountriesList.get(i).replace(element, element.substring(3));
                 convertedCountriesList.set(i, newElement);
             }
-            /**TODO: [Griechenland: die Region Peloponnes , Irland: die Regionen Midlands </ul>]
-             * wird zu [Griechenlanddie Region Peloponnes , Irland] WHY? (I am crying right now)
-            **/
             if (element.contains(":")){
-                String subElement  = element.substring(element.indexOf(":"), element.indexOf(element.charAt(element.length()-1))+1);
+                String subElement  = element.substring(element.indexOf(":"));
                 String newElement = convertedCountriesList.get(i).replace(subElement, "");
                 convertedCountriesList.set(i, newElement);
             }
         }
-
 
         for (int i = 0; i < convertedCountriesList.size(); i++) {
             int length = convertedCountriesList.get(i).length();

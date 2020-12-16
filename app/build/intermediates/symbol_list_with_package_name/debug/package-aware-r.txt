@@ -931,6 +931,7 @@ drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable transp_background
 drawable twotone_navigation_black_48
 drawable zoom_in
 drawable zoom_out

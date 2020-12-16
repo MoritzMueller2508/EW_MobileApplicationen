@@ -105,7 +105,7 @@ public class CountryDetails extends AppCompatActivity {
         });
     }*/
 
-    //set geoPoint with address and the user imput
+    //set geoPoint with address and the user input
     public void searchAndCenterAddress(final String country_eingabe) {
         Runnable runnable = new Runnable() {
             public void run() {
@@ -128,12 +128,10 @@ public class CountryDetails extends AppCompatActivity {
 
     //setzen von neuen Markern
     private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) {
-        System.out.println("Hallo Test xxxxxxxxxxxxxxxxxxxx");
         country_marker = new Marker(map_cutout);
         country_marker.setPosition(geoPoint);
         country_marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         map_cutout.getOverlays().add(country_marker);
-
 
         //set marker icon (green/red/orange Coroni)
         final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
@@ -147,7 +145,6 @@ public class CountryDetails extends AppCompatActivity {
 
         //preset
         tx_advice.setText(green);
-        im_coroni.setImageResource(R.drawable.coroni_green);
 
         //set marker image,Coroni image and advice text with user input
         Runnable runnable = new Runnable() {
@@ -156,7 +153,6 @@ public class CountryDetails extends AppCompatActivity {
                 try {
                     String coroni = CoroniAssignment.getCoroni(country_eingabe);
                     if(coroni.equals("red")) {
-                        System.out.println("Hallo Test blablablabla");
                         im_coroni.setImageResource(R.drawable.coroni_red);
                         Bitmap bitmap = ((BitmapDrawable) drawable_red).getBitmap();
                         Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));

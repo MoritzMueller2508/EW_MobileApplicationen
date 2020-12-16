@@ -40,17 +40,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-                    <org.osmdroid.views.MapView
-                        android:id="@+id/map_view"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp" />
-                    <ImageView
-                        android:id="@+id/image_coroni"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"/>
+                        <org.osmdroid.views.MapView
+                            android:id="@+id/map_view"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                        <ImageView
+                            android:src="@drawable/transp_background"
+                            android:id="@+id/image_coroni"
+                            android:layout_width="128dp"
+                            android:layout_height="128dp"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

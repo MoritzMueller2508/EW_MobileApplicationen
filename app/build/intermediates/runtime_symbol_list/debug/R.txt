@@ -930,9 +930,10 @@ int drawable sharp_add_black_36 0x7f06009d
 int drawable sharp_remove_black_36 0x7f06009e
 int drawable tooltip_frame_dark 0x7f06009f
 int drawable tooltip_frame_light 0x7f0600a0
-int drawable twotone_navigation_black_48 0x7f0600a1
-int drawable zoom_in 0x7f0600a2
-int drawable zoom_out 0x7f0600a3
+int drawable transp_background 0x7f0600a1
+int drawable twotone_navigation_black_48 0x7f0600a2
+int drawable zoom_in 0x7f0600a3
+int drawable zoom_out 0x7f0600a4
 int id ALT 0x7f070000
 int id CTRL 0x7f070001
 int id FUNCTION 0x7f070002
