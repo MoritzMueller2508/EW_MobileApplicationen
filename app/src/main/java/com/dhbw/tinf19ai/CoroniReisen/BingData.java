@@ -44,9 +44,8 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class BingData extends Activity {
 
-    //TODO: make it possible to update only once a day. So the file is not overwritten every time the app is opened.
     //read and write csv data from github repo
-    public static FileWriter getBingDataOnline() throws IOException {
+    private static FileWriter getBingDataOnline() throws IOException {
         URL url = new URL("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -76,9 +75,10 @@ public class BingData extends Activity {
         return null;
     }
 
-
+    //saves the date when it was last updated and returns if the data should be updated again or not
+    //the data will be updated is more than 24h have passed
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String saveLastUpdated() throws IOException {
+    private static String saveLastUpdated() throws IOException {
         String csvFile = "LastUpdated.csv";
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
         String nowString = now.toString();
@@ -129,6 +129,8 @@ public class BingData extends Activity {
         }
         return null;
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveBingData() throws IOException {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
@@ -163,7 +165,7 @@ public class BingData extends Activity {
      *    TODO: country or region should be case insensitive
      **/
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
+    private static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
         String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Bing-COVID19-Data.csv";
         String csvSplitBy = ",";
         ArrayList<String[]> bingData = new ArrayList<>();

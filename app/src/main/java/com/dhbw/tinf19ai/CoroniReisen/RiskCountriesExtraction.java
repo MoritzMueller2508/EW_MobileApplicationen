@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class RiskCountriesExtraction {
 
     //get HTML Website in a string
-    public static String getHtmlWebsite() throws IOException{
+    private static String getHtmlWebsite() throws IOException{
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -42,15 +42,10 @@ public class RiskCountriesExtraction {
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
-        if(list.contains("Süd-Sudan")){
-            convertedCountriesList.remove("Süd");
-            convertedCountriesList.add("Südsudan");
-        }
-        if(convertedCountriesList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
-            convertedCountriesList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
-            convertedCountriesList.add("Vereinigtes Königreich");
-        }
-        return convertedCountriesList;
+        List<String> countriesList = getExtraRegions(list, convertedCountriesList);
+        System.out.println(convertedCountriesList);
+
+        return countriesList;
     }
 
     //return list of countries that were a risk area in the last 10 days but not anymore - should be used for the orange coroni
@@ -67,19 +62,14 @@ public class RiskCountriesExtraction {
         List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
-        if(list.contains("Süd-Sudan")){
-            convertedCountriesList.remove("Süd");
-            convertedCountriesList.add("Südsudan");
-        }
-        if(convertedCountriesList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
-            convertedCountriesList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
-            convertedCountriesList.add("Vereinigtes Königreich");
-        }
-        return convertedCountriesList;
+        List<String> countriesList = getExtraRegions(list, convertedCountriesList);
+        System.out.println(convertedCountriesList);
+
+        return countriesList;
     }
 
     //return a list of countries without the HTML format
-    public static List<String> getRiskCountries(List<String> convertedCountriesList){
+    private static List<String> getRiskCountries(List<String> convertedCountriesList){
 
         for (int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);
@@ -160,7 +150,56 @@ public class RiskCountriesExtraction {
             }
         }
 
-        System.out.println(convertedCountriesList);
         return convertedCountriesList;
+    }
+
+    private static List<String> getExtraRegions(String originalList, List<String> convertedList){
+        if(originalList.contains("Süd-Sudan")){
+            convertedList.remove("Süd");
+            convertedList.add("Südsudan");
+        }
+        if(convertedList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
+            convertedList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
+            convertedList.add("Vereinigtes Königreich");
+        }
+        if(convertedList.contains("Trinidad Tobago")){
+            convertedList.remove("Trinidad Tobago");
+            convertedList.add("Trinidad und Tobago");
+        }
+        if(originalList.contains("Korea (Volksrepublik)")){
+            convertedList.remove("Korea");
+            convertedList.add("Nordkorea");
+        }
+        if(convertedList.contains("Kongo Rep")){
+            convertedList.remove("Kongo Rep");
+            convertedList.add("Republik Kongo");
+        }
+        if(convertedList.contains("Syrische Arabische Republik")){
+            convertedList.remove("Syrische Arabische Republik");
+            convertedList.add("Syrien");
+        }
+        if(convertedList.contains("Palästinensische Gebiete")){
+            convertedList.add("Westjordanland");
+            convertedList.add("Gazastreifen");
+        }
+        if(originalList.contains("Französisch-Guyana")){
+            convertedList.add("Französisch-Guyana");
+        }
+        if(originalList.contains("Französisch-Polynesien")){
+            convertedList.add("Französisch-Polynesien");
+        }
+        if(originalList.contains("St. Martin")){
+            convertedList.add("St. Martin");
+        }
+        if(originalList.contains("Guadeloupe")){
+            convertedList.add("Guadeloupe");
+        }
+        if(originalList.contains("Martinique")){
+            convertedList.add("Martinique");
+        }
+        if(originalList.contains("Réunion")){
+            convertedList.add("La Réunion");
+        }
+        return convertedList;
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class CoroniAssignment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static ArrayList<String> getAllCountries() throws IOException {
+    public static ArrayList<String> getAllBingCountriesGerman() throws IOException {
         String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Bing-COVID19-Data.csv";
         String cvsSplitBy = ",";
         ArrayList<String> countries = new ArrayList<>();
@@ -38,6 +38,8 @@ public class CoroniAssignment {
                 }
             }
         }
+
+        //translate the countries from BING Database from english to german
         ArrayList<String> countriesDe = new ArrayList<>();
         for (int i = 0; i < countries.size(); i++){
             String country = countries.get(i);
@@ -45,6 +47,7 @@ public class CoroniAssignment {
             countriesDe.add(countryDe);
         }
 
+        //add the risk countries to the list if not existant
         List<String> riskCountries = RiskCountriesExtraction.getRedRiskCountries();
         for (int i = 0; i < riskCountries.size(); i++){
             String riskCountry = riskCountries.get(i);

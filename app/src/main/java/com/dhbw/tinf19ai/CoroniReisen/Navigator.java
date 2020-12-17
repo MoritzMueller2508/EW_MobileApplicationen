@@ -18,23 +18,6 @@ public class Navigator extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.container, new MapFragment(), "Activity").commitAllowingStateLoss();
 
-        //to get list of countries in background. To use where and when needed
-        //TODO: can an Executor, ThreadPoolExecutor or a Runnable achieve a better performance?
-        /*AsyncTask.execute(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void run() {
-                try {
-                    //getRedRiskCountriesExtraction();
-                    //getOrangeRiskCountriesExtraction();
-                     //BingData.getConfirmedCases("Germany");
-                     //CoroniAssignment.getAllCountries();
-                    //System.out.println(CoroniAssignment.getCoroni("Vietnam"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
     }
 
 }

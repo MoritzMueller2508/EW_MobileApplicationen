@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void verifyStoragePermissions(Activity activity) throws IOException {
+    private static void verifyStoragePermissions(Activity activity) throws IOException {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
