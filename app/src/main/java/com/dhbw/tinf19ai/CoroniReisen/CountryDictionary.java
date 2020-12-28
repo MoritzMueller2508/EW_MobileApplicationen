@@ -54,6 +54,9 @@ public class CountryDictionary {
         countriesDict.put("Colombia", "Kolumbien");
         countriesDict.put("Comoros", "Komoren");
         countriesDict.put("Congo", "Republik Kongo");
+
+        countriesDict.put("Kongo Rep", "Republik Kongo");
+
         countriesDict.put("Congo (DRC)", "Kongo DR");
         countriesDict.put("Demokratische Republik Kongo", "Kongo DR");
         countriesDict.put("Democratic Republic of the Congo", "Kongo DR");
@@ -83,6 +86,9 @@ public class CountryDictionary {
 
         countriesDict.put("France", "Frankreich");
         countriesDict.put("French Guiana", "Französisch-Guayana"); //Französisch-Guayana
+
+        countriesDict.put("Französisch-Guyana", "Französisch-Guayana");
+
         countriesDict.put("French Polynesia", "Französisch-Polynesien"); //Französisch Polynesien
         countriesDict.put("French-Guadeloupe", "Guadeloupe"); //Französisch-Guadeloupe
         countriesDict.put("French-Martinique", "Martinique"); //Französisch-Martinique
@@ -207,8 +213,14 @@ public class CountryDictionary {
         countriesDict.put("Somalia", "Somalia");
         countriesDict.put("South Africa", "Südafrika");
         countriesDict.put("North Korea", "Nordkorea");
+
+        countriesDict.put("Korea (Volksrepublik)", "Nordkorea");
+
         countriesDict.put("South Korea", "Südkorea");
         countriesDict.put("South Sudan", "Südsudan");
+
+        countriesDict.put("Süd-Sudan", "Südsudan");
+
         countriesDict.put("Spain", "Spanien");
         countriesDict.put("Sri Lanka", "Sri Lanka");
         countriesDict.put("St Kitts and Nevis", "St. Kitts und Nevis");
@@ -219,6 +231,9 @@ public class CountryDictionary {
         countriesDict.put("Sweden", "Schweden");
         countriesDict.put("Switzerland", "Schweiz");
         countriesDict.put("Syria", "Syrien");
+
+        countriesDict.put("Syrische Arabische Republik", "Syrien");
+
         countriesDict.put("Taiwan", "Taiwan");
         countriesDict.put("Tajikistan", "Tadschikistan");
         countriesDict.put("Tanzania", "Tansania");
@@ -226,7 +241,8 @@ public class CountryDictionary {
         countriesDict.put("The Gambia", "Gambia");
         countriesDict.put("Timor-Leste", "Timor Leste");
         countriesDict.put("Togo", "Togo");
-        countriesDict.put("Trinidad and Tobago", "Trinidad Tobago");
+        countriesDict.put("Trinidad and Tobago", "Trinidad und Tobago");
+        countriesDict.put("Trinidad Tobago", "Trinidad und Tobago");
         countriesDict.put("Tunisia", "Tunesien");
         countriesDict.put("Turkey", "Türkei");
         countriesDict.put("Turkmenistan", "Turkmenistan");
@@ -248,6 +264,7 @@ public class CountryDictionary {
         countriesDict.put("Zambia", "Sambia");
         countriesDict.put("Zimbabwe", "Simbabwe");
         countriesDict.put("West Bank", "Westjordanland");
+
 
     }
     public static String getCountryInGerman(String countryEn){

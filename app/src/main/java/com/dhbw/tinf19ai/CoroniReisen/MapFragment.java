@@ -69,7 +69,8 @@ public class MapFragment extends Fragment {
         this.et = (EditText) view.findViewById(R.id.et_address_input);
         tx_eingabe = et.getText().toString();
 
-
+        CountryDictionary.setCountriesDict();
+        System.out.println(CountryDictionary.countriesDict.size());
 
         //Button zur Darstellung der Useranfrage durch manuelle Eingabe
         Button btn_suchen = view.findViewById(R.id.btn_go);
@@ -127,7 +128,6 @@ public class MapFragment extends Fragment {
 
     //Setzen vom neuen eingelesenem GeoPoint
     public void searchAndCenterAddress(final String tx_eingabe) throws IOException {
-        CountryDictionary.setCountriesDict();
         if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
             eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
         } else {

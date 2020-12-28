@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class RiskCountriesExtraction {
@@ -32,174 +33,79 @@ public class RiskCountriesExtraction {
     //return list of countries that are a risk area - should be used for the red coroni
     public static List<String> getRedRiskCountries() throws IOException {
         String riskAreaHtml = getHtmlWebsite();
-
+        System.out.println(riskAreaHtml);
         String list = riskAreaHtml.substring(
                 riskAreaHtml.indexOf("<p>Folgende Staaten/Regionen gelten aktuell als Risikogebiete:</p><ul>") + "<p>Folgende Staaten/Regionen gelten aktuell als Risikogebiete:</p><ul>".length(),
-                riskAreaHtml.indexOf("</ul><p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p>"));
-        list = list.replaceAll("<ul>", "<ul></li>");
-        list = list.replaceAll("<li>", "cut");
+                riskAreaHtml.indexOf("</ul><p>Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p>"));
+        System.out.println(list);
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
+        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
-        List<String> countriesList = getExtraRegions(list, convertedCountriesList);
-        System.out.println(convertedCountriesList);
-
-        return countriesList;
+        return convertedCountriesList;
     }
 
     //return list of countries that were a risk area in the last 10 days but not anymore - should be used for the orange coroni
     public static List<String> getOrangeRiskCountries() throws IOException {
         String riskAreaHtml = getHtmlWebsite();
         String list = riskAreaHtml.substring(
-                riskAreaHtml.indexOf("<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>") +
-                        "<p><br />Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>".length(),
-                riskAreaHtml.indexOf("<div class=\"sectionRelated links\"><h2>Archiv der ausgewiesenen Risikogebiete seit 15.6.2020</h2>"));
+                riskAreaHtml.indexOf("<p>Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>") +
+                        "<p>Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</p><ul>".length(),
+                riskAreaHtml.indexOf("<div class=\"sectionRelated links\">"));
 
-        list = list.replaceAll("<ul>", "<ul></li>");
-        list = list.replaceAll("<li>", "cut");
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("cut", -1)));
+        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
-        List<String> countriesList = getExtraRegions(list, convertedCountriesList);
-        System.out.println(convertedCountriesList);
-
-        return countriesList;
+        return convertedCountriesList;
     }
 
     //return a list of countries without the HTML format
     private static List<String> getRiskCountries(List<String> convertedCountriesList){
 
-        for (int i = 0; i < convertedCountriesList.size(); i++){
+        for(int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);
-
-            //removing empty list elements
-            if (element.equals("")){
-                convertedCountriesList.remove(i);
+            convertedCountriesList.set(i, element + " <br>");
+            element = convertedCountriesList.get(i);
+            if(element.contains("Ausnahme")){
+                element = element.substring(element.indexOf("Ausnahme"), element.indexOf(" <br>"));
+                String newElement = convertedCountriesList.get(i).replace(element, "");
+                convertedCountriesList.set(i, newElement);
             }
-            //getting rid of the specific areas/cities
-            if (element.contains("<ul>")){
-                while (!convertedCountriesList.get(i+1).contains("</ul>")){
-                    convertedCountriesList.remove(i+1);
+            if(element.contains("Ausgenommen")){
+                element = element.substring(element.indexOf("Ausgenommen"), element.indexOf(" <br>"));
+                String newElement = convertedCountriesList.get(i).replace(element, "");
+                convertedCountriesList.set(i, newElement);
+            }
+        }
+
+        ArrayList<String> regions = new ArrayList<String>();
+        for (int i = 0; i < convertedCountriesList.size(); i++){
+            String region = convertedCountriesList.get(i);
+            for(Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()){
+                if(region.contains(countryDictEntry.getKey().toString())){
+                    regions.add(countryDictEntry.getValue().toString());
+                    continue;
                 }
-                convertedCountriesList.remove(i+1);
+                if(region.contains(countryDictEntry.getValue().toString())){
+                    regions.add(countryDictEntry.getValue().toString());
+                    continue;
+                }
             }
         }
 
-        //getting rid of the extra information after the country
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("-")){
-                element = element.substring(element.indexOf("-"), element.indexOf("</li>"));
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("–")){
-                element = element.substring(element.indexOf("–"), element.indexOf("</li>"));
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        //getting rid of the dates
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("(")){
-                element = element.substring(element.indexOf("("), element.indexOf("</li>")+5);
-                String newElement = convertedCountriesList.get(i).replace(element, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        //getting rid of extra html tags
-        for (int i = 0; i < convertedCountriesList.size(); i++){
-            String element = convertedCountriesList.get(i);
-
-            if (element.contains("</li>")){
-                String newElement = convertedCountriesList.get(i).replace(element, element.substring(0, element.indexOf("</li>")));
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-        for (int i = 0; i < convertedCountriesList.size(); i++) {
-            String element = convertedCountriesList.get(i);
-            if (element.contains("<p>")) {
-                String newElement = convertedCountriesList.get(i).replace(element, element.substring(3));
-                convertedCountriesList.set(i, newElement);
-            }
-            if (element.contains(":")){
-                String subElement  = element.substring(element.indexOf(":"));
-                String newElement = convertedCountriesList.get(i).replace(subElement, "");
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        for (int i = 0; i < convertedCountriesList.size(); i++) {
-            int length = convertedCountriesList.get(i).length();
-            String element = convertedCountriesList.get(i);
-            char lastChar = element.charAt(element.length()-1);
-            if (lastChar == ' '){
-                String newElement = element.substring(0, length-1);
-                convertedCountriesList.set(i, newElement);
-            }
-        }
-
-        return convertedCountriesList;
+        regions = getExtraRegions(regions);
+        System.out.println(regions);
+        return regions;
     }
 
-    private static List<String> getExtraRegions(String originalList, List<String> convertedList){
-        if(originalList.contains("Süd-Sudan")){
-            convertedList.remove("Süd");
-            convertedList.add("Südsudan");
-        }
-        if(convertedList.contains("Vereinigtes Königreich von Großbritannien und Nordirland")){
-            convertedList.remove("Vereinigtes Königreich von Großbritannien und Nordirland");
-            convertedList.add("Vereinigtes Königreich");
-        }
-        if(convertedList.contains("Trinidad Tobago")){
-            convertedList.remove("Trinidad Tobago");
-            convertedList.add("Trinidad und Tobago");
-        }
-        if(originalList.contains("Korea (Volksrepublik)")){
-            convertedList.remove("Korea");
-            convertedList.add("Nordkorea");
-        }
-        if(convertedList.contains("Kongo Rep")){
-            convertedList.remove("Kongo Rep");
-            convertedList.add("Republik Kongo");
-        }
-        if(convertedList.contains("Syrische Arabische Republik")){
-            convertedList.remove("Syrische Arabische Republik");
-            convertedList.add("Syrien");
-        }
+    private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList){
+
         if(convertedList.contains("Palästinensische Gebiete")){
             convertedList.add("Westjordanland");
             convertedList.add("Gazastreifen");
         }
-        if(originalList.contains("Französisch-Guyana")){
-            convertedList.add("Französisch-Guyana");
-        }
-        if(originalList.contains("Französisch-Polynesien")){
-            convertedList.add("Französisch-Polynesien");
-        }
-        if(originalList.contains("St. Martin")){
-            convertedList.add("St. Martin");
-        }
-        if(originalList.contains("Guadeloupe")){
-            convertedList.add("Guadeloupe");
-        }
-        if(originalList.contains("Martinique")){
-            convertedList.add("Martinique");
-        }
-        if(originalList.contains("Réunion")){
-            convertedList.add("La Réunion");
-        }
+
         return convertedList;
     }
 }

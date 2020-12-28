@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 public class DestinationsList extends ListActivity {
 
     static final String[] sonne = new String[]{"Spanien","Italien","Madagaskar","Australien","Türkei","Malta","Ägypten","Brasilien","Mexiko"};
-    static final String[] berge = new String[]{"Schweiz","USA","Deutschland","Australien","Vereinigtes Königreich von Großbritannien und Nordirland","Nordmazedonien","Italien","Griechenland","Belgien","Slowakei"};
+    static final String[] berge = new String[]{"Schweiz","USA","Deutschland","Australien","Vereinigtes Königreich","Nordmazedonien","Italien","Griechenland","Belgien","Slowakei"};
     static final String[] stadt = new String[]{"Spanien","Polen","Nordmazedonien","Indien","Türkei","Japan","China","Deutschland","Russische Föderation","USA"};
     static final String[] natur = new String[]{"Marokko","Kanada","Neuseeland","Japan","Iran","Deutschland","Österreich","Thailand","Norwegen","Irland"};
     public String eingabe_marker_btn;
