@@ -1,5 +1,15 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ *This class displays the data for a matching country.
+ * The class contains 5 cards with
+ *      a map and the matching coroni,
+ *      our travel advices,
+ *      a reference to the entry requirements of the foreign office,
+ *      the current numbers in the form of a pie chart and
+ *      a reference to our data source.
+ */
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -126,7 +136,7 @@ public class CountryDetails extends AppCompatActivity {
        }
 
 
-    //setzen von neuen Markern
+    //set new markers
     private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) {
         country_marker = new Marker(map_cutout);
         country_marker.setPosition(geoPoint);

@@ -1,5 +1,9 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ *
+ */
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;

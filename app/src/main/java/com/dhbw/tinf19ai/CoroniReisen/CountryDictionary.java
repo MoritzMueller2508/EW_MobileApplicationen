@@ -1,10 +1,15 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ *This class represents a hashtable with all countries of this world.
+ */
+
 import java.util.Hashtable;
 
 public class CountryDictionary {
     public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
+    //add countries
     public static void setCountriesDict(){
         countriesDict.put("Worldwide", "Weltweit");
         countriesDict.put("Afghanistan", "Afghanistan");
@@ -54,9 +59,7 @@ public class CountryDictionary {
         countriesDict.put("Colombia", "Kolumbien");
         countriesDict.put("Comoros", "Komoren");
         countriesDict.put("Congo", "Republik Kongo");
-
         countriesDict.put("Kongo Rep", "Republik Kongo");
-
         countriesDict.put("Congo (DRC)", "Kongo DR");
         countriesDict.put("Demokratische Republik Kongo", "Kongo DR");
         countriesDict.put("Democratic Republic of the Congo", "Kongo DR");
@@ -83,12 +86,9 @@ public class CountryDictionary {
         countriesDict.put("Faroe Islands", "Färöer Inseln");
         countriesDict.put("Fiji", "Fidschi");
         countriesDict.put("Finland", "Finnland");
-
         countriesDict.put("France", "Frankreich");
         countriesDict.put("French Guiana", "Französisch-Guayana"); //Französisch-Guayana
-
         countriesDict.put("Französisch-Guyana", "Französisch-Guayana");
-
         countriesDict.put("French Polynesia", "Französisch-Polynesien"); //Französisch Polynesien
         countriesDict.put("French-Guadeloupe", "Guadeloupe"); //Französisch-Guadeloupe
         countriesDict.put("French-Martinique", "Martinique"); //Französisch-Martinique
@@ -97,7 +97,6 @@ public class CountryDictionary {
         countriesDict.put("Reunion", "La Réunion");
         countriesDict.put("The Reunion", "La Réunion");
         countriesDict.put("La Reunion", "La Réunion");
-
         countriesDict.put("Gabon", "Gabun");
         countriesDict.put("Gaza Strip", "Gazastreifen");
         countriesDict.put("Georgia", "Georgien");
@@ -213,14 +212,10 @@ public class CountryDictionary {
         countriesDict.put("Somalia", "Somalia");
         countriesDict.put("South Africa", "Südafrika");
         countriesDict.put("North Korea", "Nordkorea");
-
         countriesDict.put("Korea (Volksrepublik)", "Nordkorea");
-
         countriesDict.put("South Korea", "Südkorea");
         countriesDict.put("South Sudan", "Südsudan");
-
         countriesDict.put("Süd-Sudan", "Südsudan");
-
         countriesDict.put("Spain", "Spanien");
         countriesDict.put("Sri Lanka", "Sri Lanka");
         countriesDict.put("St Kitts and Nevis", "St. Kitts und Nevis");
@@ -231,9 +226,7 @@ public class CountryDictionary {
         countriesDict.put("Sweden", "Schweden");
         countriesDict.put("Switzerland", "Schweiz");
         countriesDict.put("Syria", "Syrien");
-
         countriesDict.put("Syrische Arabische Republik", "Syrien");
-
         countriesDict.put("Taiwan", "Taiwan");
         countriesDict.put("Tajikistan", "Tadschikistan");
         countriesDict.put("Tanzania", "Tansania");

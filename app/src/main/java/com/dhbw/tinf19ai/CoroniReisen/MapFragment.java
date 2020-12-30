@@ -1,5 +1,13 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ * This class represents the selection of the country to be considered with a map.
+ * The user can search for individual countries and display the corresponding Coronis on the map.
+ * When clicking on a marker of an entered country, the user is redirected to the last UI for the country details.
+ * There are also vacation categories which are represented by buttons.
+ * By clicking on them, the user will be redirected to the appropriate list of countries.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,21 +66,21 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.map_fragment, container, false);
 
-        //MapFragment wird initialisiert
+        //MapFragment is initialized
         this.mapView = (MapView) view.findViewById(R.id.map_view);
         this.mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         this.mapController = this.mapView.getController();
         this.mapController.setZoom(3.0);
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
 
-        //Eingabe vom User werden eingelesen
+        //Input from the user is imported
         this.et = (EditText) view.findViewById(R.id.et_address_input);
         tx_eingabe = et.getText().toString();
 
         CountryDictionary.setCountriesDict();
         System.out.println(CountryDictionary.countriesDict.size());
 
-        //Button zur Darstellung der Useranfrage durch manuelle Eingabe
+        //Button for displaying the user request by manual input
         Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -85,7 +93,7 @@ public class MapFragment extends Fragment {
             }
         });
 
-        //Buttons für Kategorien von Urlaubszielen
+        //buttons for categories of vacation destinations
         Button btn_sonne = view.findViewById(R.id.btn_sonne);
         btn_sonne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +134,7 @@ public class MapFragment extends Fragment {
 
 
 
-    //Setzen vom neuen eingelesenem GeoPoint
+    //set from new read GeoPoint
     public void searchAndCenterAddress(final String tx_eingabe) throws IOException {
         if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
             eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
@@ -155,7 +163,7 @@ public class MapFragment extends Fragment {
         }).start();
     }
 
-    //setzen von neuen Markern
+    //set new markers
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setMarkerAndCenter(final GeoPoint geoPoint, final String eingabe) {
         startMarker = new Marker(mapView);
@@ -164,7 +172,7 @@ public class MapFragment extends Fragment {
         mapView.getOverlays().add(startMarker);
         MarkerOptions markerOptions = new MarkerOptions();
 
-        //setzen von Marker Icon (grüner/roter/orangener Coroni)
+        //set marker icon (green/red/orange coroni)
         final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
         final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);

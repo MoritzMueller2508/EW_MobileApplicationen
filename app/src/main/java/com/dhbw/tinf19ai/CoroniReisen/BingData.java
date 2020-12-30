@@ -1,4 +1,17 @@
 package com.dhbw.tinf19ai.CoroniReisen;
+/**
+ * This class connects to the Bing Covid API. The data is imported from the api periodically and written to a csv to get the current numbers.
+ *
+ * We get the following data:
+ * ID (country)
+ * Updated (date)
+ * Confirmed (confirmed cases)
+ * ComfirmedChange (rate of change of cases from previous day)
+ * Deaths (confirmed deaths)
+ * DeathsChange (Rate of change of deaths from the previous day)
+ * Recovered (Recovered cases)
+ * RecoveredChange (Rate of change recovered from the previous day
+ */
 
 import android.Manifest;
 import android.app.Activity;

@@ -1,5 +1,10 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ *This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
+ * By clicking on the image you will be redirected to the next interface.
+ */
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +20,6 @@ import androidx.core.app.ActivityCompat;
 
 import java.io.IOException;
 
-
 public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -28,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    //Forwarding to the MapFragment by clicking on the image
     public void imageClick(View view) {
         Intent intent = new Intent(this, Navigator.class);
         startActivity(intent);
