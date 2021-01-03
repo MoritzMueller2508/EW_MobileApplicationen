@@ -1,3 +1,5 @@
+com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
+ com.dhbw.tinf19ai.CoroniReisen.BuildConfig
 com/dhbw/tinf19ai/CoroniReisen/DestinationsList.java
  com.dhbw.tinf19ai.CoroniReisen.DestinationsList
  com.dhbw.tinf19ai.CoroniReisen.DestinationsList$1
@@ -31,5 +33,3 @@ com/dhbw/tinf19ai/CoroniReisen/MapFragment.java
  com.dhbw.tinf19ai.CoroniReisen.MapFragment$8
 com/dhbw/tinf19ai/CoroniReisen/CoroniAssignment.java
  com.dhbw.tinf19ai.CoroniReisen.CoroniAssignment
-com/dhbw/tinf19ai/CoroniReisen/BuildConfig.java
- com.dhbw.tinf19ai.CoroniReisen.BuildConfig

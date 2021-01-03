@@ -9,7 +9,7 @@ import java.util.Hashtable;
 public class CountryDictionary {
     public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
-    //add countries
+    //add countries to the dictionary
     public static void setCountriesDict(){
         countriesDict.put("Worldwide", "Weltweit");
         countriesDict.put("Afghanistan", "Afghanistan");
@@ -258,11 +258,11 @@ public class CountryDictionary {
         countriesDict.put("Zimbabwe", "Simbabwe");
         countriesDict.put("West Bank", "Westjordanland");
 
-
     }
+
+
     public static String getCountryInGerman(String countryEn){
         String countryDe;
-        //setCountriesDict();
         countryDe = countriesDict.get(countryEn);
         return countryDe;
     }

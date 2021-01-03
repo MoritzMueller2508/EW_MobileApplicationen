@@ -199,7 +199,7 @@ public class BingData extends Activity {
 
         bingData.add(bingDataTemp.get(bingDataTemp.size()-1));
 
-        /*
+        /* auslesen der kompletten Datei
         for(int row=0; row < bingData.size(); row++){
             System.out.println(Arrays.toString(bingData.get(row)));
         }*/
