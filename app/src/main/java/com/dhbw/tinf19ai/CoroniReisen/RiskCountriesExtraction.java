@@ -1,7 +1,10 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *
+ *This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
+ * them into a list.
+ * The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
+ * the last 10 days but are not anymore --getOrangeRiskCountries()--.
  */
 
 import java.io.IOException;
@@ -64,9 +67,10 @@ public class RiskCountriesExtraction {
         return convertedCountriesList;
     }
 
-    //return a list of countries without the HTML format
+    //return a list of countries without the HTML format, extracting the countries that are included in the countriesDict hashtable
     private static List<String> getRiskCountries(List<String> convertedCountriesList){
 
+        //delete the exceptions (regions, cities, islands, etc.) from the list elements
         for(int i = 0; i < convertedCountriesList.size(); i++){
             String element = convertedCountriesList.get(i);
             convertedCountriesList.set(i, element + " <br>");
@@ -83,6 +87,7 @@ public class RiskCountriesExtraction {
             }
         }
 
+        //add countries to "regions" list if they are in the website and in the hashtable countriesDict
         ArrayList<String> regions = new ArrayList<String>();
         for (int i = 0; i < convertedCountriesList.size(); i++){
             String region = convertedCountriesList.get(i);
@@ -103,6 +108,7 @@ public class RiskCountriesExtraction {
         return regions;
     }
 
+    //special function for extra regions that are e.g. grouped countries
     private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList){
 
         if(convertedList.contains("Palästinensische Gebiete")){
