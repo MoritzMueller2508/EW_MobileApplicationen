@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#77a5b3">
+    android:background="#005589">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="238dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -18,45 +18,92 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.409">
 
-        <EditText
-            android:id="@+id/et_address_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            style="@style/text"
-            android:hint="..."
-            app:layout_constraintEnd_toStartOf="@+id/btn_go"
-            app:layout_constraintHorizontal_bias="0.052"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.406" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:columnCount="1"
+            android:rowCount="3">
 
-        <Button
-            android:id="@+id/btn_go"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:text="suchen"
-            style="@style/text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.637"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.105"
-            android:background="@drawable/button_background"/>
+        <androidx.cardview.widget.CardView
+            style="@style/card"
+            android:layout_height="2dp"
+            android:layout_row="0"
+            android:layout_rowWeight="0.3"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="#77a5b3"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
+            <LinearLayout style="@style/linearLayout">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="310dp"
+                    style="@style/text"
+                    android:layout_marginEnd="340dp"
+                    android:layout_marginRight="340dp"
+                    android:text="In welches Land möchten sie reisen?"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.151" />
 
-    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginRight="100dp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.713">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="4dip"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+                <EditText
+                    android:id="@+id/et_address_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    style="@style/text"
+                    android:hint="..."
+                    app:layout_constraintEnd_toStartOf="@+id/btn_go"
+                    app:layout_constraintHorizontal_bias="0.052"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.406" />
+
+                <Button
+                    android:id="@+id/btn_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:text="suchen"
+                    style="@style/text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.637"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.105"
+                    android:background="@drawable/button_background"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            style="@style/card"
+            android:layout_height="0dp"
+            android:layout_row="1"
+            android:layout_rowWeight="0.3"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="#77a5b3"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
+        <LinearLayout style="@style/linearLayout"
+            android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/textView2"
@@ -163,53 +210,36 @@
             app:layout_constraintVertical_bias="1.0" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="360dp"
-        android:layout_height="36dp"
-        style="@style/text"
-        android:layout_marginEnd="340dp"
-        android:layout_marginRight="340dp"
-        android:text="In welches Land möchten sie reisen?"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.151" />
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="4dip"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="413dp"
-        android:layout_height="509dp"
-        android:layout_marginTop="222dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            style="@style/card"
+            android:layout_height="2dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="#77a5b3"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
+        <LinearLayout style="@style/linearLayout">
 
         <org.osmdroid.views.MapView
             android:id="@+id/map_view"
-            android:layout_width="415dp"
-            android:layout_height="513dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </org.osmdroid.views.MapView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-
+</GridLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
