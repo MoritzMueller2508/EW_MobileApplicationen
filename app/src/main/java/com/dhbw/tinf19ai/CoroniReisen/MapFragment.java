@@ -9,6 +9,8 @@ package com.dhbw.tinf19ai.CoroniReisen;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,20 +78,30 @@ public class MapFragment extends Fragment {
 
         //Input from the user is imported
         this.et = (EditText) view.findViewById(R.id.et_address_input);
-        tx_eingabe = et.getText().toString();
 
+
+        //Dictionary initialization
         CountryDictionary.setCountriesDict();
-        System.out.println(CountryDictionary.countriesDict.size());
 
         //Button for displaying the user request by manual input
         Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String location = et.getText().toString();
-                try {
-                    searchAndCenterAddress(location);
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                //check if input is null
+                if (location.trim().length() == 0){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setMessage("Bitte geben Sie ein Land ein.");
+                    alertDialogBuilder.setTitle("Input leer.");
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else{
+                    try {
+                        searchAndCenterAddress(location);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -98,7 +111,7 @@ public class MapFragment extends Fragment {
         btn_sonne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn="sonne";
+                btn="Sonne";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -106,7 +119,7 @@ public class MapFragment extends Fragment {
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="berge";
+                btn="Berge";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -114,7 +127,7 @@ public class MapFragment extends Fragment {
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="stadt";
+                btn="Stadt";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -122,7 +135,7 @@ public class MapFragment extends Fragment {
         Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="natur";
+                btn="Natur";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -170,7 +183,6 @@ public class MapFragment extends Fragment {
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mapView.getOverlays().add(startMarker);
-        MarkerOptions markerOptions = new MarkerOptions();
 
         //set marker icon (green/red/orange coroni)
         final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
@@ -206,15 +218,7 @@ public class MapFragment extends Fragment {
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
 
-        final Activity context = getActivity();
         startMarker.setDraggable(true);
-        /*startMarker.setOnMarkerDragListener(new Marker.OnMarkerClickListener() {
-                                                @Override
-                                                public boolean onMarker(Marker marker, MapView mapView) {
-                                                    startMarker.remove(mapView);
-                                                    return false;
-                                                }
-                                            });*/
 
         final Activity context2 = getActivity();
         startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
@@ -237,6 +241,5 @@ public class MapFragment extends Fragment {
         System.out.println("Hallo");
         mapView.getOverlays().remove(startMarker);
     }
-
 
 }
