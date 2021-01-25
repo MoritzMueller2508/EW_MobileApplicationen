@@ -31,6 +31,7 @@ public class DestinationsList extends ListActivity {
     public String eingabe_marker_btn;
     public TextView title, text;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

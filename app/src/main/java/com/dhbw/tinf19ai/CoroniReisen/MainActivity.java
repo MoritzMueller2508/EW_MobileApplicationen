@@ -7,8 +7,12 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,21 +21,22 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+    public static boolean internetConnection = false;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            verifyStoragePermissions(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        verifyStoragePermissions(this);
+        //Dictionary initialization
+        CountryDictionary.setCountriesDict();
     }
 
     //Forwarding to the MapFragment by clicking on the image
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private static void verifyStoragePermissions(Activity activity) throws IOException {
+    private void verifyStoragePermissions(Activity activity)  {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -61,7 +66,43 @@ public class MainActivity extends AppCompatActivity {
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
             );
+
         }
-        BingData.saveBingData();
+        saveData();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void saveData(){
+        internetConnection = isNetworkAvailable();
+        if (internetConnection){
+                try {
+                    BingData.saveBingData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    RiskCountriesExtraction.saveData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Die Daten die Sie bei der App sehen sind nicht aktuell, " +
+                    "da Sie über eine Internetverbindung nicht verfügen. Sobald sie online gehen, " +
+                    "werden die Daten aktualisiert.");
+            alertDialogBuilder.setTitle("Keine Internetverbindung");
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

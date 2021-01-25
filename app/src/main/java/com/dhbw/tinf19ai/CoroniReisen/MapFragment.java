@@ -50,11 +50,9 @@ public class MapFragment extends Fragment {
     private MapView mapView;
     private IMapController mapController;
     public static EditText et;
-    public static String tx_eingabe, eingabe, coroni, btn;
-    private ArrayList btn_eingabe;
+    public static String eingabe, coroni, btn;
     private static GeoPoint selectedLocation;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    public CountryDetails cD;
     public Marker startMarker;
     public static GeoPoint geoPoint;
 
@@ -79,15 +77,18 @@ public class MapFragment extends Fragment {
         //Input from the user is imported
         this.et = (EditText) view.findViewById(R.id.et_address_input);
 
-
-        //Dictionary initialization
-        CountryDictionary.setCountriesDict();
-
         //Button for displaying the user request by manual input
         Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String location = et.getText().toString();
+                boolean internetConnection = MainActivity.internetConnection;
+
+                if (CountryDictionary.countriesDict.containsKey(location)){
+                    location = CountryDictionary.getCountryInGerman(location);
+                } else {
+                    location = location;
+                }
 
                 //check if input is null
                 if (location.trim().length() == 0){
@@ -97,10 +98,16 @@ public class MapFragment extends Fragment {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else{
+                    if (internetConnection){
                     try {
                         searchAndCenterAddress(location);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } } else {
+                        final Activity context2 = getActivity();
+                        Intent intent = new Intent(context2, CountryDetails.class);
+                        intent.putExtra("country", location);
+                        startActivity(intent);
                     }
                 }
             }
@@ -111,7 +118,7 @@ public class MapFragment extends Fragment {
         btn_sonne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn="Sonne";
+                btn="sonne";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -119,7 +126,7 @@ public class MapFragment extends Fragment {
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="Berge";
+                btn="berge";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -127,7 +134,7 @@ public class MapFragment extends Fragment {
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="Stadt";
+                btn="stadt";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -135,7 +142,7 @@ public class MapFragment extends Fragment {
         Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="Natur";
+                btn="natur";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -148,12 +155,7 @@ public class MapFragment extends Fragment {
 
 
     //set from new read GeoPoint
-    public void searchAndCenterAddress(final String tx_eingabe) throws IOException {
-        if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
-            eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
-        } else {
-            eingabe = tx_eingabe;
-        }
+    private void searchAndCenterAddress(final String tx_eingabe) throws IOException {
         new Thread(new Runnable() {
             @Override
             public void run() {

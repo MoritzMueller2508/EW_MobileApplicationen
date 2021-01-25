@@ -58,8 +58,9 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 public class BingData extends Activity {
 
     //read and write csv data from github repo
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static FileWriter getBingDataOnline() throws IOException {
-        URL url = new URL("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv");
+        URL url = new URL("https://media.githubusercontent.com/media/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
                 + "Windows NT 5.1; en-US; rv:1.8.0.11) ");
@@ -91,17 +92,16 @@ public class BingData extends Activity {
     //saves the date when it was last updated and returns if the data should be updated again or not
     //the data will be updated is more than 24h have passed
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private static String saveLastUpdated() throws IOException {
+    private static boolean saveLastUpdated() throws IOException {
         String csvFile = "LastUpdated.csv";
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
         String nowString = now.toString();
 
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
-        if(!dir.exists()){
+        File file = new File(dir, csvFile);
+        if (!dir.exists()) {
             dir.mkdirs();
         }
-
-        File file = new File(dir, csvFile);
         if (!file.exists()){
             file.createNewFile();
             try {
@@ -109,8 +109,7 @@ public class BingData extends Activity {
                 writer.append(nowString);
                 writer.flush();
                 writer.close();
-                System.out.println("file created and data updated");
-                return "update";
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -120,7 +119,6 @@ public class BingData extends Activity {
                 ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
                 Duration duration = Duration.between(lastUpdated, now);
                 long durationHours = duration.toHours();
-                System.out.println(durationHours);
                 if (durationHours > 24){
                     file.createNewFile();
                     try {
@@ -128,19 +126,17 @@ public class BingData extends Activity {
                         writer.append(nowString);
                         writer.flush();
                         writer.close();
-                        System.out.println("data updated");
-                        return "update";
+                        return true;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }else {
-                    System.out.println("no update required");
-                    return "no update";
+                    return false;
                 }
             }
 
         }
-        return null;
+        return false;
     }
 
 
@@ -148,25 +144,24 @@ public class BingData extends Activity {
     public static void saveBingData() throws IOException {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
         if(!dir.exists()) {
-            getBingDataOnline();
+            System.out.println(dir);
+            dir.mkdirs();
+            if (dir.exists()){
+            getBingDataOnline();}
         } else {
-            String update = saveLastUpdated();
-            System.out.println(update);
-            if (update.equals("update")){
+            boolean update = saveLastUpdated();
+            if (update){
                 AsyncTask.execute(new Runnable() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
                         try {
-                            System.out.println("getting data");
                             getBingDataOnline();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                 });
-            } else {
-                System.out.println("no update required");
             }
         }
     }
@@ -179,7 +174,7 @@ public class BingData extends Activity {
      **/
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
-        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Bing-COVID19-Data.csv";
+        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files"+"/Bing-COVID19-Data.csv";
         String csvSplitBy = ",";
         ArrayList<String[]> bingData = new ArrayList<>();
         ArrayList<String[]> bingDataTemp = new ArrayList<>();
