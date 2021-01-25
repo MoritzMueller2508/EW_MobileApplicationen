@@ -26,6 +26,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.faskn.lib.PieChart;
+import com.faskn.lib.Slice;
+
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
 import org.osmdroid.util.GeoPoint;
@@ -33,6 +36,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -72,7 +76,7 @@ public class CountryDetails extends AppCompatActivity {
         tx_title_country.setText(country_eingabe);
 
         //cards
-        CardView pieChart = (CardView) findViewById(R.id.piecard);
+        CardView pieChart_card = (CardView) findViewById(R.id.piecard);
         CardView advice_card = (CardView) findViewById(R.id.card_einreisebestimmungen);
         CardView source_card = (CardView) findViewById(R.id.card_source_link);
 
@@ -101,21 +105,27 @@ public class CountryDetails extends AppCompatActivity {
             }
         });
     }
-/*
-    private void setDataPieChart(CardView pieChart) {
-        /*val pieChart = PieChart(
-                slices = provideSlices(), clickListener = null, sliceStartPoint = 0f, sliceWidth = 80f
-        ).build()
 
-        chart.setPieChart(pieChart)
 
-        btn_advice_link = findViewById(R.id.btn_Link);
+    private void setDataPieChart(CardView pieChart_card) {
+        ArrayList slices = new ArrayList<Slice>(); //ArrayList for Slices
+        slices.add(new Slice(3.5F,0, "critical", null, null,null)); //Slices have to be added before display
+
+        PieChart pieChart = new PieChart(
+                slices /* ArrayList with all Slices - needs to be generated first*/ , null, 0f, 80f
+        ).build();
+
+        /*
+        chart.setPieChart(pieChart); //Don't know, what "chart" is supposed to be
+
+        btn_advice_link = findViewById(R.id.btn_Link); //?
         btn_advice_link.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
             }
         });
-    }*/
+        */
+    }
 
     //set geoPoint with address and the user input
     public void searchAndCenterAddress(final String country_eingabe) {

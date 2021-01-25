@@ -191,6 +191,8 @@ public class MapFragment extends Fragment {
         final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
         final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);
 
+        /* Bei Clicken wird kurz Coroni angezeigt. Da wir das aber nicht brauchen - entfernt //Mit Rosa noch absprechen
+
         Runnable runnable = new Runnable() {
             public void run() {
                 try {
@@ -220,13 +222,31 @@ public class MapFragment extends Fragment {
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
 
-        startMarker.setDraggable(true);
+         */
 
-        final Activity context2 = getActivity();
+        startMarker.setDraggable(true);
+        startMarker.setOnMarkerDragListener(new Marker.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDrag(Marker marker) {
+                marker.remove(mapView);
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                marker.remove(mapView);
+            }
+
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+                marker.remove(mapView);
+            }
+        });
+
+        final Activity currentActivity = getActivity();
         startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                                                  @Override
                                                  public boolean onMarkerClick(Marker marker, MapView mapView) {
-                                                     Intent intent = new Intent(context2, CountryDetails.class);
+                                                     Intent intent = new Intent(currentActivity, CountryDetails.class);
                                                      intent.putExtra("country", eingabe);
                                                      startActivity(intent);
                                                      return false;
