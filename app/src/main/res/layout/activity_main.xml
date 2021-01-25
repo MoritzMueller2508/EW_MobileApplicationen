@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#005589">
+    <RelativeLayout
+        android:id="@+id/relativeLayout_MapAdvice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:columnCount="1"
+            android:rowCount="3">
+
+            <androidx.cardview.widget.CardView
+                style="@style/card"
+                android:layout_height="135dp"
+                android:layout_row="0"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="#77a5b3"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout style="@style/linearLayout">
+                    <TextView
+                        style="@style/welcome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/welcome"
+                        android:textSize="30dp" />
+
+                    <TextView style="@style/line_title" />
+
+                    <TextView
+                        style="@style/text"
+                        android:layout_marginTop="5dp"
+                        android:textStyle="bold"
+                        android:text="@string/introduction"
+                        />
+
+                    <TextView
+                        style="@style/pleaseClick"
+                        android:layout_marginTop="3dp"
+                        android:text="bitte auf das Bild klicken" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/card"
+                android:layout_height="449dp"
+                android:layout_row="1"
+                app:cardBackgroundColor="#77a5b3"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <ImageView
+                    android:id="@+id/schutzmaßnahmen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="438dp"
+                    android:layout_gravity="center"
+                    android:onClick="imageClick"
+                    app:srcCompat="@drawable/protective_measures" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/card"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                app:cardBackgroundColor="#77a5b3"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="Quelle: Deutsche Gesetzliche Unfallversicherung"
+                    android:textColor="#FFFFFF" />
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+
+    </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dhbw.tinf19ai.task5">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dhbw.tinf19ai.CoroniReisen">
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Schutzmaßnahmen">
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator">
         </activity>
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MapFragment"
+            tools:ignore="Instantiatable"></activity>
+        <activity android:name=".CountryDetails"></activity>
+        <activity android:name=".DestinationsList"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -26,4 +31,5 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 </manifest>
