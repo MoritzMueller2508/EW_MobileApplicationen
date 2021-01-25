@@ -55,6 +55,7 @@ public class MapFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationProviderClient;
     public Marker startMarker;
     public static GeoPoint geoPoint;
+    boolean internetConnection = MainActivity.internetConnection;
 
 
     @Override
@@ -82,28 +83,23 @@ public class MapFragment extends Fragment {
         btn_suchen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String location = et.getText().toString();
-                boolean internetConnection = MainActivity.internetConnection;
-
-                if (CountryDictionary.countriesDict.containsKey(location)){
-                    location = CountryDictionary.getCountryInGerman(location);
-                } else {
-                    location = location;
-                }
 
                 //check if input is null
-                if (location.trim().length() == 0){
+                if (location.trim().length() == 0) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                     alertDialogBuilder.setMessage("Bitte geben Sie ein Land ein.");
                     alertDialogBuilder.setTitle("Input leer.");
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
-                } else{
-                    if (internetConnection){
-                    try {
-                        searchAndCenterAddress(location);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } } else {
+                } else {
+                    if (internetConnection) {
+                        try {
+                            System.out.println("hello");
+                            searchAndCenterAddress(location);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
                         final Activity context2 = getActivity();
                         Intent intent = new Intent(context2, CountryDetails.class);
                         intent.putExtra("country", location);
@@ -118,7 +114,7 @@ public class MapFragment extends Fragment {
         btn_sonne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn="sonne";
+                btn = "sonne";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -126,7 +122,7 @@ public class MapFragment extends Fragment {
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="berge";
+                btn = "berge";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -134,7 +130,7 @@ public class MapFragment extends Fragment {
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="stadt";
+                btn = "stadt";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -142,7 +138,7 @@ public class MapFragment extends Fragment {
         Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                btn="natur";
+                btn = "natur";
                 Intent intent = new Intent(getActivity(), DestinationsList.class);
                 startActivity(intent);
             }
@@ -153,15 +149,19 @@ public class MapFragment extends Fragment {
     }
 
 
-
     //set from new read GeoPoint
     private void searchAndCenterAddress(final String tx_eingabe) throws IOException {
+        if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
+            eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
+        } else {
+            eingabe = tx_eingabe;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
-                    Address address = geocoderNominatim.getFromLocationName(eingabe, 10).get(0);
+                    Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0);
                     geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
                     getActivity().runOnUiThread(new Runnable() {
                         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -195,17 +195,17 @@ public class MapFragment extends Fragment {
             public void run() {
                 try {
                     String coroni = CoroniAssignment.getCoroni(eingabe);
-                    if(coroni.equals("red")) {
+                    if (coroni.equals("red")) {
                         Bitmap bitmap = ((BitmapDrawable) drawable_red).getBitmap();
                         Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
                         startMarker.setIcon(bitmapDrawable_red);
                     }
-                    if(coroni.equals("orange")) {
+                    if (coroni.equals("orange")) {
                         Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
                         Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
                         startMarker.setIcon(bitmapDrawable_orange);
                     }
-                    if(coroni.equals("green")) {
+                    if (coroni.equals("green")) {
                         Bitmap bitmap3 = ((BitmapDrawable) drawable_green).getBitmap();
                         Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
                         startMarker.setIcon(bitmapDrawable_green);
@@ -239,7 +239,7 @@ public class MapFragment extends Fragment {
     }
 
 
-    public void setOnMarkerDrag(Marker startMarker){
+    public void setOnMarkerDrag(Marker startMarker) {
         System.out.println("Hallo");
         mapView.getOverlays().remove(startMarker);
     }

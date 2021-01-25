@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -27,6 +28,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean internetConnection = false;
+    public boolean permissions = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -35,6 +37,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         verifyStoragePermissions(this);
+
+        if (permissions) {
+            saveData();
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Die Daten die Sie bei der App sehen sind nicht aktuell, " +
+                    "da Sie über eine Internetverbindung nicht verfügen. Sobald sie online gehen, " +
+                    "werden die Daten aktualisiert.");
+            alertDialogBuilder.setTitle("Keine Internetverbindung");
+            alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ///verifyStoragePermissions(get);
+                }
+            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
         //Dictionary initialization
         CountryDictionary.setCountriesDict();
     }
@@ -43,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     public void imageClick(View view) {
         Intent intent = new Intent(this, Navigator.class);
         startActivity(intent);
-
     }
 
     // Storage Permissions variables
@@ -68,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
             );
 
         }
-        saveData();
+
+        permissions = writePermission == PackageManager.PERMISSION_GRANTED && readPermission == PackageManager.PERMISSION_GRANTED;
 
     }
 
