@@ -55,6 +55,7 @@ public class MapFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationProviderClient;
     public Marker startMarker;
     public static GeoPoint geoPoint;
+    public static GeoPoint geoTest;
     boolean internetConnection = MainActivity.internetConnection;
 
 
@@ -161,8 +162,19 @@ public class MapFragment extends Fragment {
             public void run() {
                 try {
                     GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
-                    Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0);
-                    geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
+                    Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0); //get address from input //if country does not exists, app will crash
+                    //get geopoint always by country, no matter if searched by city or country
+                    String country = address.getCountryName(); //get country-name from address
+                    //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
+
+                    if (CountryDictionary.countriesDict.containsKey(country)){ //Eventuell ausbaufähig? Doppelte Überprüfung!
+                        eingabe = CountryDictionary.getCountryInGerman(country);
+                    } else {
+                        eingabe = tx_eingabe;
+                    }
+
+                    Address countryAdress = geocoderNominatim.getFromLocationName(country,10).get(0); //get country-address from country-name
+                    geoPoint = new GeoPoint(countryAdress.getLatitude(), countryAdress.getLongitude()); //set geopoint from country-name
                     getActivity().runOnUiThread(new Runnable() {
                         @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
