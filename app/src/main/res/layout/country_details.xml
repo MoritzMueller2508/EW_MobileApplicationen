@@ -117,7 +117,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                    <com.faskn.lib.ClickablePieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:popupText="help"
+                        app:centerColor="@color/semiGray"
+                        app:showPopup="true"
+                        app:showPercentage="true"
+                        app:animationDuration="3"
+                        />
                 </LinearLayout>
+
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView

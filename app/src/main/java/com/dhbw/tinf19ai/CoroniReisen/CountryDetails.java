@@ -52,6 +52,7 @@ public class CountryDetails extends AppCompatActivity {
     boolean internetConnection = MainActivity.internetConnection;
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,10 @@ public class CountryDetails extends AppCompatActivity {
 
         searchAndCenterAddress(country_eingabe);
         setLinks(advice_card, source_card);
-        //setDataPieChart(pieChart);
+
+        //Chart
+
+        //setDataPieChart(pieChart_card);
     }
 
     //set links for clickable cards
@@ -106,14 +110,27 @@ public class CountryDetails extends AppCompatActivity {
         });
     }
 
-
+/*
     private void setDataPieChart(CardView pieChart_card) {
         ArrayList slices = new ArrayList<Slice>(); //ArrayList for Slices
         slices.add(new Slice(3.5F,0, "critical", null, null,null)); //Slices have to be added before display
+        slices.add(new Slice(3.5F,0,"stable", null, null, null));
+        slices.add(new Slice(3.5F,0,"dead", null, null, null));
 
         PieChart pieChart = new PieChart(
-                slices /* ArrayList with all Slices - needs to be generated first*/ , null, 0f, 80f
+                slices /* ArrayList with all Slices - needs to be generated first,
+                null,
+                0f,
+                80f
         ).build();
+
+        View chart = findViewById(R.id.pieChart);
+
+        chart.
+    */
+
+
+
 
         /*
         chart.setPieChart(pieChart); //Don't know, what "chart" is supposed to be
@@ -124,8 +141,8 @@ public class CountryDetails extends AppCompatActivity {
 
             }
         });
-        */
-    }
+
+    }*/
 
     //set geoPoint with address and the user input
     public void searchAndCenterAddress(final String country_eingabe) {
@@ -173,36 +190,21 @@ public class CountryDetails extends AppCompatActivity {
         //preset
         tx_advice.setText(green);
 
-        //set marker image,Coroni image and advice text with user input
+        //set marker image, Coroni image and advice text with user input
         Runnable runnable = new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
                 try {
                     String coroni = CoroniAssignment.getCoroni(country_eingabe);
                     if (coroni.equals("red")) {
-                        if (internetConnection) {
-                            Bitmap bitmap = ((BitmapDrawable) drawable_red).getBitmap();
-                            Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
-                            country_marker.setIcon(bitmapDrawable_red);
-                        }
                         im_coroni.setImageResource(R.drawable.coroni_red);
                         tx_advice.setText(red);
                     }
                     if (coroni.equals("orange")) {
-                        if (internetConnection) {
-                            Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
-                            Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 50, 50, true));
-                            country_marker.setIcon(bitmapDrawable_orange);
-                        }
                         im_coroni.setImageResource(R.drawable.coroni_orange);
                         tx_advice.setText(orange);
                     }
                     if (coroni.equals("green")) {
-                        if (internetConnection) {
-                            Bitmap bitmap3 = ((BitmapDrawable) drawable_green).getBitmap();
-                            Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 50, 50, true));
-                            country_marker.setIcon(bitmapDrawable_green);
-                        }
                         im_coroni.setImageResource(R.drawable.coroni_green);
                         tx_advice.setText(green);
                     }

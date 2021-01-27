@@ -85,6 +85,12 @@ public class MapFragment extends Fragment {
             public void onClick(View v) {
                 String location = et.getText().toString();
 
+                for (String k:CountryDictionary.countriesDict.keySet()
+                     ) {
+                    System.out.println(k + CountryDictionary.countriesDict.get(k));
+
+                }
+
                 //check if input is null
                 if (location.trim().length() == 0) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
@@ -92,7 +98,17 @@ public class MapFragment extends Fragment {
                     alertDialogBuilder.setTitle("Input leer.");
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
-                } else {
+                }
+                if (!CountryDictionary.countriesDict.containsKey(location) || !CountryDictionary.countriesDict.containsValue(location) ){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
+                    alertDialogBuilder.setTitle("Land existiert nicht");
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    et.getText().clear();
+                    alertDialog.show();
+
+                }
+                else {
                     if (internetConnection) {
                         try {
                             System.out.println("hello");
@@ -107,6 +123,7 @@ public class MapFragment extends Fragment {
                         startActivity(intent);
                     }
                 }
+
             }
         });
 
@@ -152,11 +169,7 @@ public class MapFragment extends Fragment {
 
     //set from new read GeoPoint
     private void searchAndCenterAddress(final String tx_eingabe) throws IOException {
-        if (CountryDictionary.countriesDict.containsKey(tx_eingabe)){
-            eingabe = CountryDictionary.getCountryInGerman(tx_eingabe);
-        } else {
-            eingabe = tx_eingabe;
-        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -271,9 +284,6 @@ public class MapFragment extends Fragment {
     }
 
 
-    public void setOnMarkerDrag(Marker startMarker) {
-        System.out.println("Hallo");
-        mapView.getOverlays().remove(startMarker);
-    }
+
 
 }
