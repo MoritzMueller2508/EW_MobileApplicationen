@@ -18,6 +18,7 @@ import android.location.Address;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class CountryDetails extends AppCompatActivity {
     private ImageView im_coroni;
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
-
+    private final static String TAG = "CountryDetails";
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,31 +60,31 @@ public class CountryDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
 
-        //map
+        //set map
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
         this.mapController.setZoom(3.0);
 
-        //textViews
+        //set textViews
         tx_title_country = (TextView) findViewById(R.id.tx_country);
         tx_advice = (TextView) findViewById(R.id.tx_advice);
 
-        //image
+        //set image
         im_coroni = (ImageView) findViewById(R.id.image_coroni);
 
-        //titel matching the country
+        //set titel matching the country
         Intent intent = getIntent();
         String country_eingabe = intent.getStringExtra("country");
         tx_title_country.setText(country_eingabe);
 
-        //cards
+        //set cards
         CardView pieChart_card = (CardView) findViewById(R.id.piecard);
         CardView advice_card = (CardView) findViewById(R.id.card_einreisebestimmungen);
         CardView source_card = (CardView) findViewById(R.id.card_source_link);
-
+        CardView coroni_card = (CardView) findViewById(R.id.card_coroni);
 
         searchAndCenterAddress(country_eingabe);
-        setLinks(advice_card, source_card);
+        setLinks(advice_card, source_card, coroni_card);
 
         //Chart
 
@@ -91,22 +92,21 @@ public class CountryDetails extends AppCompatActivity {
     }
 
     //set links for clickable cards
-    private void setLinks(CardView advice_card, CardView source_card) {
-        advice_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                startActivity(launchBrowser);
-            }
+    private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card) {
+        advice_card.setOnClickListener(view -> {
+            Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
         });
-        source_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uriUrl = Uri.parse("https://www.bing.com/covid/dev");
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                startActivity(launchBrowser);
-            }
+        source_card.setOnClickListener(view -> {
+            Uri uriUrl = Uri.parse("https://www.bing.com/covid/dev");
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
+        });
+        coroni_card.setOnClickListener(view -> {
+            Uri uriUrl = Uri.parse("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
         });
     }
 
@@ -145,21 +145,21 @@ public class CountryDetails extends AppCompatActivity {
     }*/
 
     //set geoPoint with address and the user input
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void searchAndCenterAddress(final String country_eingabe) {
-        Runnable runnable = new Runnable() {
-            public void run() {
-                try {
-                    if (internetConnection) {
-                        GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
-                        Address address = geocoderNominatim.getFromLocationName(country_eingabe, 10).get(0);
-                        geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
-                    } else {
-                        geoPoint = null;
-                    }
-                    setMarkerAndCenter(geoPoint, country_eingabe);
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Runnable runnable = () -> {
+            try {
+                Log.d(TAG, "internetConnection: " + internetConnection);
+                if (internetConnection) {
+                    GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
+                    Address address = geocoderNominatim.getFromLocationName(country_eingabe, 10).get(0);
+                    geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
+                } else {
+                    geoPoint = null;
                 }
+                setMarkerAndCenter(geoPoint, country_eingabe);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         };
         ExecutorService executor = Executors.newCachedThreadPool();
@@ -169,6 +169,7 @@ public class CountryDetails extends AppCompatActivity {
 
 
     //set new markers
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) {
         if (internetConnection) {
             country_marker = new Marker(map_cutout);
@@ -176,11 +177,6 @@ public class CountryDetails extends AppCompatActivity {
             country_marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             map_cutout.getOverlays().add(country_marker);
         }
-
-        //set marker icon (green/red/orange Coroni)
-        final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
-        final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
-        final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);
 
         //set advice text
         final String green = getResources().getString(R.string.advice_green);
@@ -191,26 +187,23 @@ public class CountryDetails extends AppCompatActivity {
         tx_advice.setText(green);
 
         //set marker image, Coroni image and advice text with user input
-        Runnable runnable = new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            public void run() {
-                try {
-                    String coroni = CoroniAssignment.getCoroni(country_eingabe);
-                    if (coroni.equals("red")) {
-                        im_coroni.setImageResource(R.drawable.coroni_red);
-                        tx_advice.setText(red);
-                    }
-                    if (coroni.equals("orange")) {
-                        im_coroni.setImageResource(R.drawable.coroni_orange);
-                        tx_advice.setText(orange);
-                    }
-                    if (coroni.equals("green")) {
-                        im_coroni.setImageResource(R.drawable.coroni_green);
-                        tx_advice.setText(green);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        Runnable runnable = () -> {
+            try {
+                String coroni = CoroniAssignment.getCoroni(country_eingabe);
+                if (coroni.equals("red")) {
+                    im_coroni.setImageResource(R.drawable.coroni_red);
+                    tx_advice.setText(red);
                 }
+                if (coroni.equals("orange")) {
+                    im_coroni.setImageResource(R.drawable.coroni_orange);
+                    tx_advice.setText(orange);
+                }
+                if (coroni.equals("green")) {
+                    im_coroni.setImageResource(R.drawable.coroni_green);
+                    tx_advice.setText(green);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         };
         ExecutorService executor = Executors.newCachedThreadPool();

@@ -26,6 +26,7 @@
                 android:textSize="41dp"/>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_coroni"
                 style="@style/card"
                 app:cardBackgroundColor="#77a5b3"
                 app:cardCornerRadius="12dp"

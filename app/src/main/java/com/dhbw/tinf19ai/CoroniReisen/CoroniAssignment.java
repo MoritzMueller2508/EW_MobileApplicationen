@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoroniAssignment {
+    private final static String TAG = "CoroniAssignment";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getCoroni(String countryRegion) throws IOException {

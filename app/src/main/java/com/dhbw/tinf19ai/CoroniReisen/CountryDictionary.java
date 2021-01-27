@@ -260,7 +260,6 @@ public class CountryDictionary {
 
     }
 
-
     public static String getCountryInGerman(String countryEn){
         String countryDe;
         countryDe = countriesDict.get(countryEn);

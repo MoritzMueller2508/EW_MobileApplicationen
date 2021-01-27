@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 public class Navigator extends AppCompatActivity {
-    private FrameLayout container;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

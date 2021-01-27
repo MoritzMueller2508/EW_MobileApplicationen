@@ -78,7 +78,6 @@ public class DestinationsList extends ListActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //String selectedFromList =(listView.getItemAtPosition(i).toString());
                 final String country = (String) adapterView.getItemAtPosition(i);
-                System.out.println(country);
                 Intent newActivity1 = new Intent(DestinationsList.this, CountryDetails.class);
                 newActivity1.putExtra("country", country);
                 startActivity(newActivity1);

@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
@@ -36,6 +37,7 @@ import java.util.Scanner;
 
 public class RiskCountriesExtraction {
     private static boolean internetConnection = MainActivity.internetConnection;
+    private final static String TAG = "RiskCountriesExtracion";
 
 
     //get HTML Website in a string from the website
@@ -57,8 +59,10 @@ public class RiskCountriesExtraction {
         return result;
     }
 
+    //get html website from RKI website and save it into a csv file
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void saveCsv() throws IOException {
+        Log.d(TAG, "data will be saved to the csv file");
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -83,6 +87,7 @@ public class RiskCountriesExtraction {
             }
             writer.flush();
             writer.close();
+            Log.d(TAG, "File written and saved");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,19 +102,16 @@ public class RiskCountriesExtraction {
         String nowString = now.toString();
 
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
-        if(!dir.exists()){
-            dir.mkdirs();
-        }
-
         File file = new File(dir, csvFile);
+
         if (!file.exists()){
+            //create a file to save the last update of the data
             file.createNewFile();
             try {
                 FileWriter writer = new FileWriter(file);
                 writer.append(nowString);
                 writer.flush();
                 writer.close();
-                System.out.println("file created and data updated");
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,7 +122,6 @@ public class RiskCountriesExtraction {
                 ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
                 Duration duration = Duration.between(lastUpdated, now);
                 long durationHours = duration.toHours();
-                System.out.println(durationHours);
                 if (durationHours > 24){
                     file.createNewFile();
                     try {
@@ -132,8 +133,6 @@ public class RiskCountriesExtraction {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else {
-                    return false;
                 }
             }
 
@@ -141,23 +140,27 @@ public class RiskCountriesExtraction {
         return false;
     }
 
+    //this functions check if the file with the bing date should be saved
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveData() throws IOException {
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/Risk-Countries.csv");
         if(!dir.exists()) {
-            saveCsv();
+            AsyncTask.execute(() -> {
+                try {
+                    saveCsv();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             boolean update = saveLastUpdated();
+            Log.d(TAG, "data needs to be updated: "+update);
             if (update){
-                AsyncTask.execute(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void run() {
-                        try {
-                            saveCsv();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                AsyncTask.execute(() -> {
+                    try {
+                        saveCsv();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
             }
@@ -255,7 +258,6 @@ public class RiskCountriesExtraction {
         }
 
         regions = getExtraRegions(regions);
-        System.out.println(regions);
         return regions;
     }
 

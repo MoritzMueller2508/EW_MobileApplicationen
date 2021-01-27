@@ -21,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -56,10 +57,12 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class BingData extends Activity {
+    private final static String TAG = "BingData";
 
     //read and write csv data from github repo
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static FileWriter getBingDataOnline() throws IOException {
+        Log.d(TAG, "data will be saved to the csv file");
         URL url = new URL("https://media.githubusercontent.com/media/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -81,7 +84,7 @@ public class BingData extends Activity {
             }
             writer.flush();
             writer.close();
-            System.out.println("File written and saved");
+            Log.d(TAG, "File written and saved");
             return writer;
         } catch (IOException e) {
             e.printStackTrace();
@@ -99,10 +102,9 @@ public class BingData extends Activity {
 
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
         File file = new File(dir, csvFile);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
+
         if (!file.exists()){
+            //create a file to save the last update of the data
             file.createNewFile();
             try {
                 FileWriter writer = new FileWriter(file);
@@ -130,8 +132,6 @@ public class BingData extends Activity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else {
-                    return false;
                 }
             }
 
@@ -140,26 +140,27 @@ public class BingData extends Activity {
     }
 
 
+    //this functions check if the file with the bing date should be saved
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveBingData() throws IOException {
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/Bing-COVID19-Data.csv");
         if(!dir.exists()) {
-            System.out.println(dir);
-            dir.mkdirs();
-            if (dir.exists()){
-            getBingDataOnline();}
-        } else {
+                AsyncTask.execute(() -> {
+                    try {
+                        getBingDataOnline();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            } else {
             boolean update = saveLastUpdated();
+            Log.d(TAG, "data needs to be updated: "+update);
             if (update){
-                AsyncTask.execute(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void run() {
-                        try {
-                            getBingDataOnline();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                AsyncTask.execute(() -> {
+                    try {
+                        getBingDataOnline();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
             }
@@ -216,7 +217,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String confirmedCases = array[2];
-        System.out.println(confirmedCases);
         return confirmedCases;
     }
 
@@ -225,7 +225,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String deathCases = array[4];
-        System.out.println(deathCases);
         return deathCases;
     }
 
@@ -234,7 +233,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String recoveredCases = array[6];
-        System.out.println(recoveredCases);
         return recoveredCases;
     }
 
@@ -243,7 +241,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String latitude = array[8];
-        System.out.println(latitude);
         if (latitude.isEmpty()){return null;}
         return latitude;
     }
@@ -253,7 +250,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String longitude = array[9];
-        System.out.println(longitude);
         if (longitude.isEmpty()){return null;}
         return longitude;
     }
@@ -263,7 +259,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String iso2 = array[10];
-        System.out.println(iso2);
         if (iso2.isEmpty()){return null;}
         return iso2;
     }
@@ -273,7 +268,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String iso3 = array[11];
-        System.out.println(iso3);
         if (iso3.isEmpty()){return null;}
         return iso3;
     }
@@ -285,7 +279,6 @@ public class BingData extends Activity {
         String date = array[1];
         Date lastUpdated =new SimpleDateFormat("MM/dd/yyyy").parse(date);
 
-        System.out.println(lastUpdated);
         return lastUpdated;
     }
 }

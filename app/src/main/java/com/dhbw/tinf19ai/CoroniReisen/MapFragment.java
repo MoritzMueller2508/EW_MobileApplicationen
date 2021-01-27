@@ -43,6 +43,7 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -50,13 +51,13 @@ public class MapFragment extends Fragment {
     private MapView mapView;
     private IMapController mapController;
     public static EditText et;
-    public static String eingabe, coroni, btn;
-    private static GeoPoint selectedLocation;
+    public static String eingabe, btn;
     private FusedLocationProviderClient fusedLocationProviderClient;
     public Marker startMarker;
     public static GeoPoint geoPoint;
-    public static GeoPoint geoTest;
     boolean internetConnection = MainActivity.internetConnection;
+    private final static String TAG = "MapFragment";
+    private Hashtable<String,String> countriesDict = CountryDictionary.countriesDict;
 
 
     @Override
@@ -64,6 +65,7 @@ public class MapFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,87 +81,71 @@ public class MapFragment extends Fragment {
         //Input from the user is imported
         this.et = (EditText) view.findViewById(R.id.et_address_input);
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+
         //Button for displaying the user request by manual input
         Button btn_suchen = view.findViewById(R.id.btn_go);
-        btn_suchen.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String location = et.getText().toString();
+        btn_suchen.setOnClickListener(v -> {
+            String location = et.getText().toString();
 
-                for (String k:CountryDictionary.countriesDict.keySet()
-                     ) {
-                    System.out.println(k + CountryDictionary.countriesDict.get(k));
-
-                }
-
-                //check if input is null
-                if (location.trim().length() == 0) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                    alertDialogBuilder.setMessage("Bitte geben Sie ein Land ein.");
-                    alertDialogBuilder.setTitle("Input leer.");
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                }
-                if (!CountryDictionary.countriesDict.containsKey(location) || !CountryDictionary.countriesDict.containsValue(location) ){
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                    alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
-                    alertDialogBuilder.setTitle("Land existiert nicht");
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    et.getText().clear();
-                    alertDialog.show();
-
-                }
-                else {
-                    if (internetConnection) {
-                        try {
-                            System.out.println("hello");
-                            searchAndCenterAddress(location);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        final Activity context2 = getActivity();
-                        Intent intent = new Intent(context2, CountryDetails.class);
-                        intent.putExtra("country", location);
-                        startActivity(intent);
-                    }
-                }
-
+            //check if input is null
+            if (location.trim().length() == 0) {
+                alertDialogBuilder.setMessage("Bitte geben Sie ein Land ein.");
+                alertDialogBuilder.setTitle("Input leer.");
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
+            //check if input is in dictionary
+            else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)){
+                alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
+                alertDialogBuilder.setTitle("Land existiert nicht");
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                et.getText().clear();
+                alertDialog.show();
+            }
+            else {
+                Log.d(TAG, "internet connection: "+internetConnection);
+                if (internetConnection) {
+                    searchAndCenterAddress(location);
+                } else {
+                    final Activity context2 = getActivity();
+                    Intent intent = new Intent(context2, CountryDetails.class);
+                    if (countriesDict.containsKey(location)){
+                        eingabe = CountryDictionary.getCountryInGerman(location);
+                    } else {
+                        eingabe = location;
+                    }
+                    intent.putExtra("country", eingabe);
+                    startActivity(intent);
+                }
+            }
+
         });
 
         //buttons for categories of vacation destinations
         Button btn_sonne = view.findViewById(R.id.btn_sonne);
-        btn_sonne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn = "sonne";
-                Intent intent = new Intent(getActivity(), DestinationsList.class);
-                startActivity(intent);
-            }
+        btn_sonne.setOnClickListener(v -> {
+            btn = "sonne";
+            Intent intent = new Intent(getActivity(), DestinationsList.class);
+            startActivity(intent);
         });
         Button btn_berge = view.findViewById(R.id.btn_berge);
-        btn_berge.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                btn = "berge";
-                Intent intent = new Intent(getActivity(), DestinationsList.class);
-                startActivity(intent);
-            }
+        btn_berge.setOnClickListener(v -> {
+            btn = "berge";
+            Intent intent = new Intent(getActivity(), DestinationsList.class);
+            startActivity(intent);
         });
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
-        btn_stadt.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                btn = "stadt";
-                Intent intent = new Intent(getActivity(), DestinationsList.class);
-                startActivity(intent);
-            }
+        btn_stadt.setOnClickListener(v -> {
+            btn = "stadt";
+            Intent intent = new Intent(getActivity(), DestinationsList.class);
+            startActivity(intent);
         });
         Button btn_natur = view.findViewById(R.id.btn_natur);
-        btn_natur.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                btn = "natur";
-                Intent intent = new Intent(getActivity(), DestinationsList.class);
-                startActivity(intent);
-            }
+        btn_natur.setOnClickListener(v -> {
+            btn = "natur";
+            Intent intent = new Intent(getActivity(), DestinationsList.class);
+            startActivity(intent);
         });
 
         this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
@@ -168,37 +154,30 @@ public class MapFragment extends Fragment {
 
 
     //set from new read GeoPoint
-    private void searchAndCenterAddress(final String tx_eingabe) throws IOException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void searchAndCenterAddress(final String tx_eingabe) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
-                    Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0); //get address from input //if country does not exists, app will crash
-                    //get geopoint always by country, no matter if searched by city or country
-                    String country = address.getCountryName(); //get country-name from address
-                    //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
+        new Thread(() -> {
+            try {
+                GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
+                Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0); //get address from input //if country does not exists, app will crash
+                //get geopoint always by country, no matter if searched by city or country
+                String country = address.getCountryName(); //get country-name from address
+                //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
 
-                    if (CountryDictionary.countriesDict.containsKey(country)){ //Eventuell ausbaufähig? Doppelte Überprüfung!
-                        eingabe = CountryDictionary.getCountryInGerman(country);
-                    } else {
-                        eingabe = tx_eingabe;
-                    }
-
-                    Address countryAdress = geocoderNominatim.getFromLocationName(country,10).get(0); //get country-address from country-name
-                    geoPoint = new GeoPoint(countryAdress.getLatitude(), countryAdress.getLongitude()); //set geopoint from country-name
-                    getActivity().runOnUiThread(new Runnable() {
-                        @RequiresApi(api = Build.VERSION_CODES.O)
-                        @Override
-                        public void run() {
-                            setMarkerAndCenter(geoPoint, eingabe);
-                            selectedLocation = geoPoint;
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (countriesDict.containsKey(country)){
+                    eingabe = CountryDictionary.getCountryInGerman(country);
+                } else {
+                    eingabe = tx_eingabe;
                 }
+
+                Address countryAddress = geocoderNominatim.getFromLocationName(eingabe,10).get(0); //get country-address from country-name
+                geoPoint = new GeoPoint(countryAddress.getLatitude(), countryAddress.getLongitude()); //set geopoint from country-name
+                getActivity().runOnUiThread(() -> {
+                    setMarkerAndCenter(geoPoint, eingabe);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }).start();
     }
@@ -210,44 +189,6 @@ public class MapFragment extends Fragment {
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mapView.getOverlays().add(startMarker);
-
-        //set marker icon (green/red/orange coroni)
-        final Drawable drawable_green = getResources().getDrawable(R.drawable.coroni_green);
-        final Drawable drawable_orange = getResources().getDrawable(R.drawable.coroni_orange);
-        final Drawable drawable_red = getResources().getDrawable(R.drawable.coroni_red);
-
-        /* Bei Clicken wird kurz Coroni angezeigt. Da wir das aber nicht brauchen - entfernt //Mit Rosa noch absprechen
-
-        Runnable runnable = new Runnable() {
-            public void run() {
-                try {
-                    String coroni = CoroniAssignment.getCoroni(eingabe);
-                    if (coroni.equals("red")) {
-                        Bitmap bitmap = ((BitmapDrawable) drawable_red).getBitmap();
-                        Drawable bitmapDrawable_red = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 60, true));
-                        startMarker.setIcon(bitmapDrawable_red);
-                    }
-                    if (coroni.equals("orange")) {
-                        Bitmap bitmap2 = ((BitmapDrawable) drawable_orange).getBitmap();
-                        Drawable bitmapDrawable_orange = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap2, 60, 60, true));
-                        startMarker.setIcon(bitmapDrawable_orange);
-                    }
-                    if (coroni.equals("green")) {
-                        Bitmap bitmap3 = ((BitmapDrawable) drawable_green).getBitmap();
-                        Drawable bitmapDrawable_green = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap3, 60, 60, true));
-                        startMarker.setIcon(bitmapDrawable_green);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        ExecutorService executor = Executors.newCachedThreadPool();
-        executor.submit(runnable);
-        executor.shutdown(); // tell executor no more work is coming
-
-         */
 
         startMarker.setDraggable(true);
         startMarker.setOnMarkerDragListener(new Marker.OnMarkerDragListener() {
@@ -268,22 +209,16 @@ public class MapFragment extends Fragment {
         });
 
         final Activity currentActivity = getActivity();
-        startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                                                 @Override
-                                                 public boolean onMarkerClick(Marker marker, MapView mapView) {
-                                                     Intent intent = new Intent(currentActivity, CountryDetails.class);
-                                                     intent.putExtra("country", eingabe);
-                                                     startActivity(intent);
-                                                     return false;
-                                                 }
-                                             }
+        startMarker.setOnMarkerClickListener((marker, mapView) -> {
+            Intent intent = new Intent(currentActivity, CountryDetails.class);
+            intent.putExtra("country", eingabe);
+            startActivity(intent);
+            return false;
+        }
 
         );
 
         this.mapController.setCenter(geoPoint);
     }
-
-
-
 
 }
