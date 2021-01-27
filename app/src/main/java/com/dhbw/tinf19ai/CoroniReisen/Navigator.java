@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class navigates between the different interfaces (phone-view / tablet-view)
+ * This class navigates between the different interfaces (phone-view / tablet-view)
  */
 
 import androidx.annotation.RequiresApi;

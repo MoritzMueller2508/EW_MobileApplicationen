@@ -57,13 +57,30 @@ public class MapFragment extends Fragment {
     public static GeoPoint geoPoint;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "MapFragment";
-    private Hashtable<String,String> countriesDict = CountryDictionary.countriesDict;
+    private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+
+/*    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "On Resume .....");
+        if (!internetConnection){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+            alertDialogBuilder.setMessage("Die Daten die Sie bei der App sehen sind nicht aktuell, " +
+                    "da Sie über eine Internetverbindung nicht verfügen. Sobald sie online gehen, " +
+                    "werden die Daten aktualisiert.");
+            alertDialogBuilder.setTitle("Keine Internetverbindung");
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+    }*/
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -96,21 +113,20 @@ public class MapFragment extends Fragment {
                 alertDialog.show();
             }
             //check if input is in dictionary
-            else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)){
+            else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)) {
                 alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
                 alertDialogBuilder.setTitle("Land existiert nicht");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 et.getText().clear();
                 alertDialog.show();
-            }
-            else {
-                Log.d(TAG, "internet connection: "+internetConnection);
+            } else {
+                Log.d(TAG, "internet connection: " + internetConnection);
                 if (internetConnection) {
                     searchAndCenterAddress(location);
                 } else {
                     final Activity context2 = getActivity();
                     Intent intent = new Intent(context2, CountryDetails.class);
-                    if (countriesDict.containsKey(location)){
+                    if (countriesDict.containsKey(location)) {
                         eingabe = CountryDictionary.getCountryInGerman(location);
                     } else {
                         eingabe = location;
@@ -165,13 +181,13 @@ public class MapFragment extends Fragment {
                 String country = address.getCountryName(); //get country-name from address
                 //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
 
-                if (countriesDict.containsKey(country)){
+                if (countriesDict.containsKey(country)) {
                     eingabe = CountryDictionary.getCountryInGerman(country);
                 } else {
                     eingabe = tx_eingabe;
                 }
 
-                Address countryAddress = geocoderNominatim.getFromLocationName(eingabe,10).get(0); //get country-address from country-name
+                Address countryAddress = geocoderNominatim.getFromLocationName(eingabe, 10).get(0); //get country-address from country-name
                 geoPoint = new GeoPoint(countryAddress.getLatitude(), countryAddress.getLongitude()); //set geopoint from country-name
                 getActivity().runOnUiThread(() -> {
                     setMarkerAndCenter(geoPoint, eingabe);
@@ -210,11 +226,11 @@ public class MapFragment extends Fragment {
 
         final Activity currentActivity = getActivity();
         startMarker.setOnMarkerClickListener((marker, mapView) -> {
-            Intent intent = new Intent(currentActivity, CountryDetails.class);
-            intent.putExtra("country", eingabe);
-            startActivity(intent);
-            return false;
-        }
+                    Intent intent = new Intent(currentActivity, CountryDetails.class);
+                    intent.putExtra("country", eingabe);
+                    startActivity(intent);
+                    return false;
+                }
 
         );
 

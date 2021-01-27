@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
+ * This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
  * them into a list.
  * The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
  * the last 10 days but are not anymore --getOrangeRiskCountries()--.
@@ -41,7 +41,7 @@ public class RiskCountriesExtraction {
 
 
     //get HTML Website in a string from the website
-    private static String getHtmlWebsite() throws IOException{
+    private static String getHtmlWebsite() throws IOException {
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -104,7 +104,7 @@ public class RiskCountriesExtraction {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
         File file = new File(dir, csvFile);
 
-        if (!file.exists()){
+        if (!file.exists()) {
             //create a file to save the last update of the data
             file.createNewFile();
             try {
@@ -122,7 +122,7 @@ public class RiskCountriesExtraction {
                 ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
                 Duration duration = Duration.between(lastUpdated, now);
                 long durationHours = duration.toHours();
-                if (durationHours > 24){
+                if (durationHours > 24) {
                     file.createNewFile();
                     try {
                         FileWriter writer = new FileWriter(file);
@@ -144,7 +144,7 @@ public class RiskCountriesExtraction {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveData() throws IOException {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/Risk-Countries.csv");
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             AsyncTask.execute(() -> {
                 try {
                     saveCsv();
@@ -154,8 +154,8 @@ public class RiskCountriesExtraction {
             });
         } else {
             boolean update = saveLastUpdated();
-            Log.d(TAG, "data needs to be updated: "+update);
-            if (update){
+            Log.d(TAG, "data needs to be updated: " + update);
+            if (update) {
                 AsyncTask.execute(() -> {
                     try {
                         saveCsv();
@@ -169,12 +169,12 @@ public class RiskCountriesExtraction {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getOfflineWebsite() throws IOException {
-        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Risk-Countries.csv";
+        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/" + "Risk-Countries.csv";
         File file = new File(csvFile);
 
         List<String> lines = Files.readAllLines(file.toPath());
         String result = "";
-        for (String line : lines){
+        for (String line : lines) {
             result = result + line;
         }
         return result;
@@ -222,19 +222,19 @@ public class RiskCountriesExtraction {
     }
 
     //return a list of countries without the HTML format, extracting the countries that are included in the countriesDict hashtable
-    private static List<String> getRiskCountries(List<String> convertedCountriesList){
+    private static List<String> getRiskCountries(List<String> convertedCountriesList) {
 
         //delete the exceptions (regions, cities, islands, etc.) from the list elements
-        for(int i = 0; i < convertedCountriesList.size(); i++){
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
             String element = convertedCountriesList.get(i);
             convertedCountriesList.set(i, element + " <br>");
             element = convertedCountriesList.get(i);
-            if(element.contains("Ausnahme")){
+            if (element.contains("Ausnahme")) {
                 element = element.substring(element.indexOf("Ausnahme"), element.indexOf(" <br>"));
                 String newElement = convertedCountriesList.get(i).replace(element, "");
                 convertedCountriesList.set(i, newElement);
             }
-            if(element.contains("Ausgenommen")){
+            if (element.contains("Ausgenommen")) {
                 element = element.substring(element.indexOf("Ausgenommen"), element.indexOf(" <br>"));
                 String newElement = convertedCountriesList.get(i).replace(element, "");
                 convertedCountriesList.set(i, newElement);
@@ -243,14 +243,14 @@ public class RiskCountriesExtraction {
 
         //add countries to "regions" list if they are in the website and in the hashtable countriesDict
         ArrayList<String> regions = new ArrayList<String>();
-        for (int i = 0; i < convertedCountriesList.size(); i++){
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
             String region = convertedCountriesList.get(i);
-            for(Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()){
-                if(region.contains(countryDictEntry.getKey().toString())){
+            for (Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()) {
+                if (region.contains(countryDictEntry.getKey().toString())) {
                     regions.add(countryDictEntry.getValue().toString());
                     continue;
                 }
-                if(region.contains(countryDictEntry.getValue().toString())){
+                if (region.contains(countryDictEntry.getValue().toString())) {
                     regions.add(countryDictEntry.getValue().toString());
                     continue;
                 }
@@ -262,9 +262,9 @@ public class RiskCountriesExtraction {
     }
 
     //special function for extra regions that are e.g. grouped countries
-    private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList){
+    private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList) {
 
-        if(convertedList.contains("Palästinensische Gebiete")){
+        if (convertedList.contains("Palästinensische Gebiete")) {
             convertedList.add("Westjordanland");
             convertedList.add("Gazastreifen");
         }

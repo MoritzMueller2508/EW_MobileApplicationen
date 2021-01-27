@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
+ * This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
  * By clicking on the image you will be redirected to the next interface.
  */
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Log.i(TAG, "On Create .....");
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void verifyStoragePermissions(Activity activity)  {
+    private void verifyStoragePermissions(Activity activity) {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
         permissions = writePermission == PackageManager.PERMISSION_GRANTED && readPermission == PackageManager.PERMISSION_GRANTED;
 
         if (permissions) {
-                Log.d(TAG, "calling function saveData()");
-                saveData();
+            Log.d(TAG, "calling function saveData()");
+            saveData();
         } else {
             //popup message in case permission were denied
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
 
     //function to request the Bing Data and the RKI data are saved
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void saveData(){
+    private void saveData() {
         //check if internet is available
         internetConnection = isNetworkAvailable();
         Log.d(TAG, "internet connection: " + internetConnection);
 
-        if (internetConnection){
+        if (internetConnection) {
             AsyncTask.execute(() -> {
                 try {
                     BingData.saveBingData();

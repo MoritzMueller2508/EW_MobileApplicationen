@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 /**
  * This class connects to the Bing Covid API. The data is imported from the api periodically and written to a csv to get the current numbers.
- *
+ * <p>
  * We get the following data:
  * ID (country)
  * Updated (date)
@@ -103,7 +103,7 @@ public class BingData extends Activity {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
         File file = new File(dir, csvFile);
 
-        if (!file.exists()){
+        if (!file.exists()) {
             //create a file to save the last update of the data
             file.createNewFile();
             try {
@@ -121,7 +121,7 @@ public class BingData extends Activity {
                 ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
                 Duration duration = Duration.between(lastUpdated, now);
                 long durationHours = duration.toHours();
-                if (durationHours > 24){
+                if (durationHours > 24) {
                     file.createNewFile();
                     try {
                         FileWriter writer = new FileWriter(file);
@@ -144,18 +144,18 @@ public class BingData extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveBingData() throws IOException {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/Bing-COVID19-Data.csv");
-        if(!dir.exists()) {
-                AsyncTask.execute(() -> {
-                    try {
-                        getBingDataOnline();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            } else {
+        if (!dir.exists()) {
+            AsyncTask.execute(() -> {
+                try {
+                    getBingDataOnline();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } else {
             boolean update = saveLastUpdated();
-            Log.d(TAG, "data needs to be updated: "+update);
-            if (update){
+            Log.d(TAG, "data needs to be updated: " + update);
+            if (update) {
                 AsyncTask.execute(() -> {
                     try {
                         getBingDataOnline();
@@ -169,13 +169,14 @@ public class BingData extends Activity {
 
 
     //Get csv data
+
     /**  @param countryRegion is specific country or region i.a. "Worldwide" or "Germany"
      *    !!! Please enter region or country capitalized i.e. "Germany" instead of "germany" or "GERMANY"
      *    TODO: country or region should be case insensitive
      **/
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
-        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files"+"/Bing-COVID19-Data.csv";
+        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files" + "/Bing-COVID19-Data.csv";
         String csvSplitBy = ",";
         ArrayList<String[]> bingData = new ArrayList<>();
         ArrayList<String[]> bingDataTemp = new ArrayList<>();
@@ -187,13 +188,13 @@ public class BingData extends Activity {
                 String[] array = line.split(csvSplitBy);
 
                 //the arrays with array.length > 13 are for specific cities. Search for cities has not yet been implemented.
-                if (array.length < 14){
+                if (array.length < 14) {
                     bingDataTemp.add(line.split(csvSplitBy));
                 }
             }
         }
 
-        bingData.add(bingDataTemp.get(bingDataTemp.size()-1));
+        bingData.add(bingDataTemp.get(bingDataTemp.size() - 1));
 
         /* auslesen der kompletten Datei
         for(int row=0; row < bingData.size(); row++){
@@ -241,7 +242,9 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String latitude = array[8];
-        if (latitude.isEmpty()){return null;}
+        if (latitude.isEmpty()) {
+            return null;
+        }
         return latitude;
     }
 
@@ -250,7 +253,9 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String longitude = array[9];
-        if (longitude.isEmpty()){return null;}
+        if (longitude.isEmpty()) {
+            return null;
+        }
         return longitude;
     }
 
@@ -259,7 +264,9 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String iso2 = array[10];
-        if (iso2.isEmpty()){return null;}
+        if (iso2.isEmpty()) {
+            return null;
+        }
         return iso2;
     }
 
@@ -268,7 +275,9 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String iso3 = array[11];
-        if (iso3.isEmpty()){return null;}
+        if (iso3.isEmpty()) {
+            return null;
+        }
         return iso3;
     }
 
@@ -277,7 +286,7 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         String date = array[1];
-        Date lastUpdated =new SimpleDateFormat("MM/dd/yyyy").parse(date);
+        Date lastUpdated = new SimpleDateFormat("MM/dd/yyyy").parse(date);
 
         return lastUpdated;
     }

@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class creates the lists of countries for the different buttons.
+ * This class creates the lists of countries for the different buttons.
  * It displays the selected category with a suitable text and the list of selectable countries.
  */
 
@@ -24,10 +24,10 @@ import java.util.concurrent.Executors;
 public class DestinationsList extends ListActivity {
 
     //set lists
-    static final String[] sonne = new String[]{"Spanien","Italien","Madagaskar","Australien","Türkei","Malta","Ägypten","Brasilien","Mexiko"};
-    static final String[] berge = new String[]{"Schweiz","USA","Deutschland","Australien","Vereinigtes Königreich","Nordmazedonien","Italien","Griechenland","Belgien","Slowakei"};
-    static final String[] stadt = new String[]{"Spanien","Polen","Nordmazedonien","Indien","Türkei","Japan","China","Deutschland","Russische Föderation","USA"};
-    static final String[] natur = new String[]{"Marokko","Kanada","Neuseeland","Japan","Iran","Deutschland","Österreich","Thailand","Norwegen","Irland"};
+    static final String[] sonne = new String[]{"Spanien", "Italien", "Madagaskar", "Australien", "Türkei", "Malta", "Ägypten", "Brasilien", "Mexiko"};
+    static final String[] berge = new String[]{"Schweiz", "USA", "Deutschland", "Australien", "Vereinigtes Königreich", "Nordmazedonien", "Italien", "Griechenland", "Belgien", "Slowakei"};
+    static final String[] stadt = new String[]{"Spanien", "Polen", "Nordmazedonien", "Indien", "Türkei", "Japan", "China", "Deutschland", "Russische Föderation", "USA"};
+    static final String[] natur = new String[]{"Marokko", "Kanada", "Neuseeland", "Japan", "Iran", "Deutschland", "Österreich", "Thailand", "Norwegen", "Irland"};
     public String eingabe_marker_btn;
     public TextView title, text;
 
@@ -47,20 +47,24 @@ public class DestinationsList extends ListActivity {
         final ArrayAdapter adapter;
 
         //set title and text
-        switch(btn){
-            case "sonne": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,sonne);
+        switch (btn) {
+            case "sonne":
+                adapter = new ArrayAdapter<String>(this, R.layout.destinations_listview, sonne);
                 title.setText("Sonne");
                 text.setText("Hier sehen sie warme und sonnige Länder, perfekt für einen entspannten Strandurlaub!");
-            break;
-            case "berge": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,berge);
+                break;
+            case "berge":
+                adapter = new ArrayAdapter<String>(this, R.layout.destinations_listview, berge);
                 title.setText("Berge");
                 text.setText("Hier finden sie Länder in denen man viele Berge hat, perfekt für Kletterausflüge und Wandertouren!");
                 break;
-            case "stadt": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,stadt);
+            case "stadt":
+                adapter = new ArrayAdapter<String>(this, R.layout.destinations_listview, stadt);
                 title.setText("Stadt");
                 text.setText("Hier finden sie Länder mit interessanten Städten. Welche Stadt werden sie als nächstes erkunden?");
                 break;
-            case "natur": adapter = new ArrayAdapter<String>(this,R.layout.destinations_listview,natur);
+            case "natur":
+                adapter = new ArrayAdapter<String>(this, R.layout.destinations_listview, natur);
                 title.setText("Natur");
                 text.setText("Hier finden sie Länder mit viel Natur, perfekt zum entspannen und genießen von außergewöhnlicher Vegitation!");
                 break;
