@@ -19,7 +19,7 @@ you will be redirected to the next view.
 ## MapFragment
 - This interface allows the user to further narrow down their vacation destination. 
 
-You can either search for a single country and display it on the map, or select one of the buttons on the 2nd cardview. 
+>You can either search for a single country and display it on the map, or select one of the buttons on the 2nd cardview. 
 
 - If you search for a single country with the search button, a marker is set on the mapview below. This marker can be deleted if you keep it pressed for a longer time. If the user presses the marker, he will be forwarded directly to the country details for this country.
 
