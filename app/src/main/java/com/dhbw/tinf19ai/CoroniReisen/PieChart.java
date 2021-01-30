@@ -92,9 +92,9 @@ public class PieChart extends AppCompatActivity {
         String label = "type";
 
 
-            String recovered = countryArray[0];
-            String confirmed = countryArray[1];
-            String deaths = countryArray[2];
+            String recovered = countryArray[2];
+            String confirmed = countryArray[0];
+            String deaths = countryArray[1];
 
             if(!recovered.equals(""))
                 recoveredCases = Integer.parseInt(recovered);
