@@ -25,11 +25,8 @@ public class CoroniAssignment {
         String greenCoroni = "green";
 
         //ArrayList<String> countries = getAllCountries();
-        System.out.println("till here");
         List<String> redRiskCountries = RiskCountriesExtraction.getRedRiskCountries();
-        System.out.println(redRiskCountries);
         List<String> orangeRiskCountries = RiskCountriesExtraction.getOrangeRiskCountries();
-        System.out.println(orangeRiskCountries);
 
         //assign right coroni
         for (int i = 0; i < orangeRiskCountries.size(); i++) {
