@@ -38,6 +38,7 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -52,6 +53,7 @@ public class CountryDetails extends AppCompatActivity {
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "CountryDetails";
+    private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -89,6 +91,12 @@ public class CountryDetails extends AppCompatActivity {
         //Chart
 
         //setDataPieChart(pieChart_card);
+
+        try {
+            System.out.println("confirmed cases: "+BingData.getConfirmedCases("Spain"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //set links for clickable cards
@@ -170,7 +178,7 @@ public class CountryDetails extends AppCompatActivity {
 
     //set new markers
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) {
+    private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) throws IOException {
         if (internetConnection) {
             country_marker = new Marker(map_cutout);
             country_marker.setPosition(geoPoint);
@@ -212,5 +220,6 @@ public class CountryDetails extends AppCompatActivity {
         if (internetConnection) {
             this.mapController.setCenter(geoPoint);
         }
+
     }
 }

@@ -17,3 +17,5 @@ There you'll find if the country is considered as a risk area (by german standar
 # Table of Contents for developers
 
 1. [Classes](documentation/classes.md)
+2. [Pie Chart Api](documentation/api.md)
+3. [Sources](documentation/sources.md)
