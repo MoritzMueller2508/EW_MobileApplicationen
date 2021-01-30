@@ -58,6 +58,7 @@ public class MapFragment extends Fragment {
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "MapFragment";
     private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
+    public String countryRegion;
 
 
     @Override
@@ -111,7 +112,7 @@ public class MapFragment extends Fragment {
                 alertDialogBuilder.setTitle("Input leer.");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-            }
+            }/*
             //check if input is in dictionary
             else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)) {
                 alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
@@ -119,9 +120,11 @@ public class MapFragment extends Fragment {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 et.getText().clear();
                 alertDialog.show();
-            } else {
+            } */
+            else {
                 Log.d(TAG, "internet connection: " + internetConnection);
                 if (internetConnection) {
+                    et.getText().clear();
                     searchAndCenterAddress(location);
                 } else {
                     final Activity context2 = getActivity();
@@ -176,6 +179,7 @@ public class MapFragment extends Fragment {
         new Thread(() -> {
             try {
                 GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
+
                 Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0); //get address from input //if country does not exists, app will crash
                 //get geopoint always by country, no matter if searched by city or country
                 String country = address.getCountryName(); //get country-name from address

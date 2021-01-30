@@ -10,6 +10,8 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a reference to our data source.
  */
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -27,8 +29,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.faskn.lib.PieChart;
-import com.faskn.lib.Slice;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
@@ -37,7 +43,11 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -52,6 +62,7 @@ public class CountryDetails extends AppCompatActivity {
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "CountryDetails";
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -88,7 +99,19 @@ public class CountryDetails extends AppCompatActivity {
 
         //Chart
 
-        //setDataPieChart(pieChart_card);
+
+        /*PieChart chart = (PieChart) findViewById(R.id.pieChart);
+        try {
+            setDataPieChart(pieChart_card);
+        } catch (IOException e) {
+            e.printStackTrace();
+            }
+        catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+
+
     }
 
     //set links for clickable cards
@@ -110,39 +133,43 @@ public class CountryDetails extends AppCompatActivity {
         });
     }
 
-/*
-    private void setDataPieChart(CardView pieChart_card) {
-        ArrayList slices = new ArrayList<Slice>(); //ArrayList for Slices
-        slices.add(new Slice(3.5F,0, "critical", null, null,null)); //Slices have to be added before display
-        slices.add(new Slice(3.5F,0,"stable", null, null, null));
-        slices.add(new Slice(3.5F,0,"dead", null, null, null));
 
-        PieChart pieChart = new PieChart(
-                slices /* ArrayList with all Slices - needs to be generated first,
-                null,
-                0f,
-                80f
-        ).build();
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setDataPieChart(CardView pieChart_card) throws Exception {
+        ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
+        String label = "type";
+        Intent intent = getIntent();
 
-        View chart = findViewById(R.id.pieChart);
+        String country =intent.getStringExtra("country");
 
-        chart.
-    */
+        if(!CountryDictionary.countriesDict.containsKey(country) && !CountryDictionary.countriesDict.containsValue(country)){
+
+            throw new Exception("Failed");
+        }
+
+        else {
+
+            if (CountryDictionary.countriesDict.containsValue(country))
+                country = CountryDictionary.getCountryInEnglish(country).toUpperCase();
+            else
+                country = country.toUpperCase();
 
 
 
+            String recovered = BingData.getRecoveredCases(country);
+            String deaths = BingData.getDeathsCases(country);
+            String confirmed = BingData.getConfirmedCases(country);
 
-        /*
-        chart.setPieChart(pieChart); //Don't know, what "chart" is supposed to be
+            //initialize data
+            Map<String, Integer> typeAmountMap = new HashMap<>();
+            //typeAmountMap.put("recovered_cases", )
+            Log.d("recovered cases", recovered);
+            Log.d("deaths", deaths);
+            Log.d("confirmed", confirmed);
 
-        btn_advice_link = findViewById(R.id.btn_Link); //?
-        btn_advice_link.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-            }
-        });
-
-    }*/
+        }
+    }
 
     //set geoPoint with address and the user input
     @RequiresApi(api = Build.VERSION_CODES.O)

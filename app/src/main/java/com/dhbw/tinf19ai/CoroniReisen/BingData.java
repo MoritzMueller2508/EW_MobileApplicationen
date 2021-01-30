@@ -6,7 +6,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * ID (country)
  * Updated (date)
  * Confirmed (confirmed cases)
- * ComfirmedChange (rate of change of cases from previous day)
+ * ConfirmedChange (rate of change of cases from previous day)
  * Deaths (confirmed deaths)
  * DeathsChange (Rate of change of deaths from the previous day)
  * Recovered (Recovered cases)
