@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
+ * This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
  * them into a list.
  * The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
  * the last 10 days but are not anymore --getOrangeRiskCountries()--.
@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
@@ -36,10 +37,11 @@ import java.util.Scanner;
 
 public class RiskCountriesExtraction {
     private static boolean internetConnection = MainActivity.internetConnection;
+    private final static String TAG = "RiskCountriesExtracion";
 
 
     //get HTML Website in a string from the website
-    private static String getHtmlWebsite() throws IOException{
+    private static String getHtmlWebsite() throws IOException {
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -57,8 +59,10 @@ public class RiskCountriesExtraction {
         return result;
     }
 
+    //get html website from RKI website and save it into a csv file
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void saveCsv() throws IOException {
+        Log.d(TAG, "data will be saved to the csv file");
         URL url = new URL("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
         URLConnection urlc = url.openConnection();
         urlc.setRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; "
@@ -83,6 +87,7 @@ public class RiskCountriesExtraction {
             }
             writer.flush();
             writer.close();
+            Log.d(TAG, "File written and saved");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,19 +102,16 @@ public class RiskCountriesExtraction {
         String nowString = now.toString();
 
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
-        if(!dir.exists()){
-            dir.mkdirs();
-        }
-
         File file = new File(dir, csvFile);
-        if (!file.exists()){
+
+        if (!file.exists()) {
+            //create a file to save the last update of the data
             file.createNewFile();
             try {
                 FileWriter writer = new FileWriter(file);
                 writer.append(nowString);
                 writer.flush();
                 writer.close();
-                System.out.println("file created and data updated");
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,8 +122,7 @@ public class RiskCountriesExtraction {
                 ZonedDateTime lastUpdated = ZonedDateTime.parse(line);
                 Duration duration = Duration.between(lastUpdated, now);
                 long durationHours = duration.toHours();
-                System.out.println(durationHours);
-                if (durationHours > 24){
+                if (durationHours > 24) {
                     file.createNewFile();
                     try {
                         FileWriter writer = new FileWriter(file);
@@ -132,8 +133,6 @@ public class RiskCountriesExtraction {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else {
-                    return false;
                 }
             }
 
@@ -141,23 +140,27 @@ public class RiskCountriesExtraction {
         return false;
     }
 
+    //this functions check if the file with the bing date should be saved
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void saveData() throws IOException {
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files");
-        if(!dir.exists()) {
-            saveCsv();
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/Risk-Countries.csv");
+        if (!dir.exists()) {
+            AsyncTask.execute(() -> {
+                try {
+                    saveCsv();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             boolean update = saveLastUpdated();
-            if (update){
-                AsyncTask.execute(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void run() {
-                        try {
-                            saveCsv();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+            Log.d(TAG, "data needs to be updated: " + update);
+            if (update) {
+                AsyncTask.execute(() -> {
+                    try {
+                        saveCsv();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
             }
@@ -166,12 +169,12 @@ public class RiskCountriesExtraction {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getOfflineWebsite() throws IOException {
-        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/"+"Risk-Countries.csv";
+        String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files/" + "Risk-Countries.csv";
         File file = new File(csvFile);
 
         List<String> lines = Files.readAllLines(file.toPath());
         String result = "";
-        for (String line : lines){
+        for (String line : lines) {
             result = result + line;
         }
         return result;
@@ -187,11 +190,11 @@ public class RiskCountriesExtraction {
             riskAreaHtml = getOfflineWebsite();
         }
         String list = riskAreaHtml.substring(
-                riskAreaHtml.indexOf("<p><strong>1. Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:</strong></p>") +
-                        "<p><strong>1. Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:</strong></p>".length(),
-                riskAreaHtml.indexOf("<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>"));
+                riskAreaHtml.indexOf("Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:") +
+                        "Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:".length(),
+                riskAreaHtml.indexOf("Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:"));
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
+        List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
         return convertedCountriesList;
@@ -207,31 +210,31 @@ public class RiskCountriesExtraction {
             riskAreaHtml = getOfflineWebsite();
         }
         String list = riskAreaHtml.substring(
-                riskAreaHtml.indexOf("<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>") +
-                        "<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>".length(),
+                riskAreaHtml.indexOf("Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:") +
+                        "Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:".length(),
                 riskAreaHtml.indexOf("<div class=\"sectionRelated links\">"));
 
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
+        List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
         return convertedCountriesList;
     }
 
     //return a list of countries without the HTML format, extracting the countries that are included in the countriesDict hashtable
-    private static List<String> getRiskCountries(List<String> convertedCountriesList){
+    private static List<String> getRiskCountries(List<String> convertedCountriesList) {
 
         //delete the exceptions (regions, cities, islands, etc.) from the list elements
-        for(int i = 0; i < convertedCountriesList.size(); i++){
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
             String element = convertedCountriesList.get(i);
             convertedCountriesList.set(i, element + " <br>");
             element = convertedCountriesList.get(i);
-            if(element.contains("Ausnahme")){
+            if (element.contains("Ausnahme")) {
                 element = element.substring(element.indexOf("Ausnahme"), element.indexOf(" <br>"));
                 String newElement = convertedCountriesList.get(i).replace(element, "");
                 convertedCountriesList.set(i, newElement);
             }
-            if(element.contains("Ausgenommen")){
+            if (element.contains("Ausgenommen")) {
                 element = element.substring(element.indexOf("Ausgenommen"), element.indexOf(" <br>"));
                 String newElement = convertedCountriesList.get(i).replace(element, "");
                 convertedCountriesList.set(i, newElement);
@@ -239,15 +242,15 @@ public class RiskCountriesExtraction {
         }
 
         //add countries to "regions" list if they are in the website and in the hashtable countriesDict
-        ArrayList<String> regions = new ArrayList<String>();
-        for (int i = 0; i < convertedCountriesList.size(); i++){
+        ArrayList<String> regions = new ArrayList<>();
+        for (int i = 0; i < convertedCountriesList.size(); i++) {
             String region = convertedCountriesList.get(i);
-            for(Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()){
-                if(region.contains(countryDictEntry.getKey().toString())){
+            for (Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()) {
+                if (region.contains(countryDictEntry.getKey().toString())) {
                     regions.add(countryDictEntry.getValue().toString());
                     continue;
                 }
-                if(region.contains(countryDictEntry.getValue().toString())){
+                if (region.contains(countryDictEntry.getValue().toString())) {
                     regions.add(countryDictEntry.getValue().toString());
                     continue;
                 }
@@ -260,9 +263,9 @@ public class RiskCountriesExtraction {
     }
 
     //special function for extra regions that are e.g. grouped countries
-    private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList){
+    private static ArrayList<String> getExtraRegions(ArrayList<String> convertedList) {
 
-        if(convertedList.contains("Palästinensische Gebiete")){
+        if (convertedList.contains("Palästinensische Gebiete")) {
             convertedList.add("Westjordanland");
             convertedList.add("Gazastreifen");
         }

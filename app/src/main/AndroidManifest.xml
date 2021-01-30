@@ -22,6 +22,7 @@
             tools:ignore="Instantiatable"></activity>
         <activity android:name=".CountryDetails"></activity>
         <activity android:name=".DestinationsList"></activity>
+        <activity android:name=".PieChart"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

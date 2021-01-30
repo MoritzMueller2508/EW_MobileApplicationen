@@ -1,16 +1,17 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class represents a hashtable with all countries of this world.
+ * This class represents a hashtable with all countries of this world.
  */
 
 import java.util.Hashtable;
+import java.util.Map;
 
 public class CountryDictionary {
     public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
     //add countries to the dictionary
-    public static void setCountriesDict(){
+    public static void setCountriesDict() {
         countriesDict.put("Worldwide", "Weltweit");
         countriesDict.put("Afghanistan", "Afghanistan");
         countriesDict.put("Albania", "Albanien");
@@ -260,11 +261,22 @@ public class CountryDictionary {
 
     }
 
-
-    public static String getCountryInGerman(String countryEn){
+    public static String getCountryInGerman(String countryEn) {
         String countryDe;
         countryDe = countriesDict.get(countryEn);
         return countryDe;
+    }
+
+    public static  String getCountryInEnglish(String countryDe){
+        String countryEn;
+        for (Map.Entry<String, String> e:countriesDict.entrySet()
+             ) {
+            if (countryDe.equals(e.getValue())){
+                return e.getKey();
+            }
+        }
+
+        return null;
     }
 
 }

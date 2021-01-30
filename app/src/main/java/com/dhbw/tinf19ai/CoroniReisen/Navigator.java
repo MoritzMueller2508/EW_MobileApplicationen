@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- *This class navigates between the different interfaces (phone-view / tablet-view)
+ * This class serves as a container for the MapFragment.
  */
 
 import androidx.annotation.RequiresApi;
@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 public class Navigator extends AppCompatActivity {
-    private FrameLayout container;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

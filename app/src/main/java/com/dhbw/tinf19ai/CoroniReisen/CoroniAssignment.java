@@ -5,7 +5,9 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 import android.os.Build;
 import android.os.Environment;
+
 import androidx.annotation.RequiresApi;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoroniAssignment {
+    private final static String TAG = "CoroniAssignment";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getCoroni(String countryRegion) throws IOException {
@@ -26,17 +29,17 @@ public class CoroniAssignment {
         List<String> orangeRiskCountries = RiskCountriesExtraction.getOrangeRiskCountries();
 
         //assign right coroni
-        for (int i = 0; i<orangeRiskCountries.size(); i++){
+        for (int i = 0; i < orangeRiskCountries.size(); i++) {
             String element = orangeRiskCountries.get(i);
-            if (redRiskCountries.contains(element)){
+            if (redRiskCountries.contains(element)) {
                 orangeRiskCountries.remove(i);
             }
         }
 
-        if (redRiskCountries.contains(countryRegion)){
+        if (redRiskCountries.contains(countryRegion)) {
             return redCoroni;
         }
-        if (orangeRiskCountries.contains(countryRegion)){
+        if (orangeRiskCountries.contains(countryRegion)) {
             return orangeCoroni;
         }
 
