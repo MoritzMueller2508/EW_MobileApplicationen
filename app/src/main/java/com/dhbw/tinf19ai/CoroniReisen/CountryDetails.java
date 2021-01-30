@@ -137,7 +137,7 @@ public class CountryDetails extends AppCompatActivity {
             else {
                 new Handler().postDelayed(() -> {
                     startActivity(intent);
-                }, 7000);   //5 seconds
+                }, 7000);   //7 seconds
             }
         });
     }
