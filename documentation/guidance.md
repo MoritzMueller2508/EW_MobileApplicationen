@@ -50,9 +50,22 @@ There are 5 cardviews:
 
 - **3. CardView:** This view provides a redirect to the State Department page. There you can get more information about entry requirements.
 
-- **4. CardView:**
+- **4. CardView:** When the user clicks on the card, he is redirected to another UI. On this page the current numbers in the country related to corona are shown in a piechart.
 
 - **5. CardView:** This CardView shows the source of our data for the current numbers. If you click on it, you will be redirected to the API.
 
 
 **This interface is used to display country details associated with corona.**
+<br><br><br><br><br><br><br><br><br>
+
+><img align="left" src="PieChart.PNG" width="200">
+## PieChart
+This interface shows a PieChart with data for the selected country from:
+- current numbers
+- death numbers
+- recovered numbers.
+With a button you can return to the country details.
+
+
+
+**This interface serves as input of the country to be specified.**
