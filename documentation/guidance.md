@@ -13,7 +13,7 @@ The individual UIs and their functions are explained in more detail below.
 you will be redirected to the next view. 
 
 **This interface serves as a start page.**
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="MapFragment.PNG" width="200">
 ## MapFragment
