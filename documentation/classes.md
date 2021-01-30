@@ -1,5 +1,15 @@
 # Description of the classes
 
+- [BingData](classes.md#BingData)
+- [CoroniAssignment](classes.md#CoroniAssignment)
+- [CountryDetails](classes.md#CountryDetails)
+- [CountryDictionary](classes.md#CountryDictionary)
+- [DestinationsList](classes.md#DestinationsList)
+- [MainActivity](classes.md#MainActivity)
+- [MapFragment](classes.md#MapFragment)
+- [Navigator](classes.md#Navigator)
+- [RiskCountriesExtraction](classes.md#RiskCountriesExtraction)
+
 ## BingData
 
 >This class connects to the Bing Covid API. The data is imported from the api periodically and written to a csv to get the current numbers.
