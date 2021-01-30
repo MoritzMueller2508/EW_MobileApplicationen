@@ -10,34 +10,20 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a reference to our data source.
  */
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
-
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
@@ -46,15 +32,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static android.app.PendingIntent.getActivity;
 
 
 public class CountryDetails extends AppCompatActivity {
@@ -157,7 +137,14 @@ public class CountryDetails extends AppCompatActivity {
         pieChart_card.setOnClickListener(view-> {
             Intent intent = new Intent(this, com.dhbw.tinf19ai.CoroniReisen.PieChart.class);
             intent.putExtra("country", country_eingabe);
+            if (countryArray != null) {
             startActivity(intent);
+            }
+            else {
+                new Handler().postDelayed(() -> {
+                    startActivity(intent);
+                }, 7000);   //7 seconds
+            }
         });
     }
 
