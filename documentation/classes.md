@@ -1,4 +1,4 @@
-# description of the classes
+# Description of the classes
 
 ## BingData
 
