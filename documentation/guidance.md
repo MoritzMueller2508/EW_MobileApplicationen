@@ -19,20 +19,22 @@ you will be redirected to the next view.
 ## MapFragment
 - This interface allows the user to further narrow down their vacation destination. 
 
->You can either search for a single country and display it on the map, or select one of the buttons on the 2nd cardview. 
+You can either **search for a single country** and display it on the map, or **select one of the buttons** on the 2nd cardview. 
 
 - If you search for a single country with the search button, a marker is set on the mapview below. This marker can be deleted if you keep it pressed for a longer time. If the user presses the marker, he will be forwarded directly to the country details for this country.
 
 - The buttons on the 2nd cardview represent vacation categories. Via these buttons you will be forwarded to a country selection. 
 
 **This interface serves as input of the country to be specified.**
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 ><img align="left" src="DestinationsList.PNG" width="200">
 ## DestinationsList
-- Hallo
+- This interface presents a selection of countries for the category chosen by the user. 
 
-**This interface serves as a start page.**
+- The category is displayed with a short explanatory text and the list of 10 countries. The countries have been selected from various sources of tourism.
+
+**This interface is used to select a country limited by the selection of a vacation category.**
 <br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="CountryDeatils.PNG" width="200">
