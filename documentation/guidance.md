@@ -36,11 +36,10 @@ You can either **search for a single country** and display it on the map, or **s
 
 **This interface is used to select a country limited by the selection of a vacation category.**
 <br><br><br><br><br><br><br><br><br><br><br>
-**red Coroni:** risk area
-**green coroni:** no risk area
-**orange Coroni:** was risk area in the last 10 days, but is not anymore.
 
-<br>
+- **red Coroni:** risk area
+- **green coroni:** no risk area
+- **orange Coroni:** was risk area in the last 10 days, but is not anymore.
 ><img align="left" src="CountryDetails.PNG" width="200">
 ## CountryDetails
 this interface displays the country details for the selected country. 
