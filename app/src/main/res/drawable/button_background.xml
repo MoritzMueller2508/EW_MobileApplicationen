@@ -12,7 +12,7 @@
         android:type="linear"
         />
     <solid
-        android:color="#005589"/>
+        android:color="#263A4E"/>
     <padding
         android:left="0dp"
         android:top="0dp"
