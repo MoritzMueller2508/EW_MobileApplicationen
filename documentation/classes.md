@@ -7,16 +7,16 @@
  ID (country)
  Updated (date)
  Confirmed (confirmed cases)
- ComfirmedChange (rate of change of cases from previous day)
+ ConfirmedChange (rate of change of cases from previous day)
  Deaths (confirmed deaths)
  DeathsChange (Rate of change of deaths from the previous day)
  Recovered (Recovered cases)
- RecoveredChange (Rate of change recovered from the previous day
+ RecoveredChange (Rate of change recovered from the previous day)
 
 
 ## CoroniAssignment
 
->This class assigns the appropriate coroni to the countries which are assigned to the different groups in the class RiskCountriesExtraction.
+>This class assigns the appropriate coroni to the countries which are assigned to the different groups in the class **RiskCountriesExtraction**.
 
 
 ## CountryDetails
@@ -32,7 +32,7 @@
 
 ## CountryDictionary
 
->This class represents a hashtable with all countries of this world.
+>This class represents a hashtable with all countries of this world (we don't deny the existance of other worlds).
 
 
 ## DestinationsList
@@ -50,7 +50,6 @@
 ## MapFragment
 
 >This class represents the selection of the country to be considered with a map.
- The user can search for individual countries and display the corresponding Coronis on the map.
  When clicking on a marker of an entered country, the user is redirected to the last UI for the country details.
  There are also vacation categories which are represented by buttons.
  By clicking on them, the user will be redirected to the appropriate list of countries.
@@ -63,8 +62,7 @@
 
 ## RiskCountriesExtraction
 
->This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
- them into a list.
- The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
- the last 10 days but are not anymore --getOrangeRiskCountries()--.
+>This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list.
+ The distinction is made between current risk countries *getRedRiskCountries()* and countries that were a risk country in
+ the last 10 days but are not anymore *getOrangeRiskCountries()*.
 
