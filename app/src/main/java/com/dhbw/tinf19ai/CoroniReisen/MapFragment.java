@@ -113,7 +113,7 @@ public class MapFragment extends Fragment {
                 alertDialogBuilder.setTitle("Input leer.");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-            }/*
+            }
             //check if input is in dictionary
             else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)) {
                 alertDialogBuilder.setMessage("Bitte geben Sie ein existierendes Land ein.");
@@ -121,7 +121,7 @@ public class MapFragment extends Fragment {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 et.getText().clear();
                 alertDialog.show();
-            } */
+            }
             else {
                 Log.d(TAG, "internet connection: " + internetConnection);
                 if (internetConnection) {

@@ -11,6 +11,7 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 public class CustomMarker extends MarkerView {
 
+    //initialize values and objects
 
     private TextView tvContent;
 

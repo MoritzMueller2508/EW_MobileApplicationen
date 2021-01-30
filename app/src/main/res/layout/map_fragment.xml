@@ -79,7 +79,7 @@
 
                     <EditText
                         android:id="@+id/et_address_input"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="150dp"
                         style="@style/text"
@@ -125,7 +125,7 @@
                             android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="0dp"
+                            android:layout_marginLeft="20dp"
                             android:background="@drawable/button_background"
                             android:text="Sonne"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -183,8 +183,7 @@
                             android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginEnd="61dp"
-                            android:layout_marginRight="61dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginBottom="4dp"
                             android:background="@drawable/button_background"
                             android:text="Städte"
@@ -234,7 +233,6 @@
         </org.osmdroid.views.MapView>
         </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-</GridLayout>
+        </GridLayout>
     </RelativeLayout>
 </ScrollView>

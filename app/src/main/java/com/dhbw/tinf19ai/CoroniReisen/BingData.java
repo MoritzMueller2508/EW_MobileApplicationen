@@ -57,6 +57,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class BingData extends Activity {
+
+    //initialize values and objects
     private final static String TAG = "BingData";
 
     //read and write csv data from github repo

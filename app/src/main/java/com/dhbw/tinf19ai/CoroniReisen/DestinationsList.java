@@ -25,9 +25,9 @@ public class DestinationsList extends ListActivity {
 
     //set lists
     static final String[] sonne = new String[]{"Spanien", "Italien", "Madagaskar", "Australien", "Türkei", "Malta", "Ägypten", "Brasilien", "Mexiko"};
-    static final String[] berge = new String[]{"Schweiz", "USA", "Deutschland", "Australien", "Vereinigtes Königreich", "Nordmazedonien", "Italien", "Griechenland", "Belgien", "Slowakei"};
-    static final String[] stadt = new String[]{"Spanien", "Polen", "Nordmazedonien", "Indien", "Türkei", "Japan", "China", "Deutschland", "Russische Föderation", "USA"};
-    static final String[] natur = new String[]{"Marokko", "Kanada", "Neuseeland", "Japan", "Iran", "Deutschland", "Österreich", "Thailand", "Norwegen", "Irland"};
+    static final String[] berge = new String[]{"Schweiz", "USA", "Nepal", "Australien", "Vereinigtes Königreich", "Nordmazedonien", "Italien", "Griechenland", "Belgien", "Slowakei"};
+    static final String[] stadt = new String[]{"Spanien", "Polen", "Nordmazedonien", "Indien", "Türkei", "Japan", "China", "Kroatien", "Russische Föderation", "USA"};
+    static final String[] natur = new String[]{"Marokko", "Kanada", "Neuseeland", "Japan", "Iran", "Dänemark", "Österreich", "Thailand", "Norwegen", "Irland"};
     public String eingabe_marker_btn;
     public TextView title, text;
 

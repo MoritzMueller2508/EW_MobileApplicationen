@@ -55,7 +55,10 @@ import java.util.concurrent.Executors;
 
 import static android.app.PendingIntent.getActivity;
 
+
 public class CountryDetails extends AppCompatActivity {
+
+    //initialize values and objects
     private TextView tx_title_country, tx_advice;
     private MapView map_cutout;
     private IMapController mapController;
@@ -99,20 +102,26 @@ public class CountryDetails extends AppCompatActivity {
         CardView coroni_card = (CardView) findViewById(R.id.card_coroni);
 
         searchAndCenterAddress(country_eingabe);
+        Log.i("MarkerSet", "onCreate: Marker set according to User-Input ");
         setLinks(advice_card, source_card, coroni_card);
+        Log.i("Linking Cards", "onCreate: Cards to more information linked");
 
         //Chart
 
 
         initPieChart();
+        Log.i("PieChart Configuration", "onCreate: PieChart parameter set" +
+                "Description(false), Rotation(true), DragDeceleration(true), HighlightTap(true), animation(true), holeColor(background), LabelText(false)");
 
 
         try {
             setDataPieChart();
-        } catch (Exception e) {
+            Log.i("PieChart Show", "onCreate: PieChart drawn" +
+                    "country(" + intent.getStringExtra("country") + "), " +
+                    "TextSize(12f), DrawValues(false)");
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
     }
@@ -124,16 +133,19 @@ public class CountryDetails extends AppCompatActivity {
         advice_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: advice_card clicked, redirecting to 'https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise'");
             startActivity(launchBrowser);
         });
         source_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.bing.com/covid/dev");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: source_card clicked, redirecting to 'https://www.bing.com/covid/dev'");
             startActivity(launchBrowser);
         });
         coroni_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: coroni_card clicked, redirecting to 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html'");
             startActivity(launchBrowser);
         });
     }
@@ -155,8 +167,6 @@ public class CountryDetails extends AppCompatActivity {
         chart.setHighlightPerTapEnabled(true);
         //adding animation - entries pip up from 0 degree
         chart.animateY(1400, Easing.EaseInOutQuad);
-        //color of hole in the middel
-        chart.setHoleColor(getResources().getColor(R.color.background));
         //set hole color
         chart.setHoleColor(getResources().getColor(R.color.card));
         //disable Entry Labels
@@ -169,6 +179,7 @@ public class CountryDetails extends AppCompatActivity {
         //set custom marker for displaying data an tap
         CustomMarker my = new CustomMarker(getApplicationContext(), R.layout.tv_content);
         chart.setMarkerView(my);
+        Log.i("CustomMarker set", "initPieChart: Custom marker set, data is now shown when slice tapped");
 
 
 
@@ -177,101 +188,94 @@ public class CountryDetails extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setDataPieChart() throws Exception {
+    private void setDataPieChart() throws IOException {
+
+        //initialize values and objects
 
         PieChart chart = (PieChart) findViewById(R.id.pieChart);
 
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
         String label = "type";
         Intent intent = getIntent();
-        System.out.println("Till Here II");
 
         String country =intent.getStringExtra("country");
 
-        if(!CountryDictionary.countriesDict.containsKey(country) && !CountryDictionary.countriesDict.containsValue(country)){
 
-            throw new Exception("Failed");
+        //check if country input is english or german - BingData need english-input
+        if (CountryDictionary.countriesDict.containsValue(country))
+            country = CountryDictionary.getCountryInEnglish(country);
+
+        //get case-data from BingData
+        String recovered = BingData.getRecoveredCases(country);
+        String confirmed = BingData.getConfirmedCases(country);
+        String deaths = BingData.getDeathsCases(country);
+
+        int recoveredInt;
+        int deathsInt;
+        int confirmedInt;
+
+        //Check for potential null values before converting
+        if(!recovered.equals(""))
+            recoveredInt = Integer.parseInt(recovered);
+        else
+            recoveredInt = 0;
+
+        if(!confirmed.equals(""))
+            confirmedInt = Integer.parseInt(confirmed);
+        else
+            confirmedInt = 0;
+
+        if (!deaths.equals(""))
+            deathsInt = Integer.parseInt(deaths);
+        else
+            deathsInt = 0;
+
+
+
+        //initialize data
+        Map<String, Integer> typeAmountMap = new HashMap<>();
+        Log.i("Put recovered cases: ", recovered);
+        typeAmountMap.put("recovered_cases",recoveredInt );
+
+        Log.i("Put death cases: ", deaths);
+        typeAmountMap.put("deaths", deathsInt);
+
+        Log.i("Put confirmed cases: ", confirmed);
+        typeAmountMap.put("confirmed", confirmedInt);
+
+
+        //initializing colors for the entries
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#304567"));
+        colors.add(Color.parseColor("#309967"));
+        colors.add(Color.parseColor("#476567"));
+        colors.add(Color.parseColor("#890567"));
+        colors.add(Color.parseColor("#a35567"));
+        colors.add(Color.parseColor("#ff5f67"));
+
+        //input data and fit data into pie chart entry
+        for (String type:typeAmountMap.keySet()
+             ) {
+            pieEntries.add(new
+                    PieEntry(typeAmountMap.get(type).floatValue(), type));
         }
 
-        else {
 
-            if (CountryDictionary.countriesDict.containsValue(country))
-                country = CountryDictionary.getCountryInEnglish(country);
+        //collecting the entries with label name
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
+        //setting text size of the value
+        pieDataSet.setValueTextSize(12f);
+        //providing color list for coloring different entries
+        pieDataSet.setColors(colors);
+        //grouping the data set from entry to chart
+        PieData pieData = new PieData(pieDataSet);
+        //showing the value of the entries, default true if not set
+        pieData.setDrawValues(false);
 
+        chart.setData(pieData);
+        chart.invalidate();
+        Log.i("PieChart Drawn", "setDataPieChart: PieChart set and drawn");
 
-
-            System.out.println("Help");
-
-            String recovered = BingData.getRecoveredCases(country);
-            String confirmed = BingData.getConfirmedCases(country);
-            String deaths = BingData.getDeathsCases(country);
-
-            int recoveredInt;
-            int deathsInt;
-            int confirmedInt;
-
-            if(!recovered.equals(""))
-                recoveredInt = Integer.parseInt(recovered);
-            else
-                recoveredInt = 0;
-
-            if(!confirmed.equals(""))
-                confirmedInt = Integer.parseInt(confirmed);
-            else
-                confirmedInt = 0;
-
-            if (!deaths.equals(""))
-                deathsInt = Integer.parseInt(deaths);
-            else
-                deathsInt = 0;
-
-
-
-            //initialize data
-            Map<String, Integer> typeAmountMap = new HashMap<>();
-            Log.i("Put recovered cases: ", recovered);
-            typeAmountMap.put("recovered_cases",recoveredInt );
-
-            Log.i("Put death cases: ", deaths);
-            typeAmountMap.put("deaths", deathsInt);
-
-            Log.i("Put confirmed cases: ", confirmed);
-            typeAmountMap.put("confirmed", confirmedInt);
-
-
-            //initializing colors for the entries
-            ArrayList<Integer> colors = new ArrayList<>();
-            colors.add(Color.parseColor("#304567"));
-            colors.add(Color.parseColor("#309967"));
-            colors.add(Color.parseColor("#476567"));
-            colors.add(Color.parseColor("#890567"));
-            colors.add(Color.parseColor("#a35567"));
-            colors.add(Color.parseColor("#ff5f67"));
-
-            //input data and fit data into pie chart entry
-
-            for (String type:typeAmountMap.keySet()
-                 ) {
-                pieEntries.add(new
-                        PieEntry(typeAmountMap.get(type).floatValue(), type));
-            }
-
-
-            //collecting the entries with label name
-            PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
-            //setting text size of the value
-            pieDataSet.setValueTextSize(12f);
-            //providing color list for coloring different entries
-            pieDataSet.setColors(colors);
-            //grouping the data set from entry to chart
-            PieData pieData = new PieData(pieDataSet);
-            //showing the value of the entries, default true if not set
-            pieData.setDrawValues(false);
-
-            chart.setData(pieData);
-            chart.invalidate();
-
-        }
     }
 
     //set geoPoint with address and the user input
@@ -288,13 +292,16 @@ public class CountryDetails extends AppCompatActivity {
                     geoPoint = null;
                 }
                 setMarkerAndCenter(geoPoint, country_eingabe);
+                Log.i("Marker set", "searchAndCenterAddress: Marker set");
             } catch (IOException e) {
+                Log.e("Error", "searchAndCenterAddress: " + e.getStackTrace() );
                 e.printStackTrace();
             }
         };
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
+        Log.i("Runnable end", "searchAndCenterAddress: Executor shutdown");
     }
 
 
@@ -323,14 +330,17 @@ public class CountryDetails extends AppCompatActivity {
                 if (coroni.equals("red")) {
                     im_coroni.setImageResource(R.drawable.coroni_red);
                     tx_advice.setText(red);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; red");
                 }
                 if (coroni.equals("orange")) {
                     im_coroni.setImageResource(R.drawable.coroni_orange);
                     tx_advice.setText(orange);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; orange");
                 }
                 if (coroni.equals("green")) {
                     im_coroni.setImageResource(R.drawable.coroni_green);
                     tx_advice.setText(green);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; green");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -339,6 +349,8 @@ public class CountryDetails extends AppCompatActivity {
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
+        Log.i("Runnable end", "setMarkerAndCenter: executor shutdown");
+        //center on geopoint
         if (internetConnection) {
             this.mapController.setCenter(geoPoint);
         }
