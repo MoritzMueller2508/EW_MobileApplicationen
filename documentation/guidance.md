@@ -43,11 +43,11 @@ this interface displays the country details for the selected country.
 
 There are 5 cardviews:
 - 1. CardView:** Here is a map with marker on the country and the matching Coroni assigned. The coronis are selected according to the data from the RKI website. 
-<br>
+
 - **red Coroni:** risk area
 - **green coroni:** no risk area
 - **orange Coroni:** was risk area in the last 10 days, but is not anymore.
-<br>
+
 - **2. CardView:** This view displays action instructions.
 
 - **3. CardView:** This view provides a redirect to the State Department page. There you can get more information about entry requirements.
