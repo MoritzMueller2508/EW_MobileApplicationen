@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_row="0"
             android:layout_marginTop="15dp"
-            app:cardBackgroundColor="#77a5b3"
+            app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp">
             <LinearLayout style="@style/linearLayout">
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_marginTop="15dp"
-            app:cardBackgroundColor="#77a5b3"
+            app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp">
         <LinearLayout style="@style/linearLayout"
@@ -223,7 +223,7 @@
             android:layout_row="1"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
-            app:cardBackgroundColor="#77a5b3"
+            app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp">
         <LinearLayout style="@style/linearLayout">

@@ -182,6 +182,7 @@ public class BingData extends Activity {
         ArrayList<String[]> bingDataTemp = new ArrayList<>();
         File file = new File(csvFile);
         List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
+        System.out.println("works");
 
         for (String line : lines) {
             if (line.contains(countryRegion)) {
@@ -193,7 +194,7 @@ public class BingData extends Activity {
                 }
             }
         }
-
+        System.out.println("worksII");
         bingData.add(bingDataTemp.get(bingDataTemp.size() - 1));
 
         /* auslesen der kompletten Datei

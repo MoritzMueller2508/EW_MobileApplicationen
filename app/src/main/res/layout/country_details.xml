@@ -28,7 +28,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_coroni"
                 style="@style/card"
-                app:cardBackgroundColor="#77a5b3"
+                app:cardBackgroundColor="@color/card"
                 app:cardCornerRadius="12dp"
                 card_view:cardElevation="20dp"
                 android:layout_row="0"
@@ -58,7 +58,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 style="@style/card"
-                app:cardBackgroundColor="#77a5b3"
+                app:cardBackgroundColor="@color/card"
                 app:cardCornerRadius="12dp"
                 card_view:cardElevation="20dp"
                 android:layout_row="1"
@@ -85,7 +85,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_einreisebestimmungen"
                 style="@style/card"
-                app:cardBackgroundColor="#77a5b3"
+                app:cardBackgroundColor="@color/card"
                 app:cardCornerRadius="12dp"
                 card_view:cardElevation="20dp"
                 android:layout_row="2"
@@ -107,7 +107,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/piecard"
                 style="@style/card"
-                app:cardBackgroundColor="#77a5b3"
+                app:cardBackgroundColor="@color/card"
                 app:cardCornerRadius="12dp"
                 card_view:cardElevation="20dp"
                 android:layout_row="3"
@@ -120,8 +120,9 @@
                         android:layout_height="wrap_content" />
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/pieChart"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
                         />
 
                 </LinearLayout>
@@ -132,7 +133,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_source_link"
                 style="@style/card"
-                app:cardBackgroundColor="#77a5b3"
+                app:cardBackgroundColor="@color/card"
                 app:cardCornerRadius="12dp"
                 card_view:cardElevation="20dp"
                 android:layout_row="4"
