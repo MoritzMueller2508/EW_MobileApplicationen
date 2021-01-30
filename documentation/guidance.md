@@ -43,7 +43,6 @@ You can either **search for a single country** and display it on the map, or **s
 ><img align="left" src="CountryDetails.PNG" width="200">
 ## CountryDetails
 this interface displays the country details for the selected country. 
-
 There are 5 cardviews:
 - 1. CardView:** Here is a map with marker on the country and the matching Coroni assigned. The coronis are selected according to the data from the RKI website. 
 
