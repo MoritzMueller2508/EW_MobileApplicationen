@@ -12,9 +12,13 @@ All you have to do, is enter the Name of a country and you'll get it shown in th
 
 There you'll find if the country is considered as a risk area (by german standards), as well as the latest numbers related to Covid-19.
 
-<br><br>
+[Here](documentation/guidance.md) you can find how to use the App.
 
-# Sources
+<br>
+
+*We do **not** approve traveling during this pandemic!*
+
+<br><br>
 
 
 # Table of Contents for developers
@@ -22,3 +26,12 @@ There you'll find if the country is considered as a risk area (by german standar
 1. [Classes](documentation/classes.md)
 2. [Pie Chart Api](documentation/api.md)
 3. [Sources](documentation/sources.md)
+
+<br><br>
+
+
+# Sources
+
+We get extract the risk areas from the [RKI website](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html).
+
+The numbers for the pie chart are extracted from the [Bing Covid website](https://www.bing.com/covid).
