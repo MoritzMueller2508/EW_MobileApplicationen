@@ -60,7 +60,7 @@
 ## MapFragment
 
 >This class represents the selection of the country to be considered with a map.
- When clicking on a marker of an entered country, the user is redirected to the last UI for the country details.
+ When clicking on a marker of an entered country, the user is redirected to the last UI for the country details. If you keep the marker pressed for a longer time, it will be deleted.
  There are also vacation categories which are represented by buttons.
  By clicking on them, the user will be redirected to the appropriate list of countries.
 
@@ -75,4 +75,12 @@
 >This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list.
  The distinction is made between current risk countries *getRedRiskCountries()* and countries that were a risk country in
  the last 10 days but are not anymore *getOrangeRiskCountries()*.
+
+
+## PieChart
+
+>This interface shows a PieChart with data for the selected country from:
+current numbers
+death numbers
+recovered numbers. With a button you can return to the country details.
 
