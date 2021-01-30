@@ -9,16 +9,7 @@ The individual UIs and their functions are explained in more detail below.
 - These protective measures have been adopted by the German Social Accident Insurance, as described below in the source. The interface is built with a ScrollView and CardViews. Therefore, the individual cards can be used. When clicking the middle card, you will be redirected to the next view. This interface serves as a start page.
 
 
-
-
-
-
-
-
-
-
-
-
+<br>
 ><img align="left" src="MapFragment.PNG" width="200">
 - Hallo
 
