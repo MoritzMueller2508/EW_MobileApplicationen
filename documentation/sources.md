@@ -1,7 +1,7 @@
 # Sources
 
 ## Coronis
-![Green Coroni](app\src\main\res\drawable\coroni_green.png)
+![Green Coroni](app/src/main/res/drawable/coroni_green.png)
 ![Orange Coroni](app\src\main\res\drawable\coroni_orange.png)
 ![Red Coroni](app\src\main\res\drawable\coroni_red.png)
 

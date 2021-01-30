@@ -20,16 +20,13 @@ There you'll find if the country is considered as a risk area (by german standar
 
 <br><br>
 
-
 # Sources
 
 We get extract the risk areas from the [RKI website](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html).
 
 The numbers for the pie chart are extracted from the [Bing Covid website](https://www.bing.com/covid).
 
-
 <br><br>
-
 
 # Table of Contents for developers
 
