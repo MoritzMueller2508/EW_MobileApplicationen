@@ -19,12 +19,16 @@ you will be redirected to the next view.
 ## MapFragment
 - Hallo
 
-
+**This interface serves as a start page.**
+<br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="DestinationsList.PNG" width="200">
+## DestinationsList
 - Hallo
 
-
+**This interface serves as a start page.**
+<br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="CountryDeatils.PNG" width="200">
+## CountryDetails
 - Hallo
