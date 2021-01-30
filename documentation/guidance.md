@@ -17,9 +17,14 @@ you will be redirected to the next view.
 
 ><img align="left" src="MapFragment.PNG" width="200">
 ## MapFragment
-- Hallo
+- This interface allows the user to further narrow down their vacation destination. 
+You can either search for a single country and display it on the map, or select one of the buttons on the 2nd cardview. 
 
-**This interface serves as a start page.**
+- If you search for a single country with the search button, a marker is set on the mapview below. This marker can be deleted if you keep it pressed for a longer time. If the user presses the marker, he will be forwarded directly to the country details for this country.
+
+- The buttons on the 2nd cardview represent vacation categories. Via these buttons you will be forwarded to a country selection. 
+
+**This interface serves as input of the country to be specified.**
 <br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="DestinationsList.PNG" width="200">
