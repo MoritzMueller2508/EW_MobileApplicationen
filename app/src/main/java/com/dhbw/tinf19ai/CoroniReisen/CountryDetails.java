@@ -10,6 +10,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a reference to our data source.
  */
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,6 @@ import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -67,15 +68,14 @@ public class CountryDetails extends AppCompatActivity {
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "CountryDetails";
-
-
+    private String country_eingabe, country;
+    public static String[] countryArray;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
-
 
 
         //set map
@@ -92,7 +92,7 @@ public class CountryDetails extends AppCompatActivity {
 
         //set titel matching the country
         Intent intent = getIntent();
-        String country_eingabe = intent.getStringExtra("country");
+        country_eingabe = intent.getStringExtra("country");
         tx_title_country.setText(country_eingabe);
 
         //set cards
@@ -103,25 +103,31 @@ public class CountryDetails extends AppCompatActivity {
 
         searchAndCenterAddress(country_eingabe);
         Log.i("MarkerSet", "onCreate: Marker set according to User-Input ");
-        setLinks(advice_card, source_card, coroni_card);
+        setLinks(advice_card, source_card, coroni_card, pieChart_card);
         Log.i("Linking Cards", "onCreate: Cards to more information linked");
 
-        //Chart
 
+        AsyncTask.execute(() -> {
+            country = country_eingabe;
+            if(!CountryDictionary.countriesDict.containsKey(country_eingabe) && !CountryDictionary.countriesDict.containsValue(country_eingabe)) {
+                    try {
+                        throw new Exception("Failed");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
-        initPieChart();
-        Log.i("PieChart Configuration", "onCreate: PieChart parameter set" +
-                "Description(false), Rotation(true), DragDeceleration(true), HighlightTap(true), animation(true), holeColor(background), LabelText(false)");
+            else {
+                    if (CountryDictionary.countriesDict.containsValue(country_eingabe))
+                        country = CountryDictionary.getCountryInEnglish(country_eingabe);
+            }
 
-
-        try {
-            setDataPieChart();
-            Log.i("PieChart Show", "onCreate: PieChart drawn" +
-                    "country(" + intent.getStringExtra("country") + "), " +
-                    "TextSize(12f), DrawValues(false)");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                countryArray = BingData.getArrayCountry(country);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
 
     }
@@ -129,7 +135,7 @@ public class CountryDetails extends AppCompatActivity {
 
 
     //set links for clickable cards
-    private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card) {
+    private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card, CardView pieChart_card) {
         advice_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -148,135 +154,14 @@ public class CountryDetails extends AppCompatActivity {
             Log.i("card clicked", "setLinks: coroni_card clicked, redirecting to 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html'");
             startActivity(launchBrowser);
         });
-    }
-
-    private void initPieChart() {
-
-        PieChart chart = findViewById(R.id.pieChart);
-
-        //remove Description Label
-        chart.getDescription().setEnabled(false);
-
-        //enabling the user to rotate chart
-        chart.setRotationEnabled(true);
-        //adding friction to rotation
-        chart.setDragDecelerationFrictionCoef(0.9f);
-        //setting first entry start from right hand side
-        chart.setRotationAngle(0);
-        //highlight entry when tapped
-        chart.setHighlightPerTapEnabled(true);
-        //adding animation - entries pip up from 0 degree
-        chart.animateY(1400, Easing.EaseInOutQuad);
-        //set hole color
-        chart.setHoleColor(getResources().getColor(R.color.card));
-        //disable Entry Labels
-        chart.setDrawEntryLabels(false);
-        //disable center Text
-        chart.setDrawCenterText(false);
-
-
-
-        //set custom marker for displaying data an tap
-        CustomMarker my = new CustomMarker(getApplicationContext(), R.layout.tv_content);
-        chart.setMarkerView(my);
-        Log.i("CustomMarker set", "initPieChart: Custom marker set, data is now shown when slice tapped");
-
-
-
+        pieChart_card.setOnClickListener(view-> {
+            Intent intent = new Intent(this, com.dhbw.tinf19ai.CoroniReisen.PieChart.class);
+            intent.putExtra("country", country_eingabe);
+            startActivity(intent);
+        });
     }
 
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setDataPieChart() throws IOException {
-
-        //initialize values and objects
-
-        PieChart chart = (PieChart) findViewById(R.id.pieChart);
-
-        ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
-        String label = "type";
-        Intent intent = getIntent();
-
-        String country =intent.getStringExtra("country");
-
-
-        //check if country input is english or german - BingData need english-input
-        if (CountryDictionary.countriesDict.containsValue(country))
-            country = CountryDictionary.getCountryInEnglish(country);
-
-        //get case-data from BingData
-        String recovered = BingData.getRecoveredCases(country);
-        String confirmed = BingData.getConfirmedCases(country);
-        String deaths = BingData.getDeathsCases(country);
-
-        int recoveredInt;
-        int deathsInt;
-        int confirmedInt;
-
-        //Check for potential null values before converting
-        if(!recovered.equals(""))
-            recoveredInt = Integer.parseInt(recovered);
-        else
-            recoveredInt = 0;
-
-        if(!confirmed.equals(""))
-            confirmedInt = Integer.parseInt(confirmed);
-        else
-            confirmedInt = 0;
-
-        if (!deaths.equals(""))
-            deathsInt = Integer.parseInt(deaths);
-        else
-            deathsInt = 0;
-
-
-
-        //initialize data
-        Map<String, Integer> typeAmountMap = new HashMap<>();
-        Log.i("Put recovered cases: ", recovered);
-        typeAmountMap.put("recovered_cases",recoveredInt );
-
-        Log.i("Put death cases: ", deaths);
-        typeAmountMap.put("deaths", deathsInt);
-
-        Log.i("Put confirmed cases: ", confirmed);
-        typeAmountMap.put("confirmed", confirmedInt);
-
-
-        //initializing colors for the entries
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#304567"));
-        colors.add(Color.parseColor("#309967"));
-        colors.add(Color.parseColor("#476567"));
-        colors.add(Color.parseColor("#890567"));
-        colors.add(Color.parseColor("#a35567"));
-        colors.add(Color.parseColor("#ff5f67"));
-
-        //input data and fit data into pie chart entry
-        for (String type:typeAmountMap.keySet()
-             ) {
-            pieEntries.add(new
-                    PieEntry(typeAmountMap.get(type).floatValue(), type));
-        }
-
-
-        //collecting the entries with label name
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
-        //setting text size of the value
-        pieDataSet.setValueTextSize(12f);
-        //providing color list for coloring different entries
-        pieDataSet.setColors(colors);
-        //grouping the data set from entry to chart
-        PieData pieData = new PieData(pieDataSet);
-        //showing the value of the entries, default true if not set
-        pieData.setDrawValues(false);
-
-        chart.setData(pieData);
-        chart.invalidate();
-        Log.i("PieChart Drawn", "setDataPieChart: PieChart set and drawn");
-
-    }
 
     //set geoPoint with address and the user input
     @RequiresApi(api = Build.VERSION_CODES.O)

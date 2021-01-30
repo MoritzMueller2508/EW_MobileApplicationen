@@ -208,90 +208,11 @@ public class BingData extends Activity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getID(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String id;
-        String[] array = bingData.get(0);
-        id = array[0];
-        return id;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getConfirmedCases(String countryRegion) throws IOException {
+    public static String[] getArrayCountry(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
-        String confirmedCases = array[2];
-        return confirmedCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getDeathsCases(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String deathCases = array[4];
-        return deathCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getRecoveredCases(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String recoveredCases = array[6];
-        return recoveredCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getLatitude(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String latitude = array[8];
-        if (latitude.isEmpty()) {
-            return null;
-        }
-        return latitude;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getLongitude(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String longitude = array[9];
-        if (longitude.isEmpty()) {
-            return null;
-        }
-        return longitude;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getISO2(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String iso2 = array[10];
-        if (iso2.isEmpty()) {
-            return null;
-        }
-        return iso2;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getISO3(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String iso3 = array[11];
-        if (iso3.isEmpty()) {
-            return null;
-        }
-        return iso3;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static Date getLastUpdated(String countryRegion) throws IOException, ParseException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String date = array[1];
-        Date lastUpdated = new SimpleDateFormat("MM/dd/yyyy").parse(date);
-
-        return lastUpdated;
+        String[] arrayCountry = {array[2], array[4], array[6]};
+        return arrayCountry;
     }
 }
 
