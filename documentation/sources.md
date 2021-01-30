@@ -4,7 +4,7 @@
 2. [Covid-19 Bing Data](sources.md#covid-19-bing-data)
 
 ## Coronis - Risk areas
-<img src="../app\src\main\res\drawable\coroni_red.png" width=200px height=200px border="1px black" border-radius="50%"> <img src="../app\src\main\res\drawable\coroni_orange.png" width=200px height=200px> <img src="../app/src/main/res/drawable/coroni_green.png" width=200px height=200px>
+<img src="../app\src\main\res\drawable\coroni_red.png" width=200px height=200p> <img src="../app\src\main\res\drawable\coroni_orange.png" width=200px height=200px> <img src="../app/src/main/res/drawable/coroni_green.png" width=200px height=200px>
 <br>
 
 To assign the coronis to a country, we look up the current risk areas in the [RKI website](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html). This website will be saved on a csv file in the user's phone for the case, in which the user goes later on the app while offline. This file will be updated every 24h.
