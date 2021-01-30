@@ -211,6 +211,7 @@ public class BingData extends Activity {
     public static String[] getArrayCountry(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
+        //order: confirmed, deaths, recovered
         String[] arrayCountry = {array[2], array[4], array[6]};
         return arrayCountry;
     }
