@@ -67,7 +67,7 @@
 
 ## Navigator
 
->This class navigates between the different interfaces (phone-view / tablet-view)
+>This class serves as a container for the MapFragment.
 
 
 ## RiskCountriesExtraction
