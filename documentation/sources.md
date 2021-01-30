@@ -19,7 +19,7 @@ If the user is online, then the App will get the information directly from the w
 
 ## Covid-19 Bing Data
 
-Our pie chart uses the data from the [Bing Covid-19 data repository](https://github.com/microsoft/Bing-COVID-19-Data). This repository is updated every 24h but it's not from us, so it might happen that the most current data is not yet available on our App, due to the Bing Covid-19 data repository not beeing updated. You can always find the latest data on the [Bing Covid-19 website](www.bing.com/covid).
+Our pie chart uses the data from the [Bing Covid-19 data repository](https://github.com/microsoft/Bing-COVID-19-Data). This repository is updated every 24h but it's not from us, so it might happen that the most current data is not yet available on our App, due to the Bing Covid-19 data repository not beeing updated. You can always find the latest data on the [Bing Covid-19 website](https://www.bing.com/covid).
 
 Our App extracts the data from above mentioned repository and saves it in a csv file in the phone for later use and in case the user goes offline (so that the last downloaded data is always available to the App). This file is updated every 24h.
 
