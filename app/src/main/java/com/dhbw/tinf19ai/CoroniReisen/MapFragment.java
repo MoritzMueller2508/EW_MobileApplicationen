@@ -50,7 +50,7 @@ import java.util.concurrent.Executors;
 public class MapFragment extends Fragment {
     private MapView mapView;
     private IMapController mapController;
-    public static EditText et;
+    public EditText et;
     public static String eingabe, btn;
     private FusedLocationProviderClient fusedLocationProviderClient;
     public Marker startMarker;
@@ -104,7 +104,8 @@ public class MapFragment extends Fragment {
         //Button for displaying the user request by manual input
         Button btn_suchen = view.findViewById(R.id.btn_go);
         btn_suchen.setOnClickListener(v -> {
-            String location = et.getText().toString();
+            String string = et.getText().toString();
+            String location = string.substring(0,1).toUpperCase() + string.substring(1).toLowerCase();
 
             //check if input is null
             if (location.trim().length() == 0) {
@@ -184,18 +185,17 @@ public class MapFragment extends Fragment {
                 //get geopoint always by country, no matter if searched by city or country
                 String country = address.getCountryName(); //get country-name from address
                 //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
-
+                System.out.println(countriesDict.get(country));
                 if (countriesDict.containsKey(country)) {
                     eingabe = CountryDictionary.getCountryInGerman(country);
                 } else {
                     eingabe = tx_eingabe;
                 }
+                System.out.println(eingabe);
 
                 Address countryAddress = geocoderNominatim.getFromLocationName(eingabe, 10).get(0); //get country-address from country-name
                 geoPoint = new GeoPoint(countryAddress.getLatitude(), countryAddress.getLongitude()); //set geopoint from country-name
-                getActivity().runOnUiThread(() -> {
-                    setMarkerAndCenter(geoPoint, eingabe);
-                });
+                getActivity().runOnUiThread(() -> setMarkerAndCenter(geoPoint, eingabe));
             } catch (IOException e) {
                 e.printStackTrace();
             }
