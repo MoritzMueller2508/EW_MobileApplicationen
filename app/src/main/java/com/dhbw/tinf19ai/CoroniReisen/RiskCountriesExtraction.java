@@ -190,11 +190,11 @@ public class RiskCountriesExtraction {
             riskAreaHtml = getOfflineWebsite();
         }
         String list = riskAreaHtml.substring(
-                riskAreaHtml.indexOf("<p><strong>1. Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:</strong></p>") +
-                        "<p><strong>1. Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:</strong></p>".length(),
-                riskAreaHtml.indexOf("<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>"));
+                riskAreaHtml.indexOf("Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:") +
+                        "Folgende Staaten gelten aktuell als Virusvarianten-Gebiete:".length(),
+                riskAreaHtml.indexOf("Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:"));
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
+        List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
         return convertedCountriesList;
@@ -210,12 +210,12 @@ public class RiskCountriesExtraction {
             riskAreaHtml = getOfflineWebsite();
         }
         String list = riskAreaHtml.substring(
-                riskAreaHtml.indexOf("<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>") +
-                        "<p><strong>4. Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:</strong></p>".length(),
+                riskAreaHtml.indexOf("Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:") +
+                        "Gebiete, die zu einem beliebigen Zeitpunkt in den vergangenen 10 Tagen Risikogebiete waren, aber derzeit KEINE mehr sind:".length(),
                 riskAreaHtml.indexOf("<div class=\"sectionRelated links\">"));
 
 
-        List<String> convertedCountriesList = new ArrayList<String>(Arrays.asList(list.split("</li>", -1)));
+        List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
         return convertedCountriesList;
@@ -242,7 +242,7 @@ public class RiskCountriesExtraction {
         }
 
         //add countries to "regions" list if they are in the website and in the hashtable countriesDict
-        ArrayList<String> regions = new ArrayList<String>();
+        ArrayList<String> regions = new ArrayList<>();
         for (int i = 0; i < convertedCountriesList.size(); i++) {
             String region = convertedCountriesList.get(i);
             for (Map.Entry countryDictEntry : CountryDictionary.countriesDict.entrySet()) {
@@ -258,6 +258,7 @@ public class RiskCountriesExtraction {
         }
 
         regions = getExtraRegions(regions);
+        System.out.println(regions);
         return regions;
     }
 
