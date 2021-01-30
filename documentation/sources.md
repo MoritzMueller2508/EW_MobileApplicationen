@@ -1,6 +1,6 @@
 # Sources
 
-1. [Coronis - Risk areas](sources.md#Coronis-Risk-areas)
+1. [Coronis - Risk areas](sources.md#coronis---risk-areas)
 2. [Covid-19 Bing Data](sources.md#covid-19-bing-data)
 
 ## Coronis - Risk areas
