@@ -5,6 +5,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  */
 
 import java.util.Hashtable;
+import java.util.Map;
 
 public class CountryDictionary {
     public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
@@ -264,6 +265,18 @@ public class CountryDictionary {
         String countryDe;
         countryDe = countriesDict.get(countryEn);
         return countryDe;
+    }
+
+    public static  String getCountryInEnglish(String countryDe){
+        String countryEn;
+        for (Map.Entry<String, String> e:countriesDict.entrySet()
+             ) {
+            if (countryDe.equals(e.getValue())){
+                return e.getKey();
+            }
+        }
+
+        return null;
     }
 
 }

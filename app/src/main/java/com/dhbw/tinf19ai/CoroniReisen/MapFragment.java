@@ -10,11 +10,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,7 +26,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.BuildConfig;
@@ -42,10 +37,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MapFragment extends Fragment {
     private MapView mapView;
@@ -58,6 +50,7 @@ public class MapFragment extends Fragment {
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "MapFragment";
     private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
+    public String countryRegion;
 
 
     @Override
@@ -66,7 +59,7 @@ public class MapFragment extends Fragment {
     }
 
 
-/*    @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onResume() {
         super.onResume();
@@ -80,7 +73,7 @@ public class MapFragment extends Fragment {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
-    }*/
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -120,9 +113,11 @@ public class MapFragment extends Fragment {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 et.getText().clear();
                 alertDialog.show();
-            } else {
+            }
+            else {
                 Log.d(TAG, "internet connection: " + internetConnection);
                 if (internetConnection) {
+                    et.getText().clear();
                     searchAndCenterAddress(location);
                 } else {
                     final Activity context2 = getActivity();
@@ -177,6 +172,7 @@ public class MapFragment extends Fragment {
         new Thread(() -> {
             try {
                 GeocoderNominatim geocoderNominatim = new GeocoderNominatim("default-user-agent");
+
                 Address address = geocoderNominatim.getFromLocationName(tx_eingabe, 10).get(0); //get address from input //if country does not exists, app will crash
                 //get geopoint always by country, no matter if searched by city or country
                 String country = address.getCountryName(); //get country-name from address

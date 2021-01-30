@@ -6,7 +6,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * ID (country)
  * Updated (date)
  * Confirmed (confirmed cases)
- * ComfirmedChange (rate of change of cases from previous day)
+ * ConfirmedChange (rate of change of cases from previous day)
  * Deaths (confirmed deaths)
  * DeathsChange (Rate of change of deaths from the previous day)
  * Recovered (Recovered cases)
@@ -182,6 +182,7 @@ public class BingData extends Activity {
         ArrayList<String[]> bingDataTemp = new ArrayList<>();
         File file = new File(csvFile);
         List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
+        System.out.println("works");
 
         for (String line : lines) {
             if (line.contains(countryRegion)) {
@@ -193,7 +194,7 @@ public class BingData extends Activity {
                 }
             }
         }
-
+        System.out.println("worksII");
         bingData.add(bingDataTemp.get(bingDataTemp.size() - 1));
 
         /* auslesen der kompletten Datei
@@ -205,90 +206,12 @@ public class BingData extends Activity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getID(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String id;
-        String[] array = bingData.get(0);
-        id = array[0];
-        return id;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getConfirmedCases(String countryRegion) throws IOException {
+    public static String[] getArrayCountry(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
-        String confirmedCases = array[2];
-        return confirmedCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getDeathsCases(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String deathCases = array[4];
-        return deathCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getRecoveredCases(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String recoveredCases = array[6];
-        return recoveredCases;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getLatitude(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String latitude = array[8];
-        if (latitude.isEmpty()) {
-            return null;
-        }
-        return latitude;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getLongitude(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String longitude = array[9];
-        if (longitude.isEmpty()) {
-            return null;
-        }
-        return longitude;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getISO2(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String iso2 = array[10];
-        if (iso2.isEmpty()) {
-            return null;
-        }
-        return iso2;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String getISO3(String countryRegion) throws IOException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String iso3 = array[11];
-        if (iso3.isEmpty()) {
-            return null;
-        }
-        return iso3;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static Date getLastUpdated(String countryRegion) throws IOException, ParseException {
-        ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        String date = array[1];
-        Date lastUpdated = new SimpleDateFormat("MM/dd/yyyy").parse(date);
-
-        return lastUpdated;
+        //order: confirmed, deaths, recovered
+        String[] arrayCountry = {array[2], array[4], array[6]};
+        return arrayCountry;
     }
 }
 

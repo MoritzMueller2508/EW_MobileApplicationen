@@ -11,24 +11,19 @@ package com.dhbw.tinf19ai.CoroniReisen;
  */
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
-import com.faskn.lib.PieChart;
-import com.faskn.lib.Slice;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.GeocoderNominatim;
@@ -37,12 +32,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static android.app.PendingIntent.getActivity;
 
 public class CountryDetails extends AppCompatActivity {
     private TextView tx_title_country, tx_advice;
@@ -53,14 +45,16 @@ public class CountryDetails extends AppCompatActivity {
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "CountryDetails";
-    private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
 
+    private String country_eingabe, country;
+    public static String[] countryArray;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
+
 
         //set map
         map_cutout = (MapView) findViewById(R.id.map_view);
@@ -76,7 +70,7 @@ public class CountryDetails extends AppCompatActivity {
 
         //set titel matching the country
         Intent intent = getIntent();
-        String country_eingabe = intent.getStringExtra("country");
+        country_eingabe = intent.getStringExtra("country");
         tx_title_country.setText(country_eingabe);
 
         //set cards
@@ -86,21 +80,41 @@ public class CountryDetails extends AppCompatActivity {
         CardView coroni_card = (CardView) findViewById(R.id.card_coroni);
 
         searchAndCenterAddress(country_eingabe);
-        setLinks(advice_card, source_card, coroni_card);
+        setLinks(advice_card, source_card, coroni_card, pieChart_card);
 
-        //Chart
 
-        //setDataPieChart(pieChart_card);
 
-        try {
-            System.out.println("confirmed cases: "+BingData.getConfirmedCases("Spain"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        AsyncTask.execute(() -> {
+            country = country_eingabe;
+            if(!CountryDictionary.countriesDict.containsKey(country_eingabe) && !CountryDictionary.countriesDict.containsValue(country_eingabe)) {
+                    try {
+                        throw new Exception("Failed");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            else {
+                    if (CountryDictionary.countriesDict.containsValue(country_eingabe))
+                        country = CountryDictionary.getCountryInEnglish(country_eingabe);
+            }
+
+            try {
+                countryArray = BingData.getArrayCountry(country);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+
+
     }
 
+
+
     //set links for clickable cards
-    private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card) {
+    private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card, CardView pieChart_card) {
         advice_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -116,41 +130,21 @@ public class CountryDetails extends AppCompatActivity {
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
         });
-    }
-
-/*
-    private void setDataPieChart(CardView pieChart_card) {
-        ArrayList slices = new ArrayList<Slice>(); //ArrayList for Slices
-        slices.add(new Slice(3.5F,0, "critical", null, null,null)); //Slices have to be added before display
-        slices.add(new Slice(3.5F,0,"stable", null, null, null));
-        slices.add(new Slice(3.5F,0,"dead", null, null, null));
-
-        PieChart pieChart = new PieChart(
-                slices /* ArrayList with all Slices - needs to be generated first,
-                null,
-                0f,
-                80f
-        ).build();
-
-        View chart = findViewById(R.id.pieChart);
-
-        chart.
-    */
-
-
-
-
-        /*
-        chart.setPieChart(pieChart); //Don't know, what "chart" is supposed to be
-
-        btn_advice_link = findViewById(R.id.btn_Link); //?
-        btn_advice_link.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
+        pieChart_card.setOnClickListener(view-> {
+            Intent intent = new Intent(this, com.dhbw.tinf19ai.CoroniReisen.PieChart.class);
+            intent.putExtra("country", country_eingabe);
+            if (countryArray != null) {
+            startActivity(intent);
+            }
+            else {
+                new Handler().postDelayed(() -> {
+                    startActivity(intent);
+                }, 7000);   //7 seconds
             }
         });
+    }
 
-    }*/
+
 
     //set geoPoint with address and the user input
     @RequiresApi(api = Build.VERSION_CODES.O)

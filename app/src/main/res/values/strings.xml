@@ -6,7 +6,7 @@
     <string name="travelRules">Was Sie bei einem Urlaub im Ausland beachten sollten, welche Regelungen gelten und was Einreisende aus einem Risikogebiet wissen müssen, erfahren Sie wenn sie hier klicken.</string>
     <string name="Advice_Link">https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise</string>
     <string name="advice">Eine generelle weltweite Reisewarnung gilt nicht! Die Grenzen sind von deutscher Seite aus offen. Einzelne Länder haben aber von sich aus Beschränkungen oder Einreiseverbote verhängt. </string>
-    <string name="advice_green">Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken einreisen.</string>
+    <string name="advice_green">Das Land ist kein Risikogebiet. Sie können mit wenig Bedenken hier Urlaub machen.</string>
     <string name="advice_orange">Das Land hat hohe Infektionszahlen, gilt jedoch nicht als Risikogebiet. Recherchieren sie mögliche Beschränkungen oder Einreisebestimmungen (siehe Link).</string>
-    <string name="advice_red">Das Land ist ein Risikogebiet. Es gibt hohe Infektionszahlen und ein Urlaub in diesem Landwäre daher wenig sinnvoll.</string>
+    <string name="advice_red">Das Land ist ein Risikogebiet. Es gibt hohe Infektionszahlen und ein Urlaub in diesem Land ist nicht möglich.</string>
 </resources>
