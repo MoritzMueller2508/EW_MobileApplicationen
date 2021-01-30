@@ -1,5 +1,8 @@
 # Sources
 
+1. [Coronis - Risk areas](sources.md#Coronis-Risk-areas)
+2. [Covid-19 Bing Data](sources.md#covid-19-bing-data)
+
 ## Coronis - Risk areas
 <img src="../app\src\main\res\drawable\coroni_red.png" width=200px height=200px> <img src="../app\src\main\res\drawable\coroni_orange.png" width=200px height=200px> <img src="../app/src/main/res/drawable/coroni_green.png" width=200px height=200px>
 <br>
