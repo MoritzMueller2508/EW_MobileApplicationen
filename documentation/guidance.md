@@ -35,8 +35,26 @@ You can either **search for a single country** and display it on the map, or **s
 - The category is displayed with a short explanatory text and the list of 10 countries. The countries have been selected from various sources of tourism.
 
 **This interface is used to select a country limited by the selection of a vacation category.**
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="CountryDeatils.PNG" width="200">
 ## CountryDetails
-- Hallo
+this interface displays the country details for the selected country. 
+
+There are 5 cardviews:
+- 1. CardView:** Here is a map with marker on the country and the matching Coroni assigned. The coronis are selected according to the data from the RKI website. 
+
+>- **red Coroni:** risk area
+- green coroni:** no risk area
+- **orange Coroni:** was risk area in the last 10 days, but is not anymore.
+
+- **2. CardView:** This view displays action instructions.
+
+- **3. CardView:** This view provides a redirect to the State Department page. There you can get more information about entry requirements.
+
+- **4. CardView:**
+
+- **5. CardView:** This CardView shows the source of our data for the current numbers. If you click on it, you will be redirected to the API.
+
+
+**This interface is used to display country details associated with corona.**
