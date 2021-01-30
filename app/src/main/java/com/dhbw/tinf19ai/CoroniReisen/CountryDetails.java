@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,7 +75,6 @@ public class CountryDetails extends AppCompatActivity {
         setContentView(R.layout.country_details);
 
 
-
         //set map
         map_cutout = (MapView) findViewById(R.id.map_view);
         mapController = this.map_cutout.getController();
@@ -101,18 +101,14 @@ public class CountryDetails extends AppCompatActivity {
         searchAndCenterAddress(country_eingabe);
         setLinks(advice_card, source_card, coroni_card);
 
-        //Chart
-
 
         initPieChart();
-
 
         try {
             setDataPieChart();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
     }
@@ -165,12 +161,9 @@ public class CountryDetails extends AppCompatActivity {
         chart.setDrawCenterText(false);
 
 
-
         //set custom marker for displaying data an tap
         CustomMarker my = new CustomMarker(getApplicationContext(), R.layout.tv_content);
         chart.setMarkerView(my);
-
-
 
     }
 
@@ -200,11 +193,11 @@ public class CountryDetails extends AppCompatActivity {
 
 
 
-            System.out.println("Help");
+            String[] countryArray = BingData.getArrayCountry(country);
 
-            String recovered = BingData.getRecoveredCases(country);
-            String confirmed = BingData.getConfirmedCases(country);
-            String deaths = BingData.getDeathsCases(country);
+            String recovered = countryArray[0];
+            String confirmed = countryArray[1];
+            String deaths = countryArray[2];
 
             int recoveredInt;
             int deathsInt;
