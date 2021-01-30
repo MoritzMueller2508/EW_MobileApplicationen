@@ -85,6 +85,8 @@ current numbers
 
 death numbers
 
-recovered numbers. With a button you can return to the country details.
+recovered numbers. 
+
+With a button you can return to the country details.
 
 
