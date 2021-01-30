@@ -19,7 +19,7 @@
 >This class assigns the appropriate coroni to the countries which are assigned to the different groups in the class RiskCountriesExtraction.
 
 
-## Country Details
+## CountryDetails
 
 >This class displays the data for a matching country.
  The class contains 5 cards with
