@@ -11,6 +11,15 @@
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+        <ImageButton
+            android:id="@+id/btn_PieBack"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="back"
+            style="@style/text"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="?attr/homeAsUpIndicator"
+            />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -25,6 +34,14 @@
                 style="@style/title"
                 android:layout_marginTop="25dp"
                 android:textSize="41dp"/>
+
+            <TextView
+                android:id="@+id/tv_lastUpdateChart"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textSize="10dp"
+
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/piecard"
@@ -54,22 +71,16 @@
                         android:layout_width="350dp"
                         android:layout_height="350dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="75dp"
-                        />
+                        android:layout_marginTop="75dp">
+
+                    </com.github.mikephil.charting.charts.PieChart>
 
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btn_PieBack"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:text="back"
-                style="@style/text"
-                android:background="@drawable/button_background"
-                />
+
 
 
         </GridLayout>

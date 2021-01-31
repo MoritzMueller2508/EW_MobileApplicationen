@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -26,6 +28,9 @@ import org.osmdroid.views.MapView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.github.mikephil.charting.components.Legend.LegendDirection.LEFT_TO_RIGHT;
+import static com.github.mikephil.charting.components.Legend.LegendDirection.RIGHT_TO_LEFT;
 
 public class PieChart extends AppCompatActivity {
     //initialize values and objects
@@ -42,8 +47,9 @@ public class PieChart extends AppCompatActivity {
         setContentView(R.layout.pie_chart);
 
         tx_title_country = findViewById(R.id.tx_country);
-        Button button = findViewById(R.id.btn_PieBack);
-
+        ImageButton button = findViewById(R.id.btn_PieBack);
+        TextView textView = findViewById(R.id.tv_lastUpdateChart);
+        textView.setText("last update: " + countryArray[3]);
 
         //set titel matching the country
         Intent intent = getIntent();
@@ -89,6 +95,8 @@ public class PieChart extends AppCompatActivity {
         chart.setDrawCenterText(false);
         //
         chart.getLegend().setTextSize(19f);
+        Legend legend = chart.getLegend();
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
 
 
 

@@ -206,7 +206,7 @@ public class BingData extends Activity {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
         String[] array = bingData.get(0);
         //order: confirmed, deaths, recovered
-        String[] arrayCountry = {array[2], array[4], array[6]};
+        String[] arrayCountry = {array[2], array[4], array[6], array[1]};
         return arrayCountry;
     }
 }

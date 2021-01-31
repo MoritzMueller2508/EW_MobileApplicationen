@@ -10,8 +10,11 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a reference to our data source.
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -55,6 +58,7 @@ public class CountryDetails extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        internetConnection = isNetworkAvailable();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_details);
 
@@ -115,7 +119,12 @@ public class CountryDetails extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onResume() {
+        Log.i(TAG, "onResume: resumed");
+        internetConnection = isNetworkAvailable();
+        super.onResume();
+    }
 
     //set links for clickable cards
     private void setLinks(CardView advice_card, CardView source_card, CardView coroni_card, CardView pieChart_card) {
@@ -229,5 +238,13 @@ public class CountryDetails extends AppCompatActivity {
         if (internetConnection) {
             this.mapController.setCenter(geoPoint);
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
