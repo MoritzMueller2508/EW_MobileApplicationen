@@ -9,10 +9,11 @@
 - [MapFragment](classes.md#MapFragment)
 - [Navigator](classes.md#Navigator)
 - [RiskCountriesExtraction](classes.md#RiskCountriesExtraction)
+- [PieChart](classes.md#PieChart)
 
 ## BingData
 
->This class connects to the Bing Covid API. The data is imported from the api periodically and written to a csv to get the current numbers.
+>This class connects to the Bing Covid API. The data is imported from the api periodically (every 24 hours) and written to a csv file to get the current numbers. Thia way the latests numbers (downloaded) are also available offline.
  We get the following data:
  Updated (date)
  Confirmed (confirmed cases)
@@ -32,13 +33,13 @@
  a map and the matching coroni,
  our travel advices,
  a reference to the entry requirements of the foreign office,
- the current numbers in the form of a pie chart and
+ a card redirecting to a pie chart and
  a reference to our data source.
 
 
 ## CountryDictionary
 
->This class represents a hashtable with all countries of this world (we don't deny the existance of other worlds).
+>This class represents a hashtable with all the countries of this world (we don't deny the existance of other worlds).
 
 
 ## DestinationsList
@@ -49,8 +50,8 @@
 
 ## MainActivity
 
->This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
- By clicking on the image you will be redirected to the next interface.
+>This class represents the first user interface that includes a greeting and rules of conduct during a pandemic.
+ By clicking on the image you will be redirected to the next UI (MapFragment).
 
 
 ## MapFragment
@@ -68,21 +69,18 @@
 
 ## RiskCountriesExtraction
 
->This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list.
+>This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list. Also downloading the website in a csv file (every 24 hours) facilitation the offline use.
  The distinction is made between current risk countries *getRedRiskCountries()* and countries that were a risk country in
  the last 10 days but are not anymore *getOrangeRiskCountries()*.
+
 
 
 ## PieChart
 
 >This interface shows a PieChart with data for the selected country from:
-
-current numbers
-
-death numbers
-
-recovered numbers. 
-
-With a button you can return to the country details.
+- Confirmed cases
+- Death cases
+- Recovered cases
+>With a button you can return to the country details.
 
 
