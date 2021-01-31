@@ -82,6 +82,7 @@
 >- Recovered cases
 
 >With a button you can return to the country details.
+>To access the PieChart click the card "Aktuelle Zahlen".
 
 
 ## RiskCountriesExtraction
