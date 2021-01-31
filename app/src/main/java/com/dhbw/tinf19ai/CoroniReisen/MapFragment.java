@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 public class MapFragment extends Fragment {
+    //initialize values and objects
     private MapView mapView;
     private IMapController mapController;
     public EditText et;
@@ -67,7 +68,7 @@ public class MapFragment extends Fragment {
         if (!internetConnection){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
             alertDialogBuilder.setMessage("Die Daten die Sie bei der App sehen sind nicht aktuell, " +
-                    "da Sie über eine Internetverbindung nicht verfügen. Sobald sie online gehen, " +
+                    "da Sie über keine Internetverbindung verfügen. Sobald sie online gehen " +
                     "werden die Daten aktualisiert.");
             alertDialogBuilder.setTitle("Keine Internetverbindung");
             AlertDialog alertDialog = alertDialogBuilder.create();
@@ -87,6 +88,7 @@ public class MapFragment extends Fragment {
         this.mapController = this.mapView.getController();
         this.mapController.setZoom(3.0);
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
+        Log.i(TAG, "onCreateView: MapFragment initialized");
 
         //Input from the user is imported
         this.et = (EditText) view.findViewById(R.id.et_address_input);
@@ -105,6 +107,7 @@ public class MapFragment extends Fragment {
                 alertDialogBuilder.setTitle("Input leer.");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
+                Log.e("Error", "onCreateView: Error, Input null" );
             }
             //check if input is in dictionary
             else if (!countriesDict.containsKey(location) && !countriesDict.containsValue(location)) {
@@ -113,6 +116,7 @@ public class MapFragment extends Fragment {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 et.getText().clear();
                 alertDialog.show();
+                Log.e("Error", "onCreateView: Error, Dictionary does not contain input" );
             }
             else {
                 Log.d(TAG, "internet connection: " + internetConnection);
@@ -139,24 +143,28 @@ public class MapFragment extends Fragment {
         btn_sonne.setOnClickListener(v -> {
             btn = "sonne";
             Intent intent = new Intent(getActivity(), DestinationsList.class);
+            Log.i(TAG, "onCreateView: redirecting to activity 'sun'");
             startActivity(intent);
         });
         Button btn_berge = view.findViewById(R.id.btn_berge);
         btn_berge.setOnClickListener(v -> {
             btn = "berge";
             Intent intent = new Intent(getActivity(), DestinationsList.class);
+            Log.i(TAG, "onCreateView: redirecting to activity 'mountain'");
             startActivity(intent);
         });
         Button btn_stadt = view.findViewById(R.id.btn_stadt);
         btn_stadt.setOnClickListener(v -> {
             btn = "stadt";
             Intent intent = new Intent(getActivity(), DestinationsList.class);
+            Log.i(TAG, "onCreateView: redirecting to activity 'city'");
             startActivity(intent);
         });
         Button btn_natur = view.findViewById(R.id.btn_natur);
         btn_natur.setOnClickListener(v -> {
             btn = "natur";
             Intent intent = new Intent(getActivity(), DestinationsList.class);
+            Log.i(TAG, "onCreateView: redirecting to activity 'nature'");
             startActivity(intent);
         });
 
@@ -177,18 +185,19 @@ public class MapFragment extends Fragment {
                 //get geopoint always by country, no matter if searched by city or country
                 String country = address.getCountryName(); //get country-name from address
                 //geoPoint = new GeoPoint(address.getLatitude(), address.getLongitude());
-                System.out.println(countriesDict.get(country));
+                Log.i(TAG, "searchAndCenterAddress: " + countriesDict.get(country));
                 if (countriesDict.containsKey(country)) {
                     eingabe = CountryDictionary.getCountryInGerman(country);
                 } else {
                     eingabe = tx_eingabe;
                 }
-                System.out.println(eingabe);
+                Log.i("Input", "searchAndCenterAddress: input =" + eingabe);
 
                 Address countryAddress = geocoderNominatim.getFromLocationName(eingabe, 10).get(0); //get country-address from country-name
                 geoPoint = new GeoPoint(countryAddress.getLatitude(), countryAddress.getLongitude()); //set geopoint from country-name
                 getActivity().runOnUiThread(() -> setMarkerAndCenter(geoPoint, eingabe));
             } catch (IOException e) {
+                Log.e("Error", "searchAndCenterAddress: Error" );
                 e.printStackTrace();
             }
         }).start();
@@ -225,12 +234,14 @@ public class MapFragment extends Fragment {
                     Intent intent = new Intent(currentActivity, CountryDetails.class);
                     intent.putExtra("country", eingabe);
                     startActivity(intent);
+            Log.i(TAG, "setMarkerAndCenter: Marker set");
                     return false;
                 }
 
         );
 
         this.mapController.setCenter(geoPoint);
+        Log.i(TAG, "setMarkerAndCenter: Map centered");
     }
 
 }

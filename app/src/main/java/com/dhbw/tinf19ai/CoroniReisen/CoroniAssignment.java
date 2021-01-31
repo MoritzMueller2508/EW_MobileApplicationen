@@ -32,7 +32,7 @@ public class CoroniAssignment {
         List<String> redRiskCountries = RiskCountriesExtraction.getRedRiskCountries();
         Log.i("RedRiskCountries", "Got Red_Risk countries with red Coroni");
         List<String> orangeRiskCountries = RiskCountriesExtraction.getOrangeRiskCountries();
-       Log.i("OrangeRiskCountries", "Got Orange_Risk countries with orange Coroni" );
+        Log.i("OrangeRiskCountries", "Got Orange_Risk countries with orange Coroni" );
 
         //assign right coroni
         for (int i = 0; i < orangeRiskCountries.size(); i++) {

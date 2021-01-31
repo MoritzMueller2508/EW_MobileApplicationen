@@ -17,6 +17,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.ClosedSubscriberGroupInfo;
 import android.util.Log;
 import android.view.View;
 
@@ -31,6 +32,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 
 public class MainActivity extends AppCompatActivity {
+    //initialize values and objects
     public static boolean internetConnection = false;
     public boolean permissions = false;
     // Storage Permissions variables
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Dictionary initialization
         CountryDictionary.setCountriesDict();
+        Log.i(TAG, "onCreate: Dictionary ready");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     //Forwarding to the MapFragment by clicking on the image
     public void imageClick(View view) {
         Intent intent = new Intent(this, Navigator.class);
+        Log.i(TAG, "imageClick: redirecting to new Activity");
         startActivity(intent);
     }
 
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+        Log.i(TAG, "verifyStoragePermissions: Permissions set");
     }
 
     //function to request the Bing Data and the RKI data are saved
@@ -142,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialogBuilder.setTitle("Keine Internetverbindung");
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
+            Log.e(TAG, "saveData: No Internet-connection available");
         }
     }
 

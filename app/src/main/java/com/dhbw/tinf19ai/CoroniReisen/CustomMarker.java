@@ -28,6 +28,13 @@ public class CustomMarker extends MarkerView {
 
     }
 
+
+    /**
+     * Set Value of Entry, then refresh content
+     *
+     * @param e
+     * @param highlight
+     */
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         tvContent.setText("" + e.getY());
@@ -35,6 +42,13 @@ public class CustomMarker extends MarkerView {
 
     }
 
+    /**
+     * Center data value
+     *
+     * @param posX
+     * @param posY
+     * @return
+     */
     @Override
     public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
         return super.getOffsetForDrawingAtPoint(posX/2, posY);
