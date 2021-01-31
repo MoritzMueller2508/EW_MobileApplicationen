@@ -51,7 +51,7 @@ public class MapFragment extends Fragment {
     public static GeoPoint geoPoint;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "MapFragment";
-    private Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
+    private final Hashtable<String, String> countriesDict = CountryDictionary.countriesDict;
     public String countryRegion;
 
 

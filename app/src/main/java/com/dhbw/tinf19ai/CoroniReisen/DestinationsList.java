@@ -5,10 +5,8 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * It displays the selected category with a suitable text and the list of selectable countries.
  */
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.osmdroid.util.GeoPoint;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class DestinationsList extends ListActivity {
     //initialize values and objects

@@ -4,19 +4,12 @@ package com.dhbw.tinf19ai.CoroniReisen;
  */
 
 import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.security.auth.login.LoginException;
 
 public class CoroniAssignment {
     //initialize values and objects

@@ -10,20 +10,15 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.nfc.Tag;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
@@ -31,14 +26,9 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
-import org.osmdroid.views.MapView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.github.mikephil.charting.components.Legend.LegendDirection.LEFT_TO_RIGHT;
-import static com.github.mikephil.charting.components.Legend.LegendDirection.RIGHT_TO_LEFT;
 
 public class PieChart extends AppCompatActivity {
     //initialize values and objects

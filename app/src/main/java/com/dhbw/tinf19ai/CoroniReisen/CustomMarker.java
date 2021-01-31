@@ -1,7 +1,7 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- * This class facilates the presentation of the data in the PieChart, allowing different functinalities, like highlighting an entry when tapped.
+ * This class facilates the presentation of the data in the PieChart, allowing different functionalities, like highlighting an entry when tapped.
  */
 
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 
@@ -17,7 +16,7 @@ public class CustomMarker extends MarkerView {
 
     //initialize values and objects
 
-    private TextView tvContent;
+    private final TextView tvContent;
 
 
     /**

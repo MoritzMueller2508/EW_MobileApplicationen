@@ -17,18 +17,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.ClosedSubscriberGroupInfo;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean permissions = false;
     // Storage Permissions variables
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
+    private static final String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -46,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        internetConnection = isNetworkAvailable();
         super.onCreate(savedInstanceState);
 
         Log.i(TAG, "On Create .....");
@@ -62,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onStart() {
+        internetConnection = isNetworkAvailable();
         super.onStart();
         Log.i(TAG, "On Start .....");
         verifyStoragePermissions(this);
@@ -149,6 +147,12 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
             Log.e(TAG, "saveData: No Internet-connection available");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        internetConnection = isNetworkAvailable();
+        super.onResume();
     }
 
     private boolean isNetworkAvailable() {

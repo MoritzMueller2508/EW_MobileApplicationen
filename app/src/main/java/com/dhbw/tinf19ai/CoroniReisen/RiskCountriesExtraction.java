@@ -7,19 +7,14 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * the last 10 days but are not anymore --getOrangeRiskCountries()--.
  */
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +32,7 @@ import java.util.Scanner;
 
 public class RiskCountriesExtraction {
     //initialize values and objects
-    private static boolean internetConnection = MainActivity.internetConnection;
+    private static final boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "RiskCountriesExtraction";
 
 
@@ -267,7 +262,7 @@ public class RiskCountriesExtraction {
         }
 
         regions = getExtraRegions(regions);
-        Log.d(TAG, "getRiskCountries: regions = "+ regions);;
+        Log.d(TAG, "getRiskCountries: regions = "+ regions);
         return regions;
     }
 
