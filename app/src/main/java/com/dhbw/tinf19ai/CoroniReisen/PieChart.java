@@ -47,7 +47,10 @@ public class PieChart extends AppCompatActivity {
         tx_title_country = findViewById(R.id.tx_country);
         ImageButton button = findViewById(R.id.btn_PieBack);
         TextView textView = findViewById(R.id.tv_lastUpdateChart);
-        textView.setText("last update: " + countryArray[3]);
+        if (countryArray == null)
+            textView.setText("Es sind leider keine Daten zu diesem Land bekannt. Das tut uns Leid!");
+        else
+            textView.setText("last update: " + countryArray[3]);
 
         //set titel matching the country
         Intent intent = getIntent();
@@ -94,7 +97,11 @@ public class PieChart extends AppCompatActivity {
         //
         chart.getLegend().setTextSize(19f);
         Legend legend = chart.getLegend();
-        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setWordWrapEnabled(true);
+        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setXOffset(20f);
+        legend.setYOffset(-10f);
+        legend.setXEntrySpace(500f);
 
 
 
@@ -112,15 +119,27 @@ public class PieChart extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDataPieChart() {
 
+        String recovered;
+        String confirmed;
+        String deaths;
+
         com.github.mikephil.charting.charts.PieChart chart = findViewById(R.id.pieChart);
 
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
         String label = "";
 
+        if(countryArray == null){
+            recovered = "";
+            confirmed = "";
+            deaths = "";
 
-        String recovered = countryArray[2];
-        String confirmed = countryArray[0];
-        String deaths = countryArray[1];
+        }
+        else {
+
+            recovered = countryArray[2];
+            confirmed = countryArray[0];
+            deaths = countryArray[1];
+        }
 
         if(!recovered.equals(""))
             recoveredCases = Integer.parseInt(recovered);
@@ -142,13 +161,13 @@ public class PieChart extends AppCompatActivity {
         //initialize data
         Map<String, Integer> typeAmountMap = new HashMap<>();
         Log.i("Put recovered cases: ", recovered);
-        typeAmountMap.put("recovered_cases", recoveredCases );
+        typeAmountMap.put("Erholte Fälle", recoveredCases );
 
         Log.i("Put death cases: ", deaths);
-        typeAmountMap.put("deaths", deathCases);
+        typeAmountMap.put("Todesfälle", deathCases);
 
         Log.i("Put confirmed cases: ", confirmed);
-        typeAmountMap.put("confirmed", confirmedCases);
+        typeAmountMap.put("Bestätigte Fälle", confirmedCases);
 
 
         //initializing colors for the entries

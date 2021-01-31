@@ -35,13 +35,7 @@
                 android:layout_marginTop="25dp"
                 android:textSize="41dp"/>
 
-            <TextView
-                android:id="@+id/tv_lastUpdateChart"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:textSize="10dp"
 
-                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/piecard"
@@ -74,6 +68,13 @@
                         android:layout_marginTop="75dp">
 
                     </com.github.mikephil.charting.charts.PieChart>
+                    <TextView
+                        android:id="@+id/tv_lastUpdateChart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+
+                        />
 
                 </LinearLayout>
 

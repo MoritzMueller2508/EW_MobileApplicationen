@@ -15,7 +15,6 @@ public class CountryDictionary {
 
     //add countries to the dictionary
     public static void setCountriesDict() {
-        countriesDict.put("Worldwide", "Weltweit");
         countriesDict.put("Afghanistan", "Afghanistan");
         countriesDict.put("Albania", "Albanien");
         countriesDict.put("Algeria", "Algerien");
@@ -276,17 +275,62 @@ public class CountryDictionary {
     public static  String getCountryInEnglish(String countryDe){
         //initialize values and objects
         String countryEn;
-        //get translation from hashtable
-        for (Map.Entry<String, String> e:countriesDict.entrySet() //iterate through valueSet - german String location
-             ) {
-            if (countryDe.equals(e.getValue())){
-                countryEn = e.getKey();
-                Log.i("Translation", "getCountryInEnglish: translated country to english");
-                return countryEn;
+        //special cases
+
+        if(countryDe.equals("Russische Föderation"))
+            return   countryEn = "Russia";
+
+        else if(countryDe.equals("Republik Kongo"))
+            return  countryEn = "Congo";
+
+        else if(countryDe.equals("Kongo DR"))
+            return countryEn = "Congo (DRC)";
+
+        else if(countryDe.equals("China"))
+            return countryEn = "China";
+
+        else if(countryDe.equals("Französisch-Guayana"))
+            return countryEn = "French Guiana";
+
+        else if (countryDe.equals("La Réunion"))
+            return countryEn = "Reunion"; //empty
+
+        else if (countryDe.equals("Hongkong"))
+            return countryEn = "Hong Kong SAR";
+
+        else if (countryDe.equals("St. Vincent und die Grenadinen"))
+            return countryEn = "Saint Vincent and the Grenadines";
+
+        else if (countryDe.equals("Nordkorea"))
+            return countryEn = "North Korea"; //empty
+
+        else if (countryDe.equals("Südsudan"))
+            return countryEn = "South Sudan";
+
+        else if (countryDe.equals("Syrien"))
+            return countryEn = "Syria";
+
+        else if(countryDe.equals("Trinidad und Tobago"))
+            return  countryEn = "Trinidad and Tobago";
+
+        else if(countryDe.equals("Amerikanische Jungferninseln"))
+            return countryEn = "U.S. Virgin Islands";
+
+
+        else {
+
+            //get translation from hashtable
+            for (Map.Entry<String, String> e : countriesDict.entrySet() //iterate through valueSet - german String location
+            ) {
+                if (countryDe.equals(e.getValue())) {
+                    countryEn = e.getKey();
+                    Log.i("Translation", "getCountryInEnglish: translated country to english");
+                    return countryEn;
+                }
             }
         }
 
-        return null; //return null if translation failed
+        return countryEn ="not found"; //return 'not found' if translation failed
     }
 
 }

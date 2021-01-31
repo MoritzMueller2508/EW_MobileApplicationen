@@ -170,19 +170,28 @@ public class BingData extends Activity {
                 }
             }
         }
+        if(bingDataTemp.size() == 0)
+            return null;
+        else{
         bingData.add(bingDataTemp.get(bingDataTemp.size() - 1));
 
         return bingData;
+        }
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String[] getArrayCountry(String countryRegion) throws IOException {
         ArrayList<String[]> bingData = getCsvData(countryRegion);
-        String[] array = bingData.get(0);
-        //order: confirmed, deaths, recovered
-        String[] arrayCountry = {array[2], array[4], array[6], array[1]};
-        return arrayCountry;
+        if(bingData == null)
+            return null;
+        else {
+
+            String[] array = bingData.get(0);
+            //order: confirmed, deaths, recovered
+            String[] arrayCountry = {array[2], array[4], array[6], array[1]};
+            return arrayCountry;
+        }
     }
 }
 
