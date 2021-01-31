@@ -1,4 +1,4 @@
-# guidance
+# User Guide
 
 How does the app work and what can it do? 
 The individual UIs and their functions are explained in more detail below.
@@ -13,6 +13,7 @@ The individual UIs and their functions are explained in more detail below.
 you will be redirected to the next view. 
 
 **This UI serves as a start page.**
+
 <br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="MapFragment.PNG" width="200">
@@ -26,6 +27,7 @@ you will be redirected to the next view.
 - The buttons on the 2nd cardview represent vacation categories. Via these buttons you will be forwarded to a country selection. 
 
 **This UI serves as input of the country to be specified.**
+
 <br><br><br><br><br><br><br>
 
 ><img align="left" src="DestinationsList.PNG" width="200">
@@ -35,12 +37,16 @@ you will be redirected to the next view.
 - The category is displayed with a short explanatory text and the list of 10 countries. The countries have been selected from various sources of tourism.
 
 **This UI is used to select a country limited by the selection of a vacation category.**
+
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
-- **Red Coroni:** a risk area
-- **Green Coroni:** not a risk area
-- **Orange Coroni:** was a risk area in the last 10 days, but is not anymore.
+## Coronis - Risk areas
+<img src="../app/src/main/res/drawable/coroni_red.png" width=200px height=200px> <img src="../app/src/main/res/drawable/coroni_orange.png" width=200px height=200px> <img src="../app/src/main/res/drawable/coroni_green.png" width=200px height=200px>
+- **Red Coroni:** currently a risk area.
+- **Orange Coroni:** is not currently a risk area but was one in the last 10 days.
+- **Green Coroni:** is not currently a risk area.
 
+<br>
 
 ><img align="left" src="CountryDetails.PNG" width="200">
 ## CountryDetails
