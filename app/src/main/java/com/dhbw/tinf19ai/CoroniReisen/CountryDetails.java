@@ -6,7 +6,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a map and the matching coroni,
  * our travel advices,
  * a reference to the entry requirements of the foreign office,
- * the current numbers in the form of a pie chart and
+ * a card redirecting to a pie chart and
  * a reference to our data source.
  */
 

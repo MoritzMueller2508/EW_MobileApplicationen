@@ -1,8 +1,8 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- * This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
- * By clicking on the image you will be redirected to the next interface.
+ * This class represents the first user interface that includes a greeting and rules of conduct during a pandemic.
+ * By clicking on the image you will be redirected to the next UI (MapFragment).
  */
 
 import android.Manifest;
