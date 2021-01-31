@@ -36,6 +36,7 @@ you will be redirected to the next view.
 
 **This UI is used to select a country limited by the selection of a vacation category.**
 <br><br><br><br><br><br><br><br><br><br><br><br>
+
 - **Red Coroni:** a risk area
 - **Green Coroni:** not a risk area
 - **Orange Coroni:** was a risk area in the last 10 days, but is not anymore.
