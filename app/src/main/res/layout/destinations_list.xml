@@ -7,7 +7,8 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#263A4E">
+    android:background="#263A4E"
+    >
 
     <GridLayout
         android:layout_width="348dp"

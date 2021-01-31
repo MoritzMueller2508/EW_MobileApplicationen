@@ -24,3 +24,20 @@ Our pie chart uses the data from the [Bing Covid-19 data repository](https://git
 Our App extracts the data from above mentioned repository and saves it in a csv file in the phone for later use and in case the user goes offline (so that the last downloaded data is always available to the App). This file is updated every 24h. See the [classes documentation](classes.md#BingData).
 
 From this data we get the last confirmed, recovered and death cases from a certain country; as long as the data is also available on the [Bing Covid-19 data repository](https://github.com/microsoft/Bing-COVID-19-Data).
+
+
+<br><br>
+
+## MPAndroid - Library
+
+The Bing-Covid-19-Data is displayed in a piechart, provided by the MPAndroid Library [Github](https://github.com/PhilJay/MPAndroidChart).
+The piechart got the following features:
+- Highlight by tap
+    - The desired slice can be tapped, which will then display the data as a float-number. Furthermore, the slice is now highlighted.
+- Rotation
+    - The user can rotate the chart. To do so, just tap the chart so one slice is highlighted and drag in the desired direction.
+- Animation
+    - When the piechart is drawn with an animation
+- The pichart shows recovered, current and death cases.
+
+At the top, the last time the data was updated is displayed.

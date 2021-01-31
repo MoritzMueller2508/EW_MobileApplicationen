@@ -9,20 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity">
+        android:usesCleartextTraffic="true"
+        >
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator">
+        <activity android:name="com.dhbw.tinf19ai.CoroniReisen.Navigator"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name="com.dhbw.tinf19ai.CoroniReisen.MapFragment"
-            tools:ignore="Instantiatable"></activity>
-        <activity android:name=".CountryDetails"></activity>
-        <activity android:name=".DestinationsList"></activity>
-        <activity android:name=".PieChart"></activity>
+            tools:ignore="Instantiatable">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".CountryDetails"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".DestinationsList"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".PieChart"
+            android:screenOrientation="portrait"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

@@ -1,8 +1,8 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
- * This class represents the first interface that includes a greeting and rules of conduct during a pandemic.
- * By clicking on the image you will be redirected to the next interface.
+ * This class represents the first user interface that includes a greeting and rules of conduct during a pandemic.
+ * By clicking on the image you will be redirected to the next UI (MapFragment).
  */
 
 import android.Manifest;
@@ -23,19 +23,17 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-
 
 public class MainActivity extends AppCompatActivity {
+    //initialize values and objects
     public static boolean internetConnection = false;
     public boolean permissions = false;
     // Storage Permissions variables
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
+    private static final String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        internetConnection = isNetworkAvailable();
         super.onCreate(savedInstanceState);
 
         Log.i(TAG, "On Create .....");
@@ -54,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Dictionary initialization
         CountryDictionary.setCountriesDict();
+        Log.i(TAG, "onCreate: Dictionary ready");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onStart() {
+        internetConnection = isNetworkAvailable();
         super.onStart();
         Log.i(TAG, "On Start .....");
         verifyStoragePermissions(this);
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     //Forwarding to the MapFragment by clicking on the image
     public void imageClick(View view) {
         Intent intent = new Intent(this, Navigator.class);
+        Log.i(TAG, "imageClick: redirecting to new Activity");
         startActivity(intent);
     }
 
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+        Log.i(TAG, "verifyStoragePermissions: Permissions set");
     }
 
     //function to request the Bing Data and the RKI data are saved
@@ -142,7 +145,14 @@ public class MainActivity extends AppCompatActivity {
             alertDialogBuilder.setTitle("Keine Internetverbindung");
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
+            Log.e(TAG, "saveData: No Internet-connection available");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        internetConnection = isNetworkAvailable();
+        super.onResume();
     }
 
     private boolean isNetworkAvailable() {

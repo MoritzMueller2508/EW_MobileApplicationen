@@ -31,6 +31,5 @@ The numbers for the pie chart are extracted from the [Bing Covid website](https:
 # Table of Contents for developers
 
 1. [Classes](documentation/classes.md)
-2. [Pie Chart Api](documentation/api.md)
-3. [Sources](documentation/sources.md)
+3. [Sources & Libraries](documentation/sources.md)
 
