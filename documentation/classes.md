@@ -77,9 +77,10 @@
 ## PieChart
 
 >This interface shows a PieChart with data for the selected country from:
-- Confirmed cases
-- Death cases
-- Recovered cases
+>- Confirmed cases
+>- Death cases
+>- Recovered cases
+
 >With a button you can return to the country details.
 
 
