@@ -2,7 +2,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
  * This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
- * them into a list.
+ * them into a list. Also downloading the website in a csv file (every 24 hours) facilitation the offline use.
  * The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
  * the last 10 days but are not anymore --getOrangeRiskCountries()--.
  */

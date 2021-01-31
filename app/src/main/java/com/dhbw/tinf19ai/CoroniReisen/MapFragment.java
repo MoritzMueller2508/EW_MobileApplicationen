@@ -3,7 +3,8 @@ package com.dhbw.tinf19ai.CoroniReisen;
 /**
  * This class represents the selection of the country to be considered with a map.
  * The user can search for individual countries.
- * When clicking on a marker of an entered country, the user is redirected to the last UI for the country details.
+ * When clicking on a marker of an entered country, the user is redirected to the last UI for the country details. 
+ * If you keep the marker pressed for a longer time, it will be deleted.
  * There are also vacation categories which are represented by buttons.
  * By clicking on them, the user will be redirected to the appropriate list of countries.
  */

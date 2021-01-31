@@ -1,5 +1,9 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ * This class facilates the presentation of the data in the PieChart, allowing different functinalities, like highlighting an entry when tapped.
+ */
+
 import android.content.Context;
 import android.widget.TextView;
 

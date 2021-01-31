@@ -1,5 +1,13 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ * This interface shows a PieChart with data for the selected country from:
+ * - Confirmed cases
+ * - Death cases
+ * - Recovered cases
+ * With a button you can return to the country details.
+ */
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.nfc.Tag;
