@@ -19,6 +19,7 @@
             android:columnCount="1"
             android:rowCount="5">
 
+
             <TextView
                 android:id="@+id/tx_country"
                 style="@style/title"
@@ -48,15 +49,27 @@
                         android:layout_height="wrap_content" />
 
                     <com.github.mikephil.charting.charts.PieChart
+
                         android:id="@+id/pieChart"
                         android:layout_width="350dp"
                         android:layout_height="350dp"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:layout_marginTop="75dp"
+                        />
 
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_PieBack"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="back"
+                style="@style/text"
+                android:background="@drawable/button_background"
+                />
 
 
         </GridLayout>

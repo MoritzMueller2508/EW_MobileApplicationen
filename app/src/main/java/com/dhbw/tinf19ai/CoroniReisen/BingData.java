@@ -1,17 +1,12 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 /**
- * This class connects to the Bing Covid API. The data is imported from the api periodically and written to a csv to get the current numbers.
- * <p>
- * We get the following data:
- * ID (country)
- * Updated (date)
- * Confirmed (confirmed cases)
- * ConfirmedChange (rate of change of cases from previous day)
- * Deaths (confirmed deaths)
- * DeathsChange (Rate of change of deaths from the previous day)
- * Recovered (Recovered cases)
- * RecoveredChange (Rate of change recovered from the previous day
- */
+*This class connects to the Bing Covid API. The data is imported from the api periodically (every 24 hours) and written to a csv file to get the current numbers. Thia way the latests numbers (downloaded) are also available offline.
+*We get the following data:
+*Updated (date)
+*Confirmed (confirmed cases)
+*Deaths (confirmed deaths)
+*Recovered (Recovered cases)
+*/
 
 import android.Manifest;
 import android.app.Activity;
@@ -57,6 +52,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class BingData extends Activity {
+
+    //initialize values and objects
     private final static String TAG = "BingData";
 
     //read and write csv data from github repo
@@ -87,6 +84,7 @@ public class BingData extends Activity {
             Log.d(TAG, "File written and saved");
             return writer;
         } catch (IOException e) {
+            Log.e(TAG, "getBingDataOnline: Error" );
             e.printStackTrace();
         }
         return null;
@@ -172,8 +170,7 @@ public class BingData extends Activity {
 
     /**  @param countryRegion is specific country or region i.a. "Worldwide" or "Germany"
      *    !!! Please enter region or country capitalized i.e. "Germany" instead of "germany" or "GERMANY"
-     *    TODO: country or region should be case insensitive
-     **/
+    **/
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static ArrayList<String[]> getCsvData(String countryRegion) throws IOException {
         String csvFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.dhbw.tinf19ai.CoroniReisen/files" + "/Bing-COVID19-Data.csv";
@@ -182,7 +179,6 @@ public class BingData extends Activity {
         ArrayList<String[]> bingDataTemp = new ArrayList<>();
         File file = new File(csvFile);
         List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("cp1252"));
-        System.out.println("works");
 
         for (String line : lines) {
             if (line.contains(countryRegion)) {
@@ -194,13 +190,8 @@ public class BingData extends Activity {
                 }
             }
         }
-        System.out.println("worksII");
         bingData.add(bingDataTemp.get(bingDataTemp.size() - 1));
 
-        /* auslesen der kompletten Datei
-        for(int row=0; row < bingData.size(); row++){
-            System.out.println(Arrays.toString(bingData.get(row)));
-        }*/
         return bingData;
     }
 

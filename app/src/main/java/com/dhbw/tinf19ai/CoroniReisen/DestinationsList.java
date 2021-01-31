@@ -10,6 +10,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,12 +23,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class DestinationsList extends ListActivity {
+    //initialize values and objects
 
     //set lists
     static final String[] sonne = new String[]{"Spanien", "Italien", "Madagaskar", "Australien", "Türkei", "Malta", "Ägypten", "Brasilien", "Mexiko"};
-    static final String[] berge = new String[]{"Schweiz", "USA", "Deutschland", "Australien", "Vereinigtes Königreich", "Nordmazedonien", "Italien", "Griechenland", "Belgien", "Slowakei"};
-    static final String[] stadt = new String[]{"Spanien", "Polen", "Nordmazedonien", "Indien", "Türkei", "Japan", "China", "Deutschland", "Russische Föderation", "USA"};
-    static final String[] natur = new String[]{"Marokko", "Kanada", "Neuseeland", "Japan", "Iran", "Deutschland", "Österreich", "Thailand", "Norwegen", "Irland"};
+    static final String[] berge = new String[]{"Schweiz", "USA", "Nepal", "Australien", "Vereinigtes Königreich", "Nordmazedonien", "Italien", "Griechenland", "Belgien", "Slowakei"};
+    static final String[] stadt = new String[]{"Spanien", "Polen", "Nordmazedonien", "Indien", "Türkei", "Japan", "China", "Kroatien", "Russische Föderation", "USA"};
+    static final String[] natur = new String[]{"Marokko", "Kanada", "Neuseeland", "Japan", "Iran", "Dänemark", "Österreich", "Thailand", "Norwegen", "Irland"};
     public String eingabe_marker_btn;
     public TextView title, text;
 
@@ -36,6 +38,7 @@ public class DestinationsList extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.destinations_list);
+        Log.i("View set", "onCreate: ContentView set 'destination_list'");
 
         //TextViews
         title = (TextView) findViewById(R.id.tx_title);
@@ -69,7 +72,9 @@ public class DestinationsList extends ListActivity {
                 text.setText("Hier finden sie Länder mit viel Natur, perfekt zum entspannen und genießen von außergewöhnlicher Vegitation!");
                 break;
             default:
+                Log.e("Error_DefaultCase", "CoroniAssignemt_onCreate: Error, unexspected value" + btn);
                 throw new IllegalStateException("Unexpected value: " + btn);
+
         }
 
         //set ListView
@@ -84,6 +89,7 @@ public class DestinationsList extends ListActivity {
                 final String country = (String) adapterView.getItemAtPosition(i);
                 Intent newActivity1 = new Intent(DestinationsList.this, CountryDetails.class);
                 newActivity1.putExtra("country", country);
+                Log.i("ItemClick", "onItemClick: Redirected to information_activity");
                 startActivity(newActivity1);
             }
         });

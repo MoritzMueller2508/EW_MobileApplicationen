@@ -1,5 +1,9 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ * This class facilates the presentation of the data in the PieChart, allowing different functinalities, like highlighting an entry when tapped.
+ */
+
 import android.content.Context;
 import android.widget.TextView;
 
@@ -11,6 +15,7 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 public class CustomMarker extends MarkerView {
 
+    //initialize values and objects
 
     private TextView tvContent;
 
@@ -27,6 +32,13 @@ public class CustomMarker extends MarkerView {
 
     }
 
+
+    /**
+     * Set Value of Entry, then refresh content
+     *
+     * @param e
+     * @param highlight
+     */
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         tvContent.setText("" + e.getY());
@@ -34,6 +46,13 @@ public class CustomMarker extends MarkerView {
 
     }
 
+    /**
+     * Center data value
+     *
+     * @param posX
+     * @param posY
+     * @return
+     */
     @Override
     public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
         return super.getOffsetForDrawingAtPoint(posX/2, posY);

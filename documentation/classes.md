@@ -4,6 +4,7 @@
 - [CoroniAssignment](classes.md#CoroniAssignment)
 - [CountryDetails](classes.md#CountryDetails)
 - [CountryDictionary](classes.md#CountryDictionary)
+- [CutomMarker](classes.md#CustomMarker)
 - [DestinationsList](classes.md#DestinationsList)
 - [MainActivity](classes.md#MainActivity)
 - [MapFragment](classes.md#MapFragment)
@@ -42,6 +43,11 @@
 >This class represents a hashtable with all the countries of this world (we don't deny the existance of other worlds).
 
 
+## CustomMarker
+
+>This class facilates the presentation of the data in the PieChart, allowing different functinalities, like highlighting an entry when tapped.
+
+
 ## DestinationsList
 
 >This class creates the lists of countries for the different buttons.
@@ -56,7 +62,8 @@
 
 ## MapFragment
 
->This class represents the selection of the country to be considered with a map.
+>This class represents the selection of the country to be considered with a map. 
+ The user can search for individual countries.
  When clicking on a marker of an entered country, the user is redirected to the last UI for the country details. If you keep the marker pressed for a longer time, it will be deleted.
  There are also vacation categories which are represented by buttons.
  By clicking on them, the user will be redirected to the appropriate list of countries.

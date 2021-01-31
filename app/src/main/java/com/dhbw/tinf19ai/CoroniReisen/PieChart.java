@@ -1,11 +1,22 @@
 package com.dhbw.tinf19ai.CoroniReisen;
 
+/**
+ * This interface shows a PieChart with data for the selected country from:
+ * - Confirmed cases
+ * - Death cases
+ * - Recovered cases
+ * With a button you can return to the country details.
+ */
+
 import android.content.Intent;
 import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,17 +36,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PieChart extends AppCompatActivity {
+    //initialize values and objects
     private TextView tx_title_country;
     private int recoveredCases, deathCases, confirmedCases;
     private String country;
-    private String[] countryArray = CountryDetails.countryArray;
+    private final String[] countryArray = CountryDetails.countryArray;
+    private final static String TAG = "PieChart";
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pie_chart);
 
-        tx_title_country = (TextView) findViewById(R.id.tx_country);
+        tx_title_country = findViewById(R.id.tx_country);
+        Button button = findViewById(R.id.btn_PieBack);
 
 
         //set titel matching the country
@@ -45,6 +60,13 @@ public class PieChart extends AppCompatActivity {
 
         initPieChart();
         setDataPieChart();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: back to CountryDetails_Activity");
+                finish();
+            }
+        });
 
     }
 
@@ -73,11 +95,17 @@ public class PieChart extends AppCompatActivity {
         chart.setDrawEntryLabels(false);
         //disable center Text
         chart.setDrawCenterText(false);
+        //
+        chart.getLegend().setTextSize(19f);
+
 
 
         //set custom marker for displaying data an tap
         CustomMarker my = new CustomMarker(getApplicationContext(), R.layout.tv_content);
         chart.setMarkerView(my);
+        Log.i(TAG, "initPieChart: PieChart parameter set " +
+                "Description(false), Rotation(true), DragDeceleration(true), " +
+                "HighlightTap(true), animation(true), holeColor(background), LabelText(false)");
 
     }
 
@@ -86,76 +114,83 @@ public class PieChart extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDataPieChart() {
 
-        com.github.mikephil.charting.charts.PieChart chart = (com.github.mikephil.charting.charts.PieChart) findViewById(R.id.pieChart);
+        com.github.mikephil.charting.charts.PieChart chart = findViewById(R.id.pieChart);
 
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
-        String label = "type";
+        String label = "";
 
 
-            String recovered = countryArray[2];
-            String confirmed = countryArray[0];
-            String deaths = countryArray[1];
+        String recovered = countryArray[2];
+        String confirmed = countryArray[0];
+        String deaths = countryArray[1];
 
-            if(!recovered.equals(""))
-                recoveredCases = Integer.parseInt(recovered);
-            else
-                recoveredCases = 0;
+        if(!recovered.equals(""))
+            recoveredCases = Integer.parseInt(recovered);
+        else
+            recoveredCases = 0;
 
-            if(!confirmed.equals(""))
-                confirmedCases = Integer.parseInt(confirmed);
-            else
-                confirmedCases = 0;
+        if(!confirmed.equals(""))
+            confirmedCases = Integer.parseInt(confirmed);
+        else
+            confirmedCases = 0;
 
-            if (!deaths.equals(""))
-                deathCases = Integer.parseInt(deaths);
-            else
-                deathCases = 0;
-
-
-
-            //initialize data
-            Map<String, Integer> typeAmountMap = new HashMap<>();
-            Log.i("Put recovered cases: ", recovered);
-            typeAmountMap.put("recovered_cases", recoveredCases );
-
-            Log.i("Put death cases: ", deaths);
-            typeAmountMap.put("deaths", deathCases);
-
-            Log.i("Put confirmed cases: ", confirmed);
-            typeAmountMap.put("confirmed", confirmedCases);
+        if (!deaths.equals(""))
+            deathCases = Integer.parseInt(deaths);
+        else
+            deathCases = 0;
 
 
-            //initializing colors for the entries
-            ArrayList<Integer> colors = new ArrayList<>();
-            colors.add(Color.parseColor("#304567"));
-            colors.add(Color.parseColor("#309967"));
-            colors.add(Color.parseColor("#476567"));
-            colors.add(Color.parseColor("#890567"));
-            colors.add(Color.parseColor("#a35567"));
-            colors.add(Color.parseColor("#ff5f67"));
 
-            //input data and fit data into pie chart entry
+        //initialize data
+        Map<String, Integer> typeAmountMap = new HashMap<>();
+        Log.i("Put recovered cases: ", recovered);
+        typeAmountMap.put("recovered_cases", recoveredCases );
 
-            for (String type:typeAmountMap.keySet()
-            ) {
-                pieEntries.add(new
-                        PieEntry(typeAmountMap.get(type).floatValue(), type));
-            }
+        Log.i("Put death cases: ", deaths);
+        typeAmountMap.put("deaths", deathCases);
+
+        Log.i("Put confirmed cases: ", confirmed);
+        typeAmountMap.put("confirmed", confirmedCases);
 
 
-            //collecting the entries with label name
-            PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
-            //setting text size of the value
-            pieDataSet.setValueTextSize(18f);
-            //providing color list for coloring different entries
-            pieDataSet.setColors(colors);
-            //grouping the data set from entry to chart
-            PieData pieData = new PieData(pieDataSet);
-            //showing the value of the entries, default true if not set
-            pieData.setDrawValues(false);
+        //initializing colors for the entries
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#304567"));
+        colors.add(Color.parseColor("#309967"));
+        colors.add(Color.parseColor("#476567"));
+        colors.add(Color.parseColor("#890567"));
+        colors.add(Color.parseColor("#a35567"));
+        colors.add(Color.parseColor("#ff5f67"));
 
-            chart.setData(pieData);
-            chart.invalidate();
+        //input data and fit data into pie chart entry
+
+        for (String type:typeAmountMap.keySet()
+        ) {
+            pieEntries.add(new
+                    PieEntry(typeAmountMap.get(type).floatValue(), type));
+        }
+
+
+        //collecting the entries with label name
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, label);
+        //setting text size of the value
+        pieDataSet.setValueTextSize(18f);
+        //providing color list for coloring different entries
+        pieDataSet.setColors(colors);
+        //grouping the data set from entry to chart
+        PieData pieData = new PieData(pieDataSet);
+        //showing the value of the entries, default true if not set
+        pieData.setDrawValues(false);
+
+        chart.setData(pieData);
+
+        Log.i(TAG, "onCreate: PieChart drawn" +
+            "country(" + "intent.getStringExtra('country') + ),"  +
+            "TextSize(12f), DrawValues(false)");
+        chart.invalidate();
+
+
+
 
         }
     }

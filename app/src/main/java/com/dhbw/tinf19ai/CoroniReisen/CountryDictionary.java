@@ -4,10 +4,13 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * This class represents a hashtable with all countries of this world.
  */
 
+import android.util.Log;
+
 import java.util.Hashtable;
 import java.util.Map;
 
 public class CountryDictionary {
+    //initialize values and objects
     public static Hashtable<String, String> countriesDict = new Hashtable<String, String>();
 
     //add countries to the dictionary
@@ -262,21 +265,28 @@ public class CountryDictionary {
     }
 
     public static String getCountryInGerman(String countryEn) {
+        //initialize values and objects
         String countryDe;
+        //get translation from hashtable
         countryDe = countriesDict.get(countryEn);
+        Log.i("Translation", "getCountryInGerman: translated country to german");
         return countryDe;
     }
 
     public static  String getCountryInEnglish(String countryDe){
+        //initialize values and objects
         String countryEn;
-        for (Map.Entry<String, String> e:countriesDict.entrySet()
+        //get translation from hashtable
+        for (Map.Entry<String, String> e:countriesDict.entrySet() //iterate through valueSet - german String location
              ) {
             if (countryDe.equals(e.getValue())){
-                return e.getKey();
+                countryEn = e.getKey();
+                Log.i("Translation", "getCountryInEnglish: translated country to english");
+                return countryEn;
             }
         }
 
-        return null;
+        return null; //return null if translation failed
     }
 
 }

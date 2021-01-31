@@ -2,7 +2,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
 
 /**
  * This class extracts the risk countries, regions, islands, etc. from the RKI website and converting
- * them into a list.
+ * them into a list. Also downloading the website in a csv file (every 24 hours) facilitation the offline use.
  * The distinction is made between current risk countries --getRedRiskCountries()-- and countries that were a risk country in
  * the last 10 days but are not anymore --getOrangeRiskCountries()--.
  */
@@ -36,8 +36,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class RiskCountriesExtraction {
+    //initialize values and objects
     private static boolean internetConnection = MainActivity.internetConnection;
-    private final static String TAG = "RiskCountriesExtracion";
+    private final static String TAG = "RiskCountriesExtraction";
 
 
     //get HTML Website in a string from the website
@@ -56,6 +57,7 @@ public class RiskCountriesExtraction {
         }
         String result = html.toString();
 
+        Log.i(TAG, "getHtmlWebsite: get data from Website with url 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html'");
         return result;
     }
 
@@ -75,6 +77,7 @@ public class RiskCountriesExtraction {
         dir.mkdirs();
         File file = new File(dir, "Risk-Countries.csv");
         file.createNewFile();
+        Log.i(TAG, "saveCsv: new file created");
 
         try {
             FileWriter writer = new FileWriter(file);
@@ -87,8 +90,9 @@ public class RiskCountriesExtraction {
             }
             writer.flush();
             writer.close();
-            Log.d(TAG, "File written and saved");
+            Log.i(TAG, "File written and saved");
         } catch (IOException e) {
+            Log.e(TAG, "saveCsv: Error" );
             e.printStackTrace();
         }
     }
@@ -114,6 +118,7 @@ public class RiskCountriesExtraction {
                 writer.close();
                 return true;
             } catch (IOException e) {
+                Log.e(TAG, "saveLastUpdated: Error" );
                 e.printStackTrace();
             }
         } else {
@@ -129,8 +134,10 @@ public class RiskCountriesExtraction {
                         writer.append(nowString);
                         writer.flush();
                         writer.close();
+                        Log.i(TAG, "saveLastUpdated: new file created and saved");
                         return true;
                     } catch (IOException e) {
+                        Log.e(TAG, "saveLastUpdated: Error" );
                         e.printStackTrace();
                     }
                 }
@@ -160,6 +167,7 @@ public class RiskCountriesExtraction {
                     try {
                         saveCsv();
                     } catch (IOException e) {
+                        Log.e(TAG, "saveData: Error" );
                         e.printStackTrace();
                     }
                 });
@@ -196,7 +204,7 @@ public class RiskCountriesExtraction {
 
         List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
-
+        Log.i(TAG, "getRedRiskCountries: " + convertedCountriesList);
         return convertedCountriesList;
     }
 
@@ -218,6 +226,7 @@ public class RiskCountriesExtraction {
         List<String> convertedCountriesList = new ArrayList<>(Arrays.asList(list.split("</li>", -1)));
         convertedCountriesList = getRiskCountries(convertedCountriesList);
 
+        Log.i(TAG, "getOrangeRiskCountries: "+ convertedCountriesList);
         return convertedCountriesList;
     }
 
@@ -258,7 +267,7 @@ public class RiskCountriesExtraction {
         }
 
         regions = getExtraRegions(regions);
-        System.out.println(regions);
+        Log.d(TAG, "getRiskCountries: regions = "+ regions);;
         return regions;
     }
 

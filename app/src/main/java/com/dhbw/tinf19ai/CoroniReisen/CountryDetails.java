@@ -6,7 +6,7 @@ package com.dhbw.tinf19ai.CoroniReisen;
  * a map and the matching coroni,
  * our travel advices,
  * a reference to the entry requirements of the foreign office,
- * the current numbers in the form of a pie chart and
+ * a card redirecting to a pie chart and
  * a reference to our data source.
  */
 
@@ -36,7 +36,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
+
 public class CountryDetails extends AppCompatActivity {
+
+    //initialize values and objects
     private TextView tx_title_country, tx_advice;
     private MapView map_cutout;
     private IMapController mapController;
@@ -80,8 +83,9 @@ public class CountryDetails extends AppCompatActivity {
         CardView coroni_card = (CardView) findViewById(R.id.card_coroni);
 
         searchAndCenterAddress(country_eingabe);
+        Log.i("MarkerSet", "onCreate: Marker set according to User-Input ");
         setLinks(advice_card, source_card, coroni_card, pieChart_card);
-
+        Log.i("Linking Cards", "onCreate: Cards to more information linked");
 
 
         AsyncTask.execute(() -> {
@@ -118,16 +122,19 @@ public class CountryDetails extends AppCompatActivity {
         advice_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: advice_card clicked, redirecting to 'https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/reise-und-sicherheitshinweise'");
             startActivity(launchBrowser);
         });
         source_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.bing.com/covid/dev");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: source_card clicked, redirecting to 'https://www.bing.com/covid/dev'");
             startActivity(launchBrowser);
         });
         coroni_card.setOnClickListener(view -> {
             Uri uriUrl = Uri.parse("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            Log.i("card clicked", "setLinks: coroni_card clicked, redirecting to 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Risikogebiete_neu.html'");
             startActivity(launchBrowser);
         });
         pieChart_card.setOnClickListener(view-> {
@@ -160,13 +167,16 @@ public class CountryDetails extends AppCompatActivity {
                     geoPoint = null;
                 }
                 setMarkerAndCenter(geoPoint, country_eingabe);
+                Log.i("Marker set", "searchAndCenterAddress: Marker set");
             } catch (IOException e) {
+                Log.e("Error", "searchAndCenterAddress: " + e.getStackTrace() );
                 e.printStackTrace();
             }
         };
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
+        Log.i("Runnable end", "searchAndCenterAddress: Executor shutdown");
     }
 
 
@@ -195,14 +205,17 @@ public class CountryDetails extends AppCompatActivity {
                 if (coroni.equals("red")) {
                     im_coroni.setImageResource(R.drawable.coroni_red);
                     tx_advice.setText(red);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; red");
                 }
                 if (coroni.equals("orange")) {
                     im_coroni.setImageResource(R.drawable.coroni_orange);
                     tx_advice.setText(orange);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; orange");
                 }
                 if (coroni.equals("green")) {
                     im_coroni.setImageResource(R.drawable.coroni_green);
                     tx_advice.setText(green);
+                    Log.i("CoroniAssignment", "setMarkerAndCenter: Coroni and text set; green");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -211,9 +224,10 @@ public class CountryDetails extends AppCompatActivity {
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.submit(runnable);
         executor.shutdown(); // tell executor no more work is coming
+        Log.i("Runnable end", "setMarkerAndCenter: executor shutdown");
+        //center on geopoint
         if (internetConnection) {
             this.mapController.setCenter(geoPoint);
         }
-
     }
 }
