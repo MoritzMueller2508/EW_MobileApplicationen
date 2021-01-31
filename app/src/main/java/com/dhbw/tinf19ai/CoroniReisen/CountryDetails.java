@@ -48,6 +48,7 @@ public class CountryDetails extends AppCompatActivity {
     public Marker country_marker;
     boolean internetConnection = MainActivity.internetConnection;
     private final static String TAG = "CountryDetails";
+
     private String country_eingabe, country;
     public static String[] countryArray;
 
@@ -108,6 +109,8 @@ public class CountryDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+
 
 
     }
@@ -179,7 +182,7 @@ public class CountryDetails extends AppCompatActivity {
 
     //set new markers
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) {
+    private void setMarkerAndCenter(GeoPoint geoPoint, final String country_eingabe) throws IOException {
         if (internetConnection) {
             country_marker = new Marker(map_cutout);
             country_marker.setPosition(geoPoint);

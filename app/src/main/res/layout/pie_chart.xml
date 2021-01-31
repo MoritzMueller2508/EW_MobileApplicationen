@@ -48,6 +48,7 @@
                         android:layout_height="wrap_content" />
 
                     <com.github.mikephil.charting.charts.PieChart
+
                         android:id="@+id/pieChart"
                         android:layout_width="350dp"
                         android:layout_height="350dp"
