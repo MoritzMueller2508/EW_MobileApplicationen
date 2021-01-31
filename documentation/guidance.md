@@ -12,7 +12,7 @@ The individual UIs and their functions are explained in more detail below.
 - The interface is built with a ScrollView and CardViews. Therefore, the individual cards can be used. When clicking the middle card, 
 you will be redirected to the next view. 
 
-**This interface serves as a start page.**
+**This class serves as a start page.**
 <br><br><br><br><br><br><br><br><br>
 
 ><img align="left" src="MapFragment.PNG" width="200">
@@ -25,7 +25,7 @@ You can either **search for a single country** and display it on the map, or **s
 
 - The buttons on the 2nd cardview represent vacation categories. Via these buttons you will be forwarded to a country selection. 
 
-**This interface serves as input of the country to be specified.**
+**This class serves as input of the country to be specified.**
 <br><br><br><br><br><br><br>
 
 ><img align="left" src="DestinationsList.PNG" width="200">
@@ -34,7 +34,7 @@ You can either **search for a single country** and display it on the map, or **s
 
 - The category is displayed with a short explanatory text and the list of 10 countries. The countries have been selected from various sources of tourism.
 
-**This interface is used to select a country limited by the selection of a vacation category.**
+**This class is used to select a country limited by the selection of a vacation category.**
 <br><br><br><br><br><br><br><br><br><br><br><br>
 - **red Coroni:** risk area
 - **green coroni:** no risk area
@@ -56,7 +56,7 @@ There are 5 cardviews:
 - **5. CardView:** This CardView shows the source of our data for the current numbers. If you click on it, you will be redirected to the API.
 
 
-**This interface is used to display country details associated with corona.**
+**This class is used to display country details associated with corona.**
 <br><br><br>
 
 ><img align="left" src="PieChart.PNG" width="200">
@@ -69,4 +69,4 @@ With a button you can return to the country details.
 
 
 
-**This interface serves as input of the country to be specified.**
+**This class serves as input of the country to be specified.**
