@@ -8,8 +8,8 @@
 - [MainActivity](classes.md#MainActivity)
 - [MapFragment](classes.md#MapFragment)
 - [Navigator](classes.md#Navigator)
-- [RiskCountriesExtraction](classes.md#RiskCountriesExtraction)
 - [PieChart](classes.md#PieChart)
+- [RiskCountriesExtraction](classes.md#RiskCountriesExtraction)
 
 ## BingData
 
@@ -67,14 +67,6 @@
 >This class serves as a container for the MapFragment.
 
 
-## RiskCountriesExtraction
-
->This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list. Also downloading the website in a csv file (every 24 hours) facilitation the offline use.
- The distinction is made between current risk countries *getRedRiskCountries()* and countries that were a risk country in
- the last 10 days but are not anymore *getOrangeRiskCountries()*.
-
-
-
 ## PieChart
 
 >This interface shows a PieChart with data for the selected country from:
@@ -82,5 +74,13 @@
 - Death cases
 - Recovered cases
 >With a button you can return to the country details.
+
+
+## RiskCountriesExtraction
+
+>This class extracts the risk countries, regions, islands, etc. from the RKI website and converts them into a list. Also downloading the website in a csv file (every 24 hours) facilitation the offline use.
+ The distinction is made between current risk countries *getRedRiskCountries()* and countries that were a risk country in
+ the last 10 days but are not anymore *getOrangeRiskCountries()*.
+
 
 
