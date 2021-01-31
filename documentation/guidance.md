@@ -62,9 +62,9 @@ There are 5 cardviews:
 ><img align="left" src="PieChart.PNG" width="200">
 ## PieChart
 This user interface shows a PieChart with data for the selected country from:
-- current numbers
-- death numbers
-- recovered numbers.
+- Confirmed cases
+- Death cases
+- Recovered cases.
 With a button you can return to the country details.
 
 
