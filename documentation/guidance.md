@@ -22,14 +22,15 @@ you will be redirected to the next view.
 
 - You can either **search for a single country** and display it on the map, or **select one of the buttons** on the 2nd cardview. 
     - Please keep in mind, that the app will only display countries, not cities!
-    - The input can either be in german or english
+    - The input can either be in german or english.
     - The input can only be a country!
 
 - If you search for a single country with the search button, a marker is set on the mapview below. This marker can be deleted if you keep it pressed for a longer time. If the user presses the marker, he will be forwarded directly to the country details for this country.
 
 - The buttons on the 2nd cardview represent vacation categories. Via these buttons you will be forwarded to a country selection. 
 
-**This UI serves as input of the country to be specified.**
+**This UI serves as input of the country to be specified.** <br>
+**Input has to be a country in german or english language!**
 
 <br><br><br><br><br><br><br>
 

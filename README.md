@@ -32,21 +32,22 @@ The numbers for the pie chart are extracted from the [Bing Covid website](https:
 
 # VersionList
 
-The application was developed in Android Studio 4.1.2
-Build #AI-201.8743.12.41.7042882, built on December 20, 2020
-Runtime version: 1.8.0_242-release-1644-b01 amd64
-VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
-Windows 10 10.0
-GC: ParNew, ConcurrentMarkSweep
-Memory: 1237M
-Cores: 12
-Registry: ide.new.welcome.screen.force=true, external.system.auto.import.disabled=true
-Non-Bundled Plugins: com.caldonazzi.alessandro.uml, com.thoughtworks.gauge, com.intellij.marketplace, org.jetbrains.kotlin, Dart, io.flutter
+The application was developed in 
+- Android Studio 4.1.2
+- Build #AI-201.8743.12.41.7042882, built on December 20, 2020
+- Runtime version: 1.8.0_242-release-1644-b01 amd64
+- VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+- Windows 10 10.0
+- GC: ParNew, ConcurrentMarkSweep
+- Memory: 1237M
+- Cores: 12
+- Registry: ide.new.welcome.screen.force=true, external.system.auto.import.disabled=true
+- Non-Bundled Plugins: com.caldonazzi.alessandro.uml, com.thoughtworks.gauge, com.intellij.marketplace, org.jetbrains.kotlin, Dart, io.flutter
 
 with
 
-Android Gradle Plugin Version 4.1.1
-Gradle Version: 6.5
+- Android Gradle Plugin Version: 4.1.1
+- Gradle Version: 6.5
 
 The last successfull build took place on the 31th January 2021, 19:16 (UTC+1)
 
